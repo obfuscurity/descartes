@@ -1,4 +1,4 @@
-# Decartes
+# Descartes
 
 ## Purpose
 
