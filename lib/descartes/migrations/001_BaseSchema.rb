@@ -1,0 +1,40 @@
+
+Sequel.migration do
+  up do
+    create_table(:graphs) do
+      primary_key :id
+      String      :uuid,          :size => 32, :null => false, :index => true, :unique => true
+      String      :owner,         :size => 80, :null => false, :index => true
+      String      :name,          :size => 80, :null => false
+      Text        :description
+      Text        :url
+      Text        :configuration
+      TrueClass   :enabled,                    :null => false, :default => false
+      DateTime    :created_at,                 :null => false
+      DateTime    :updated_at,                 :null => false
+    end
+
+    create_table(:dashboards) do
+      primary_key :id
+      String      :uuid,          :size => 32, :null => false, :index => true, :unique => true
+      String      :owner,         :size => 80, :null => false, :index => true
+      String      :name,          :size => 80, :null => false
+      Text        :description
+      Text        :configuration
+      TrueClass   :enabled,                    :null => false, :default => false
+      DateTime    :created_at,                 :null => false
+      DateTime    :updated_at,                 :null => false
+    end
+
+    create_table(:tags) do
+      primary_key :id
+      String      :uuid,          :size => 32, :null => false, :index => true
+      String      :name,          :size => 80, :null => false, :index => true
+    end
+  end
+
+  down do
+    drop_table(:tags, :graphs, :dashboards)
+  end
+end
+
