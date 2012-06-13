@@ -58,57 +58,15 @@ module Descartes
       end
     end
 
-    get '/auth/unauthorized' do
-      session.clear
-      redirect '/auth/google', 302
-    end
-
-    get '/auth/google/callback' do
-      google_callback
-    end
-
-    post '/auth/google/callback' do
-      google_callback
-    end
-
     get '/' do
       p current_user["email"]
       haml :index
     end
 
-    get '/graphs/?' do
-    end
+    require 'descartes/routes/auth'
+    require 'descartes/routes/graphs'
+    require 'descartes/routes/dashboards'
 
-    post '/graphs/?' do
-    end
-
-    get '/graphs/:id/?' do
-    end
-
-    put '/graphs/:id/?' do
-      # XXX do we want to handle tags here too?
-    end
-
-    delete '/graphs/:id/?' do
-      Graph.filter(:uuid => param[:id]).first.destroy
-    end
-
-    get '/dashboards/?' do
-    end
-
-    post '/dashboards/?' do
-    end
-
-    get '/dashboards/:id/?' do
-    end
-
-    put '/dashboards/:id/?' do
-      # XXX do we want to handle tags here too?
-    end
-
-    delete '/dashboards/:id/?' do
-      Dashboard.filter(:uuid => param[:id]).first.destroy
-    end
   end
 end
 
