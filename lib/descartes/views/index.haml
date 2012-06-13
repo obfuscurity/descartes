@@ -4,6 +4,21 @@
     %title Descartes
     %meta{ "http-equiv" => "Content-Type", :content => "text/html;charset=utf-8" }
     %link{ :rel => "stylesheet", :type => "text/css", :href => "/css/bootstrap.min.css" }
+    %script{ :type => "text/javascript", :src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" }
     %script{ :type => "text/javascript", :src => "/js/bootstrap.min.js" }
+    %script{ :type => "text/javascript", :src => "/js/graphite-add.js" }
   %body
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+        %a.brand{ :href => "/" } Descartes
+        %ul.nav
+          %li.active
+            %a{ :href => "/" } Home
+          %li
+            %a{ :href => "/graphs"} Graphs
+          %li
+            %a{ :href => "/dashboards"} Dashboards
 
+
+  %a{ :class => "btn btn-primary graphite-add", :href => "#" } Add Graphite
