@@ -1,4 +1,5 @@
 .row
   - @graphs.each do |g| 
     .graph.span4
-      %img{ :src => g.url }
+      %label{ :for => g.uuid } #{g.name}
+      %img{ :src => g.url, :alt => g.name, :name => g.uuid }
