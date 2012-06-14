@@ -8,13 +8,6 @@
     %script{ :type => "text/javascript", :src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" }
     %script{ :type => "text/javascript", :src => "/js/bootstrap.min.js" }
     //%script{ :type => "text/javascript", :src => "/js/graphite-add.js" }
-    // Highlight current active tab
-    :javascript
-      $(document).ready(function() {
-        $('.active').removeClass('active');
-        var path = location.pathname.split("/")[1] || 'home';
-        $('li.' + path).addClass('active');
-      });
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -31,5 +24,12 @@
             //  %a{ :class => "btn btn-primary graphite-add", :href => "#" } Add Graph
     .container
       =yield
+    // Highlight current active tab
+    :javascript
+      $(document).ready(function() {
+        $('.active').removeClass('active');
+        var path = location.pathname.split("/")[1] || 'home';
+        $('li.' + path).addClass('active');
+      });
 
 
