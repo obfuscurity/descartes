@@ -1,3 +1,6 @@
+module Descartes
+  class Web < Sinatra::Base
+
     get '/dashboards/?' do
     end
 
@@ -14,4 +17,5 @@
     delete '/dashboards/:id/?' do
       Dashboard.filter(:uuid => param[:id]).first.destroy
     end
-
+  end
+end

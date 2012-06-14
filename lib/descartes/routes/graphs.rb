@@ -1,3 +1,6 @@
+module Descartes
+  class Web < Sinatra::Base
+
     get '/graphs/?' do
       haml :graphs, :locals => { :graphs => @graphs }
     end
@@ -15,3 +18,5 @@
     delete '/graphs/:id/?' do
       Graph.filter(:uuid => param[:id]).first.destroy
     end
+  end
+end
