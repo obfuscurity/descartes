@@ -9,17 +9,20 @@
     %script{ :type => "text/javascript", :src => "/js/bootstrap.min.js" }
     %script{ :type => "text/javascript", :src => "/js/graphite-add.js" }
   %body
-  .navbar.navbar-fixed-top
-    .navbar-inner
-      .container
-        %a.brand{ :href => "/" } Descartes
-        %ul.nav
-          %li.active
-            %a{ :href => "/" } Home
-          %li
-            %a{ :href => "/graphs"} Graphs
-          %li
-            %a{ :href => "/dashboards"} Dashboards
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.brand{ :href => "/" } Descartes
+          %ul.nav
+            %li.active
+              %a{ :href => "/" } Home
+            %li
+              %a{ :href => "/graphs"} Graphs
+            %li
+              %a{ :href => "/dashboards"} Dashboards
+            //%li
+            //  %a{ :class => "btn btn-primary graphite-add", :href => "#" } Add Graph
+    .container
+      =yield
 
 
-  %a{ :class => "btn btn-primary graphite-add", :href => "#" } Add Graphite
