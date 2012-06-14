@@ -9,6 +9,7 @@ Sequel.migration do
       Text        :description
       Text        :url
       Text        :configuration
+      Text        :overrides
       TrueClass   :enabled,                    :null => false, :default => false
       DateTime    :created_at,                 :null => false
       DateTime    :updated_at,                 :null => false
