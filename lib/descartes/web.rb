@@ -7,7 +7,7 @@ require 'haml'
 require 'json'
 
 require 'descartes/config'
-require 'descartes/models/all'
+require 'descartes/models/init'
 
 module Descartes
   class Web < Sinatra::Base
@@ -34,10 +34,10 @@ module Descartes
 
     helpers do
       def find_dashboards
-        @dashboards = []
+        @dashboards = Dashboard.filter(:enabled => true).all
       end
       def find_graphs
-        @graphs = []
+        @graphs = Graph.filter(:enabled => true).all
       end
       def current_user
         @current_user ||= session['user']
@@ -59,7 +59,9 @@ module Descartes
     end
 
     get '/' do
-      p current_user["email"]
+      #p current_user["email"]
+      #p @graphs
+      #p @dashboards
       haml :index
     end
 

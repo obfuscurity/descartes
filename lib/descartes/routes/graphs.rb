@@ -1,4 +1,5 @@
     get '/graphs/?' do
+      haml :graphs, :locals => { :graphs => @graphs }
     end
 
     post '/graphs/?' do
