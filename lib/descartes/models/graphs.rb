@@ -1,3 +1,6 @@
+require 'cgi'
+require 'uri'
+require 'json'
 
 class NilClass
   def method_missing(name, *args, &block)
@@ -22,9 +25,14 @@ class Graph < Sequel::Model
 
   def before_create
     super
+    self.configuration = deconstruct(self.url)
     self.enabled = true
     self.created_at = Time.now
     self.updated_at = Time.now
+  end
+
+  def deconstruct(url)
+    CGI.parse(URI.parse(url).query).to_json
   end
 
   def before_update
