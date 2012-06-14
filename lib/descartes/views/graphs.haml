@@ -1,7 +1,4 @@
 .row
-  .span4
-    Lorem Ipsum
-  .span4
-    Lorem Ipsum
-  .span4
-    Lorem Ipsum
+  - @graphs.each do |g| 
+    .span4
+      %img{ :src => g.url }
