@@ -6,6 +6,16 @@ module Descartes
     end
 
     post '/graphs/?' do
+      if params[:node]
+        nodes = []
+        nodes.push(params[:node]).flatten!
+        nodes.each do |n|
+          name, url = n.split("!:!")
+          @graph = Graph.new({:owner => session['user']['email'], :name => name, :url => url})
+          @graph.save
+        end
+      end
+      redirect '/graphs'
     end
 
     get '/graphs/:id/?' do

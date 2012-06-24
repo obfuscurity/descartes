@@ -1,3 +1,15 @@
+.well
+  %a{ :class => "import btn btn-primary", :href => "#" } Import Graph
+
+%fieldset#import_form
+  %form{ :method => "post", :action => "/graphs" }
+    %ul
+      %li
+        %label{ :for => "node" } Available Graphs:
+      %li
+        %select{ :id => "node", :name => "node[]", :multiple => "multiple" }
+      %li
+        %button{ :id => "import_submit btn btn-primary", :name => "submit", :type => "submit", :value => "Import Graph" }
 .row
   - @graphs.each do |g| 
     .graph.span4
