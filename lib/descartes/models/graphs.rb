@@ -1,6 +1,5 @@
 require 'cgi'
 require 'uri'
-require 'json'
 
 class NilClass
   def method_missing(name, *args, &block)
@@ -9,8 +8,6 @@ end
 
 class Sequel::Model
   #def validates_url_format(input)
-  #end
-  #def validates_config_syntax(input)
   #end
 end
 
@@ -23,16 +20,17 @@ class Graph < Sequel::Model
   plugin :prepared_statements_safe
   plugin :validation_helpers
 
-  def before_create
+  def before_validation
     super
     self.configuration = deconstruct(self.url)
+    self.name ||= JSON.parse(self.configuration)["title"].first
+  end
+
+  def before_create
+    super
     self.enabled = true
     self.created_at = Time.now
     self.updated_at = Time.now
-  end
-
-  def deconstruct(url)
-    CGI.parse(URI.parse(url).query).to_json
   end
 
   def before_update
@@ -46,7 +44,6 @@ class Graph < Sequel::Model
     validates_presence :name
     validates_presence :url
     #validates_url_format self.url
-    #validates_config_syntax self.configuration
   end
 
   def destroy
@@ -56,6 +53,10 @@ class Graph < Sequel::Model
 
   def destroy!
     self.delete
+  end
+
+  def deconstruct(url)
+    CGI.parse(URI.parse(url).query).to_json
   end
 
   def restore

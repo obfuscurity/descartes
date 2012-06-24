@@ -1,5 +1,6 @@
 require 'sequel'
-require 'descartes/config'
+require 'securerandom'
+require 'json'
 
 db = ENV['DATABASE_URL'] || 'postgres://localhost/descartes'
 Sequel.connect(db)
