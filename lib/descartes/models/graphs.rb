@@ -28,6 +28,7 @@ class Graph < Sequel::Model
 
   def before_create
     super
+    self.uuid = SecureRandom.hex(16)
     self.enabled = true
     self.created_at = Time.now
     self.updated_at = Time.now
@@ -40,7 +41,6 @@ class Graph < Sequel::Model
 
   def validate
     super
-    validates_presence :uuid
     validates_presence :name
     validates_presence :url
     #validates_url_format self.url
