@@ -19,9 +19,6 @@ module Descartes
     require 'descartes/routes/dashboards'
 
     get '/' do
-      #p current_user["email"]
-      #p @graphs
-      #p @dashboards
       haml :index
     end
   end
