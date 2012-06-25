@@ -2,7 +2,12 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/graphs/?' do
-      haml :graphs, :locals => { :graphs => @graphs }
+      if request.accept.include?("application/json")
+        content_type "application/json"
+        @graphs.to_json
+      else
+        haml :graphs, :locals => { :graphs => @graphs }
+      end
     end
 
     post '/graphs/?' do

@@ -12,7 +12,9 @@ module Descartes
       find_graphs
       find_dashboards
       if !((request.path_info =~ /\/auth/) || (request.path == '/health'))
-        redirect '/auth/unauthorized' unless current_user
+        if !(request.accept.include?("application/json"))
+          redirect '/auth/unauthorized' unless current_user
+        end
       end
     end
 
