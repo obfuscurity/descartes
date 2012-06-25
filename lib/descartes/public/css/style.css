@@ -2,14 +2,28 @@ body {
   padding-top: 60px;
 }
 
+.accordion-group {
+  margin: 20px 0;
+  border: 0;
+}
+
 #import_form ul {
   list-style: none;
 }
 
 fieldset.collapse.in {
-  padding-top: 20px;
+  padding-top: 12px;
+  border: 1px solid #E5E5E5;
 }
 
-select.collapse.in {
-  padding-bottom: 10px;
+.collapse.in select {
+  min-height: 100px;
+  min-width: 400px;
+  margin-bottom: 20px;
+  float: left;
+}
+
+button.import_submit {
+  float: left;
+  margin: 71px 0 0 20px;
 }
