@@ -2,13 +2,14 @@ body {
   padding-top: 60px;
 }
 
-#import_form {
-  display: none;
-  //position: absolute;
-  //top: 50px;
-  //left: 20px;
-  min-width: 215px;
-  min-height: 255px;
-  padding: 30px;
+#import_form ul {
+  list-style: none;
 }
 
+fieldset.collapse.in {
+  padding-top: 20px;
+}
+
+select.collapse.in {
+  padding-bottom: 10px;
+}
