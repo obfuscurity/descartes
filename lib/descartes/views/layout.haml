@@ -20,20 +20,17 @@
               %a{ :href => "/graphs"} Graphs
             %li.dashboards
               %a{ :href => "/dashboards"} Dashboards
-            //%li
-            //  %a{ :class => "btn btn-primary graphite-add", :href => "#" } Add Graph
     .container
+      // Highlight current active tab
+      :javascript
+        $(document).ready(function() {
+          $('.active').removeClass('active');
+          var path = location.pathname.split("/")[1] || 'home';
+          $('li.' + path).addClass('active');
+        });
+        var url = "#{ENV['GRAPHITE_URL']}";
+        var auth = "#{ENV['GRAPHITE_AUTH']}";
+
       =yield
-    // Highlight current active tab
-    :javascript
-      $(document).ready(function() {
-        $('.active').removeClass('active');
-        var path = location.pathname.split("/")[1] || 'home';
-        $('li.' + path).addClass('active');
-      });
-      var url = "#{ENV['GRAPHITE_URL']}";
-      var auth = "#{ENV['GRAPHITE_AUTH']}";
-    %script{ :type => "text/javascript", :src => "/js/graph-import.js" }
-    /%script{ :type => "text/javascript", :src => "/js/graph-render.js" }
 
 
