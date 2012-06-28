@@ -2,6 +2,10 @@ body {
   padding-top: 60px;
 }
 
+.columns.btn-group {
+  float: right;
+}
+
 .accordion-group {
   margin: 20px 0;
   border: 0;

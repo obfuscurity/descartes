@@ -1,5 +1,10 @@
 .well
   %a{ :class => "import btn", :"data-toggle" => "collapse", :"data-target" => "#import_form", :href => "#" } Add Graphs
+  .columns.btn-group
+    %button{ :class => "columns btn", :value => 1 } 1
+    %button{ :class => "columns btn", :value => 2 } 2
+    %button{ :class => "columns btn selected", :value => 3 } 3
+    %button{ :class => "columns btn", :value => 4 } 4
 .accordion-group
   %fieldset#import_form{ :class => "collapse" }
     %form{ :method => "post", :action => "/graphs" }
