@@ -2,10 +2,17 @@
   %a{ :class => "import btn", :"data-toggle" => "collapse", :"data-target" => "#import_form", :href => "#" } Add Graphs
   .columns.btn-group
     %button{ :class => "columns btn disabled" } Columns
-    %button{ :class => "columns btn", :value => 1 } 1
-    %button{ :class => "columns btn", :value => 2 } 2
-    %button{ :class => "columns btn active", :value => 3 } 3
-    %button{ :class => "columns btn", :value => 4 } 4
+    %button{ :class => "columns btn", :name => 1, :value => 1 } 1
+    %button{ :class => "columns btn", :name => 2, :value => 2 } 2
+    %button{ :class => "columns btn active", :name => 3, :value => 3 } 3
+    %button{ :class => "columns btn", :name => 4, :value => 4 } 4
+  .interval.btn-group
+    %button{ :class => "interval btn disabled" } Interval
+    %button{ :class => "interval btn active", :name => 1, :value => '1h' } 1h
+    %button{ :class => "interval btn", :name => 2, :value => '3h' } 3h
+    %button{ :class => "interval btn", :name => 3, :value => '6h' } 6h
+    %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
+
 .accordion-group
   %fieldset#import_form{ :class => "collapse" }
     %form{ :method => "post", :action => "/graphs" }

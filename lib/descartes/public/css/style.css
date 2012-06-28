@@ -2,13 +2,13 @@ body {
   padding-top: 60px;
 }
 
-.columns.btn-group {
+.interval.btn-group {
   float: right;
+  margin-right: 20px;
 }
 
-.columns.btn-group button.columns.btn.disabled {
-  //background-color: #000;
-  //color: #fff;
+.columns.btn-group {
+  float: right;
 }
 
 .accordion-group {
@@ -22,7 +22,7 @@ body {
 
 fieldset.collapse.in {
   padding-top: 12px;
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
 }
 
 .collapse.in select {
