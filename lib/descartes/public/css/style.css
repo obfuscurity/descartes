@@ -6,6 +6,11 @@ body {
   float: right;
 }
 
+.columns.btn-group button.columns.btn.disabled {
+  //background-color: #000;
+  //color: #fff;
+}
+
 .accordion-group {
   margin: 20px 0;
   border: 0;
