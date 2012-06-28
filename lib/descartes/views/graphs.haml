@@ -9,10 +9,5 @@
         %li
           %button{ :class => "import_submit btn btn-primary", :name => "submit", :type => "submit" } Import Saved Graph
 .graphs
-/.row
-/  - @graphs.each do |g| 
-/    .graph.span4
-/      %label{ :for => g.uuid } #{g.name}
-/      %img{ :src => g.url, :alt => g.name, :name => g.uuid }
 %script{ :type => "text/javascript", :src => "/js/graph-import.js" }
 %script{ :type => "text/javascript", :src => "/js/graph-render.js" }

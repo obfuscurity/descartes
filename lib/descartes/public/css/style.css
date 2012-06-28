@@ -27,3 +27,7 @@ button.import_submit {
   float: left;
   margin: 71px 0 0 20px;
 }
+
+div.graphs div.row {
+  margin-bottom: 20px;
+}
