@@ -26,7 +26,7 @@ fieldset.collapse.in {
 }
 
 .collapse.in select {
-  min-height: 100px;
+  min-height: 150px;
   min-width: 400px;
   margin-bottom: 20px;
   float: left;
@@ -34,7 +34,7 @@ fieldset.collapse.in {
 
 button.import_submit {
   float: left;
-  margin: 71px 0 0 20px;
+  margin: 121px 0 0 20px;
 }
 
 div.graphs div.row {
