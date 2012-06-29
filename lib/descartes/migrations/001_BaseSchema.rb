@@ -29,8 +29,8 @@ Sequel.migration do
 
     create_table(:tags) do
       primary_key :id
-      String      :uuid,          :size => 32, :null => false, :index => true
       String      :name,          :size => 80, :null => false, :index => true
+      foreign_key :graph_id, :graphs
     end
   end
 
