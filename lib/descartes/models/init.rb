@@ -7,6 +7,7 @@ Sequel.connect(db)
 
 $LOAD_PATH.unshift File.dirname(__FILE__)
 require 'graphs'
+require 'tags'
 require 'dashboards'
 
 Sequel::Model.plugin :json_serializer
