@@ -3,10 +3,18 @@ module Descartes
 
     get '/graphs/?' do
       if request.accept.include?("application/json")
+        @graphs = []
+        if params[:tags]
+          @graphs = Graph.select('graphs.*'.lit).from(:graphs, :tags).
+            where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
+            filter(:tags__name.like(/params[:tags].first/)).all
+        else
+          @graphs = Graph.filter(:enabled => true).all
+        end
         content_type "application/json"
         @graphs.to_json
       else
-        haml :graphs, :locals => { :graphs => @graphs }
+        haml :graphs
       end
     end
 
