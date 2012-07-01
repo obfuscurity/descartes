@@ -9,6 +9,11 @@ body {
 
 .columns.btn-group {
   float: right;
+  margin-right: 20px;
+}
+
+.tools.btn-group {
+  float: right;
 }
 
 .accordion-group {

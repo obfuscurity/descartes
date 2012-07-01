@@ -1,11 +1,19 @@
 .well
   %a{ :class => "import btn", :"data-toggle" => "collapse", :"data-target" => "#import_form", :href => "#" } Import Graphs
+
+  .tools.btn-group
+    %button{ :class => "tools btn fullscreen", :title => "toggle fullscreen" }
+      %i.icon-fullscreen
+    %button{ :class => "tools btn refresh", :title => "refresh graphs" }
+      %i.icon-refresh
+
   .columns.btn-group
     %button{ :class => "columns btn disabled" } Columns
     %button{ :class => "columns btn", :name => 1, :value => 1 } 1
     %button{ :class => "columns btn", :name => 2, :value => 2 } 2
     %button{ :class => "columns btn active", :name => 3, :value => 3 } 3
     %button{ :class => "columns btn", :name => 4, :value => 4 } 4
+    
   .interval.btn-group
     %button{ :class => "interval btn disabled" } Interval
     %button{ :class => "interval btn active", :name => 1, :value => '1h' } 1h
