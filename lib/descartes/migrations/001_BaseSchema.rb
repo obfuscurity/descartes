@@ -31,6 +31,7 @@ Sequel.migration do
       primary_key :id
       String      :name,          :size => 80, :null => false, :index => true
       foreign_key :graph_id, :graphs
+      index       :name
     end
   end
 
