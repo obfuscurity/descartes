@@ -14,16 +14,25 @@ end
 class Graph < Sequel::Model
 
   many_to_many :dashboards
+  one_to_many :tags
   
   plugin :boolean_readers
   plugin :prepared_statements
   plugin :prepared_statements_safe
   plugin :validation_helpers
+  plugin :association_dependencies, :tags => :destroy
 
   def before_validation
     super
     self.configuration = deconstruct(self.url)
     self.name ||= JSON.parse(self.configuration)["title"].first
+  end
+
+  def validate
+    super
+    validates_presence :name
+    validates_presence :url
+    #validates_url_format self.url
   end
 
   def before_create
@@ -34,25 +43,24 @@ class Graph < Sequel::Model
     self.updated_at = Time.now
   end
 
+  def after_create
+    super
+    tags = []
+    tags << self.name
+    #tags << self.tags
+    tags.each do |name|
+      Tag.new(:name => name, :graph_id => self.id).save;
+    end
+  end
+
   def before_update
     super
     self.updated_at = Time.now
   end
 
-  def validate
+  def before_destroy
     super
-    validates_presence :name
-    validates_presence :url
-    #validates_url_format self.url
-  end
-
-  def destroy
-    self.enabled = false
-    self.save
-  end
-
-  def destroy!
-    self.delete
+    Tag.filter(:graph_id => self.id).destroy
   end
 
   def deconstruct(url)
