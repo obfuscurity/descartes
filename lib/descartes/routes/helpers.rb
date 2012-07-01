@@ -2,12 +2,6 @@ module Descartes
   class Web < Sinatra::Base
 
     helpers do
-      def find_dashboards
-        @dashboards = Dashboard.filter(:enabled => true).all
-      end
-      def find_graphs
-        @graphs = Graph.filter(:enabled => true).all
-      end
       def current_user
         @current_user ||= session['user']
       end
