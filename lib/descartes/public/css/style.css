@@ -6,6 +6,10 @@ body {
   float: right;
 }
 
+.import.btn {
+  margin-right: 16px;
+}
+
 .interval.btn-group {
   float: right;
   margin-right: 20px;
@@ -25,13 +29,14 @@ body {
   border: 0;
 }
 
-#import_form ul {
+#import_form ul, #dashboard_form ul {
   list-style: none;
 }
 
 fieldset.collapse.in {
   padding-top: 12px;
   border: 1px solid #e5e5e5;
+  min-height: 75px;
 }
 
 .collapse.in select {
@@ -41,9 +46,24 @@ fieldset.collapse.in {
   float: left;
 }
 
+.collapse.in input {
+  float: left;
+  height: 22px;
+}
+
 button.import_submit {
   float: left;
   margin: 121px 0 0 20px;
+}
+
+button.dashboard_submit {
+  float: left;
+  margin-left: 20px;
+}
+
+.help-block {
+  position: absolute;
+  margin: 42px 0 0 20px;
 }
 
 div.graphs div.row {
