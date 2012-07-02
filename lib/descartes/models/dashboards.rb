@@ -20,6 +20,7 @@ class Dashboard < Sequel::Model
 
   def before_create
     super
+    self.uuid = SecureRandom.hex(16)
     self.enabled = true
     self.created_at = Time.now
     self.updated_at = Time.now
@@ -32,22 +33,7 @@ class Dashboard < Sequel::Model
 
   def validate
     super
-    validates_presence :uuid
     validates_presence :name
     #validates_config_syntax self.configuration
-  end
-
-  def destroy
-    self.enabled = false
-    self.save
-  end
-
-  def destroy!
-    self.delete
-  end
-
-  def restore
-    self.enabled = true
-    self.save
   end
 end
