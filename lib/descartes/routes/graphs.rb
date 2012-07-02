@@ -5,14 +5,16 @@ module Descartes
       if request.accept.include?("application/json")
         @graphs = []
         if params[:tags]
-          @graphs = Graph.select('graphs.*'.lit).from(:graphs, :tags).
-            where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
-            filter(:tags__name.like(/params[:tags].first/)).all
+          params[:tags].split(",").each do |tag|
+            @graphs << Graph.select('graphs.*'.lit).from(:graphs, :tags).
+              where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
+              filter(:tags__name.like(/#{tag}/i)).all
+          end
         else
-          @graphs = Graph.filter(:enabled => true).all
+          @graphs << Graph.filter(:enabled => true).all
         end
         content_type "application/json"
-        @graphs.to_json
+        @graphs.flatten.to_json
       else
         haml :graphs
       end
