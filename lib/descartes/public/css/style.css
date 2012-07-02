@@ -2,6 +2,10 @@ body {
   padding-top: 60px;
 }
 
+.navbar-search {
+  float: right;
+}
+
 .interval.btn-group {
   float: right;
   margin-right: 20px;
