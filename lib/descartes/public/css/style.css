@@ -49,6 +49,7 @@ fieldset.collapse.in {
 .collapse.in input {
   float: left;
   height: 22px;
+  padding-left: 8px;
 }
 
 button.import_submit {
