@@ -27,16 +27,21 @@ Sequel.migration do
       DateTime    :updated_at,                 :null => false
     end
 
+    create_table(:graphs_dashboards) do
+      primary_key :id
+      foreign_key :graph_id, :graphs
+      foreign_key :dashboard_id, :dashboards
+    end
+
     create_table(:tags) do
       primary_key :id
       String      :name,          :size => 80, :null => false, :index => true
       foreign_key :graph_id, :graphs
-      index       :name
     end
   end
 
   down do
-    drop_table(:tags, :graphs, :dashboards)
+    drop_table(:tags, :graphs_dashboards, :graphs, :dashboards)
   end
 end
 
