@@ -12,3 +12,4 @@ require 'dashboards'
 
 Sequel::Model.plugin :json_serializer
 Graph.plugin :json_serializer
+Dashboard.plugin :json_serializer
