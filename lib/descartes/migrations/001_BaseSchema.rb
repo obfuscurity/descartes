@@ -27,7 +27,7 @@ Sequel.migration do
       DateTime    :updated_at,                 :null => false
     end
 
-    create_table(:graphs_dashboards) do
+    create_table(:graph_dashboard_relations) do
       primary_key :id
       foreign_key :graph_id, :graphs
       foreign_key :dashboard_id, :dashboards
