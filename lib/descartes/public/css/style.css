@@ -6,6 +6,21 @@ body {
   float: right;
 }
 
+.header {
+  min-height: 50px;
+}
+
+.header h1 {
+  margin-top: 5px;
+  float: left;
+}
+
+.header span.info {
+  margin-top: 22px;
+  float: right;
+  color: #999;
+}
+
 .import.btn {
   margin-right: 16px;
 }
