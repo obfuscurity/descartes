@@ -11,12 +11,10 @@ module Descartes
     end
 
     post '/dashboards/?' do
-      if params[:uuids] && params[:name]
+      if request.accept.include?("application/json") && params[:uuids] && params[:name]
         @dashboard = Dashboard.new({ :owner => session['user']['email'], :name => params[:name] })
         @dashboard.save
-        params[:uuids].split(",").each do |uuid|
-          @dashboard.add_graph_relation(Graph.filter(:uuid => uuid).first.id)
-        end
+        @dashboard.add_graph(params[:uuids])
         @dashboard.to_json
       else
         #halt
@@ -25,9 +23,13 @@ module Descartes
 
     get '/dashboards/:id/?' do
       @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
+      @graphs = []
+      GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
+        @graphs.push(Graph[r.graph_id])
+      end
       if request.accept.include?("application/json")
         content_type "application/json"
-        @dashboard.to_json
+        { :dashboard => @dashboard, :graphs => @graphs }.to_json
       else
         haml :dashboards, :locals => { :dashboard => @dashboard }
       end

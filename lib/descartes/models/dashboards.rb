@@ -12,7 +12,7 @@ end
 class Dashboard < Sequel::Model
 
   many_to_many :graphs
-  
+
   plugin :boolean_readers
   plugin :prepared_statements
   plugin :prepared_statements_safe
@@ -35,5 +35,12 @@ class Dashboard < Sequel::Model
     super
     validates_presence :name
     #validates_config_syntax self.configuration
+  end
+
+  def add_graph(uuids)
+    uuids.split(",").each do |uuid|
+      @graph = Graph.filter(:uuid => uuid).first
+      GraphDashboardRelation.new(:graph_id => @graph.id, :dashboard_id => self.id).save
+    end
   end
 end

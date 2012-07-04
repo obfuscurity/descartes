@@ -9,6 +9,7 @@ $LOAD_PATH.unshift File.dirname(__FILE__)
 require 'graphs'
 require 'tags'
 require 'dashboards'
+require 'graph_dashboard_relations'
 
 Sequel::Model.plugin :json_serializer
 Graph.plugin :json_serializer
