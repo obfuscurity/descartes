@@ -1,6 +1,6 @@
 .header
   %h1= dashboard[:name]
-  %span.info Created by #{dashboard[:owner]} on #{dashboard[:created_at]}
+  %span.info Created by <span class="owner">#{dashboard[:owner]}</span> on #{dashboard[:created_at]}
 .well
   .tools.btn-group
     %button{ :class => "tools btn fullscreen", :title => "toggle fullscreen" }

@@ -16,9 +16,14 @@ body {
 }
 
 .header span.info {
-  margin-top: 22px;
   float: right;
+  margin-top: 22px;
+  padding-right: 5px;
   color: #999;
+}
+
+.header span.owner {
+  color: #5ea9cc;
 }
 
 .import.btn {
