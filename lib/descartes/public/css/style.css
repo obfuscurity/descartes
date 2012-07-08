@@ -2,6 +2,20 @@ body {
   padding-top: 60px;
 }
 
+.reset-search.icon-remove-circle {
+  margin-top: -2px;
+  margin-right: 5px;
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter:alpha(opacity=8);
+}
+
+.reset-search.icon-remove-circle.hover {
+  opacity: 1.0;
+  -moz-opacity: 1.0;
+  filter:alpha(opacity=10);
+}
+
 .navbar-search {
   float: right;
 }
