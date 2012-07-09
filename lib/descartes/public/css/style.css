@@ -101,6 +101,30 @@ button.dashboard_submit {
   margin: 42px 0 0 20px;
 }
 
-div.graphs div.row {
+div.graphs div.row, div.dashboards div.row {
   margin-bottom: 20px;
+}
+
+div.dashboards {
+  margin-top: 40px;
+}
+
+div.dashboard {
+  border-radius: 25px;
+  min-height: 200px;
+  margin-bottom: 12px;
+  background-color: #333;
+  color: #fff;
+}
+
+div.dashboard div.name {
+  float: left;
+}
+
+div.dashboard div.count {
+  float: right;
+  font-size: 10em;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=5);
 }

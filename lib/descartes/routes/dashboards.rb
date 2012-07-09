@@ -2,12 +2,24 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/dashboards/?' do
-      if params[:owner]
-        @dashboards = Dashboard.filter(:enabled => true, :owner => session['user']['email']).all
+      if request.accept.include?("application/json")
+        if params[:owner]
+          @dashboards = Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
+            from(:dashboards, :graph_dashboard_relations).
+            where(:dashboards__enabled => true, :dashboards__owner => session['user']['email'], :dashboards__id => :graph_dashboard_relations__dashboard_id).
+            group(:dashboards__id)
+        else
+          @dashboards = Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
+            from(:dashboards, :graph_dashboard_relations).
+            where(:dashboards__enabled => true, :dashboards__id => :graph_dashboard_relations__dashboard_id).
+            group(:dashboards__id).
+            order(:dashboards__updated_at).reverse
+        end
+        content_type "application/json"
+        @dashboards.to_json
       else
-        @dashboards = Dashboard.filter(:enabled => true).all
+        haml :'dashboards/list'
       end
-      haml :dashboards, :locals => { :dashboards => @dashboards }
     end
 
     post '/dashboards/?' do
@@ -24,6 +36,18 @@ module Descartes
     get '/dashboards/:id/?' do
       @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
       @graphs = []
+
+      # XXX - use intersection, e.g. [0,1] & [1,2] returns [1]
+      if params[:tags]
+        params[:tags].split(",").each do |tag|
+          @tagged_graphs << Graph.select('graphs.*'.lit).from(:graphs, :tags).
+            where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
+            filter(:tags__name.like(/#{tag}/i)).all
+        end
+      else
+      end
+      # XXX
+
       GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
         @graphs.push(Graph[r.graph_id])
       end
@@ -31,7 +55,7 @@ module Descartes
         content_type "application/json"
         { :dashboard => @dashboard, :graphs => @graphs }.to_json
       else
-        haml :dashboards, :locals => { :dashboard => @dashboard }
+        haml :'dashboards/profile', :locals => { :dashboard => @dashboard }
       end
     end
 
