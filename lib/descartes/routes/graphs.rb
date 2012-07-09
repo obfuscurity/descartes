@@ -16,7 +16,7 @@ module Descartes
         content_type "application/json"
         @graphs.flatten.to_json
       else
-        haml :graphs
+        haml :'graphs/list'
       end
     end
 
