@@ -37,6 +37,10 @@ class Dashboard < Sequel::Model
     #validates_config_syntax self.configuration
   end
 
+  def graph_count
+    self[:graph_count]
+  end
+
   def add_graph(uuids)
     uuids.split(",").each do |uuid|
       @graph = Graph.filter(:uuid => uuid).first
