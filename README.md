@@ -16,7 +16,6 @@ Design, build and deploy a dashboard that allows users to correlate multiple met
 * Create new graphs using native interface tooling
 * Add notes (annotations) to charts
 * Add comments associated with specific annotations
-* Serve as official team dashboards for operational/engineering reviews
 
 ## Components
 
