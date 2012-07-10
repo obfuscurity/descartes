@@ -41,7 +41,7 @@ Sequel.migration do
   end
 
   down do
-    drop_table(:tags, :graphs_dashboards, :graphs, :dashboards)
+    drop_table(:tags, :graph_dashboard_relations, :graphs, :dashboards)
   end
 end
 
