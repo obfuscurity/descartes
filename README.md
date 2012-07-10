@@ -35,6 +35,7 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 
 ### Development
 
+```bash
 $ rvm use 1.9.2
 $ bundle install
 $ export GOOGLE_OAUTH_DOMAIN=...
@@ -44,9 +45,11 @@ $ createdb descartes
 $ bundle exec rake db:migrate:up
 $ foreman start
 $ open http://127.0.0.1:5000
+```
 
 ### Production
 
+```bash
 $ export DEPLOY=production/staging/you
 $ heroku create -r $DEPLOY -s cedar
 $ heroku addons:add redistogo -r $DEPLOY
@@ -58,6 +61,7 @@ $ heroku config:set -r $DEPLOY RAKE_ENV=production
 $ git push $DEPLOY master
 $ heroku scale -r $DEPLOY web=1
 $ heroku open -r $DEPLOY
+```
 
 ## LICENSE
 
