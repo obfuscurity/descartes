@@ -20,9 +20,46 @@ Design, build and deploy a dashboard that allows users to correlate multiple met
 
 ## Components
 
-This product would consist of a simple Sinatra application serving up Javascript libraries for creating charts, saving configurations, and interacting with external services like the Graphite API. Third-party libraries will be reused wherever possible, particularly those related to chart and DOM manipulation. Examples:
-
+* Bootstrap
 * jQuery
 * D3.js
 * Rickshaw
+* Sinatra
+* Sequel
+* PostgreSQL
+* Redis
+
+## Deployment
+
+Descartes stores configuration data in PostgreSQL and Google OpenID state in Redis. It is assumed you have local PostgreSQL and Redis servers running for local development.
+
+### Development
+
+$ rvm use 1.9.2
+$ bundle install
+$ export GOOGLE_OAUTH_DOMAIN=...
+$ export GRAPHITE_URL=...
+$ export SESSION_SECRET=...
+$ createdb descartes
+$ bundle exec rake db:migrate:up
+$ foreman start
+$ open http://127.0.0.1:5000
+
+### Production
+
+$ export DEPLOY=production/staging/you
+$ heroku create -r $DEPLOY -s cedar
+$ heroku addons:add redistogo -r $DEPLOY
+$ heroku addons:add heroku-postgresql:dev -r $DEPLOY
+$ heroku config:set -r $DEPLOY GOOGLE_OAUTH_DOMAIN=...
+$ heroku config:set -r $DEPLOY GRAPHITE_URL=...
+$ heroku config:set -r $DEPLOY SESSION_SECRET...
+$ heroku config:set -r $DEPLOY RAKE_ENV=production
+$ git push $DEPLOY master
+$ heroku scale -r $DEPLOY web=1
+$ heroku open -r $DEPLOY
+
+## LICENSE
+
+Descartes is distributed under the MIT license. Third-party software libraries included with this project are distributed under their respective licenses.
 
