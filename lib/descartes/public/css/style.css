@@ -126,8 +126,9 @@ span.dashboard:hover {
 span.dashboard span.name {
   display: block;
   margin: 16px 28px 0 28px;
-  line-height: 25px;
-  font-size: 1.8em;
+  font-family: "HelveticaNeue-UltraLight";
+  font-size: 2.2em;
+  line-height: 1.0em;
 }
 
 span.dashboard span.count {
@@ -136,5 +137,4 @@ span.dashboard span.count {
   right: 0;
   margin: 0 28px 60px 0;
   font-size: 7.0em;
-  font-weight: bold;
 }
