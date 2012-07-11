@@ -111,20 +111,28 @@ div.dashboards {
 
 div.dashboard {
   border-radius: 25px;
+  position: relative;
   min-height: 200px;
   margin-bottom: 12px;
   background-color: #333;
   color: #fff;
 }
 
+div.dashboards div :hover {
+  background-color: #FFD045;
+  color: #FF4D00;
+}
+
 div.dashboard div.name {
-  float: left;
+  margin: 16px 28px 0 28px;
+  line-height: 25px;
+  font-size: 1.5em;
 }
 
 div.dashboard div.count {
-  float: right;
-  font-size: 10em;
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-  filter:alpha(opacity=5);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 22px 60px 0;
+  font-size: 7.0em;
 }
