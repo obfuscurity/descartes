@@ -64,7 +64,11 @@ module Descartes
     end
 
     delete '/dashboards/:id/?' do
-      Dashboard.filter(:uuid => param[:id]).first.destroy
+      @dashboard = Dashboard.filter(:uuid => params[:id]).first
+      GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
+        r.destroy
+      end
+      @dashboard.destroy
     end
   end
 end
