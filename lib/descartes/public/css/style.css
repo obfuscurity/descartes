@@ -126,13 +126,13 @@ div.dashboards div :hover {
 div.dashboard div.name {
   margin: 16px 28px 0 28px;
   line-height: 25px;
-  font-size: 1.5em;
+  font-size: 1.8em;
 }
 
 div.dashboard div.count {
   position: absolute;
   bottom: 0;
   right: 0;
-  margin: 0 22px 60px 0;
+  margin: 0 28px 60px 0;
   font-size: 7.0em;
 }
