@@ -109,7 +109,7 @@ div.dashboards {
   margin-top: 40px;
 }
 
-div.dashboard {
+span.dashboard {
   border-radius: 25px;
   position: relative;
   min-height: 200px;
@@ -118,21 +118,23 @@ div.dashboard {
   color: #fff;
 }
 
-div.dashboards div :hover {
+span.dashboard:hover {
   background-color: #FFD045;
   color: #FF4D00;
 }
 
-div.dashboard div.name {
+span.dashboard span.name {
+  display: block;
   margin: 16px 28px 0 28px;
   line-height: 25px;
   font-size: 1.8em;
 }
 
-div.dashboard div.count {
+span.dashboard span.count {
   position: absolute;
   bottom: 0;
   right: 0;
   margin: 0 28px 60px 0;
   font-size: 7.0em;
+  font-weight: bold;
 }
