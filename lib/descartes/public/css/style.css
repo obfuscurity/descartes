@@ -138,3 +138,15 @@ span.dashboard span.count {
   margin: 0 28px 60px 0;
   font-size: 7.0em;
 }
+
+span.dashboard img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: -15px -15px 0 0;
+  z-index: 150;
+}
+
+span.dashboard img.hidden {
+  display: none;
+}
