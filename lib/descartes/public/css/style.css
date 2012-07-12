@@ -110,15 +110,19 @@ div.graphs div.row, div.dashboards div.row {
   margin-bottom: 20px;
 }
 
+span.graph {
+  position: relative;
+}
+
 div.dashboards {
   margin-top: 40px;
 }
 
 span.dashboard {
-  border-radius: 25px;
   position: relative;
   min-height: 200px;
   margin-bottom: 12px;
+  border-radius: 25px;
   background-color: #333;
   color: #fff;
 }
@@ -144,14 +148,19 @@ span.dashboard span.count {
   font-size: 7.0em;
 }
 
-span.dashboard img {
+span.dashboard img.close, span.graph img.close {
   position: absolute;
   top: 0;
   right: 0;
   margin: -15px -15px 0 0;
   z-index: 150;
+  opacity: 1.0;
 }
 
-span.dashboard img.hidden {
-  display: none;
+span.graph img.close {
+  margin: 0 -20px 0 0;
+}
+
+span.dashboard img.close.hidden, div.graph img.close.hidden {
+  //display: none;
 }

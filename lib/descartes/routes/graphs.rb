@@ -41,7 +41,11 @@ module Descartes
     end
 
     delete '/graphs/:id/?' do
-      Graph.filter(:uuid => param[:id]).first.destroy
+      @graph = Graph.filter(:uuid => params[:id]).first
+      GraphDashboardRelation.filter(:graph_id => @graph.id).all.each do |r|
+        r.destroy
+      end
+      @graph.destroy
     end
   end
 end

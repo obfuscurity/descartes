@@ -26,7 +26,7 @@ module Descartes
       if request.accept.include?("application/json") && params[:uuids] && params[:name]
         @dashboard = Dashboard.new({ :owner => session['user']['email'], :name => params[:name] })
         @dashboard.save
-        @dashboard.add_graph(params[:uuids])
+        @dashboard.add_graphs(params[:uuids])
         @dashboard.to_json
       else
         #halt
@@ -64,11 +64,13 @@ module Descartes
     end
 
     delete '/dashboards/:id/?' do
-      @dashboard = Dashboard.filter(:uuid => params[:id]).first
-      GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
-        r.destroy
-      end
-      @dashboard.destroy
+      @dashboard = Dashboard.filter(:uuid => params[:id]).first.destroy
+    end
+
+    delete '/dashboards/:dashboard_uuid/graphs/:graph_uuid/?' do
+      @graph = Graph.filter(:uuid => params[:graph_uuid]).first
+      @dashboard = Dashboard.filter(:uuid => params[:dashboard_id]).first
+      GraphDashboardRelation.filter(:dashboard_id => @dashboard.id, :graph_id => @graph.id).first.destroy
     end
   end
 end
