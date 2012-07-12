@@ -20,6 +20,11 @@ body {
   float: right;
 }
 
+.well {
+  min-height: 26px;
+  padding: 10px;
+}
+
 .header {
   min-height: 50px;
 }
