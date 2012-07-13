@@ -69,7 +69,7 @@ module Descartes
 
     delete '/dashboards/:dashboard_uuid/graphs/:graph_uuid/?' do
       @graph = Graph.filter(:uuid => params[:graph_uuid]).first
-      @dashboard = Dashboard.filter(:uuid => params[:dashboard_id]).first
+      @dashboard = Dashboard.filter(:uuid => params[:dashboard_uuid]).first
       GraphDashboardRelation.filter(:dashboard_id => @dashboard.id, :graph_id => @graph.id).first.destroy
     end
   end
