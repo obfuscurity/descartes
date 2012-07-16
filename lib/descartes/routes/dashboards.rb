@@ -36,20 +36,21 @@ module Descartes
     get '/dashboards/:id/?' do
       @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
       @graphs = []
-
-      # XXX - use intersection, e.g. [0,1] & [1,2] returns [1]
       if params[:tags]
         params[:tags].split(",").each do |tag|
-          @tagged_graphs << Graph.select('graphs.*'.lit).from(:graphs, :tags).
-            where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
+          @graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards, :tags).
+            where(:graph_dashboard_relations__graph_id => :graphs__id,
+                  :dashboards__id => :graph_dashboard_relations__dashboard_id,
+                  :tags__graph_id => :graphs__id,
+                  :dashboards__id => @dashboard.id,
+                  :graphs__enabled => true).
             filter(:tags__name.like(/#{tag}/i)).all
         end
+        @graphs.flatten!
       else
-      end
-      # XXX
-
-      GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
-        @graphs.push(Graph[r.graph_id])
+        GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
+          @graphs.push(Graph[r.graph_id])
+        end
       end
       if request.accept.include?("application/json")
         content_type "application/json"
