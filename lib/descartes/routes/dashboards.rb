@@ -40,9 +40,9 @@ module Descartes
         params[:tags].split(",").each do |tag|
           @graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards, :tags).
             where(:graph_dashboard_relations__graph_id => :graphs__id,
+                  :graph_dashboard_relations__dashboard_id => @dashboard.id,
                   :dashboards__id => :graph_dashboard_relations__dashboard_id,
                   :tags__graph_id => :graphs__id,
-                  :dashboards__id => @dashboard.id,
                   :graphs__enabled => true).
             filter(:tags__name.like(/#{tag}/i)).all
         end
