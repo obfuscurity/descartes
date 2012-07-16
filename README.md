@@ -17,20 +17,14 @@ Design, build and deploy a dashboard that allows users to correlate multiple met
 * Add notes (annotations) to charts
 * Add comments associated with specific annotations
 
-## Components
-
-* Bootstrap
-* jQuery
-* D3.js
-* Rickshaw
-* Sinatra
-* Sequel
-* PostgreSQL
-* Redis
-
 ## Deployment
 
 Descartes stores configuration data in PostgreSQL and Google OpenID state in Redis. It is assumed you have local PostgreSQL and Redis servers running for local development.
+
+### Dependencies
+
+* PostgreSQL
+* Redis
 
 ### Development
 
