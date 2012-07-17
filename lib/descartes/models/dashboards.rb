@@ -37,13 +37,6 @@ class Dashboard < Sequel::Model
     #validates_config_syntax self.configuration
   end
 
-  def before_destroy
-    super
-    GraphDashboardRelation.filter(:dashboard_id => self.id).all.each do |r|
-      r.destroy
-    end
-  end
-
   def graph_count
     self[:graph_count]
   end
