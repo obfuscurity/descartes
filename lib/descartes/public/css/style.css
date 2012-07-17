@@ -164,6 +164,6 @@ span.graph img.view {
   margin: 0 37px 0 0;
 }
 
-span.dashboard img.close.hidden, div.graph img.close.hidden {
-  //display: none;
+div.graph div.preview {
+  //margin-left: 0;
 }

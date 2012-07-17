@@ -1,0 +1,19 @@
+.header
+  %h1= graph[:name]
+  %span.info Created by <span class="owner">#{graph[:owner]}</span> on #{graph[:created_at]}
+.well
+  .tools.btn-group
+    %button{ :class => "tools btn fullscreen", :title => "toggle fullscreen" }
+      %i.icon-fullscreen
+    %button{ :class => "tools btn refresh", :title => "refresh graphs" }
+      %i.icon-refresh
+  .interval.btn-group
+    %button{ :class => "interval btn disabled" } Interval
+    %button{ :class => "interval btn active", :name => 1, :value => '1h' } 1h
+    %button{ :class => "interval btn", :name => 2, :value => '3h' } 3h
+    %button{ :class => "interval btn", :name => 3, :value => '6h' } 6h
+    %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
+.graphs
+  .row
+%script{ :type => "text/javascript", :src => "/js/profile-graph.js" }
+%script{ :type => "text/javascript", :src => "/js/render-common.js" }

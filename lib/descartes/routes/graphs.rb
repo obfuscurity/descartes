@@ -34,6 +34,13 @@ module Descartes
     end
 
     get '/graphs/:id/?' do
+      @graph = Graph.filter(:uuid => params[:id]).first
+      if request.accept.include?("application/json")
+        content_type "application/json"
+        @graph.to_json
+      else
+        haml :'graphs/profile', :locals => { :graph => @graph }
+      end
     end
 
     put '/graphs/:id/?' do
