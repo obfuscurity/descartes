@@ -135,9 +135,8 @@ span.dashboard:hover {
 span.dashboard span.name {
   display: block;
   margin: 16px 28px 0 28px;
-  font-family: "HelveticaNeue-UltraLight";
-  font-size: 1.8em;
-  line-height: 1.0em;
+  font-size: 1.9em;
+  line-height: 1.2em;
 }
 
 span.dashboard span.count {
@@ -148,7 +147,7 @@ span.dashboard span.count {
   font-size: 7.0em;
 }
 
-span.dashboard img.close, span.graph img.close {
+span.dashboard img.close, span.graph img.close, span.graph img.view {
   position: absolute;
   top: 0;
   right: 0;
@@ -158,7 +157,11 @@ span.dashboard img.close, span.graph img.close {
 }
 
 span.graph img.close {
-  margin: 0 -20px 0 0;
+  margin: 0;
+}
+
+span.graph img.view {
+  margin: 0 37px 0 0;
 }
 
 span.dashboard img.close.hidden, div.graph img.close.hidden {
