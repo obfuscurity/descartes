@@ -1,3 +1,8 @@
+.header
+  %h1 Graphs
+  %form{ :class => "search pull-left", :action => "" }
+    %i.reset-search.icon-remove-circle
+    %input{ :class => "search-query span2", :type => "text", :name => "tags", :placeholder => "Search tags" }
 .well
   %a{ :class => "import btn", :"data-toggle" => "collapse", :"data-target" => "#import_form", :href => "#" } Import Graphs
   %a{ :class => "dashboard btn", :"data-toggle" => "collapse", :"data-target" => "#dashboard_form", :href => "#" } New Dashboard

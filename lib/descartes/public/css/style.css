@@ -16,7 +16,7 @@ body {
   filter:alpha(opacity=10);
 }
 
-.navbar-search {
+.search {
   float: right;
 }
 
@@ -30,7 +30,6 @@ body {
 }
 
 .header h1 {
-  margin-top: 5px;
   float: left;
 }
 
