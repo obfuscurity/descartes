@@ -27,14 +27,9 @@
         $(document).ready(function() {
 
           // Highlight current active tab
-          $('.active').removeClass('active');
+          $('.nav li.active').removeClass('active');
           var path = location.pathname.split("/")[1] || 'home';
           $('li.' + path).addClass('active');
-
-          // Hide search form on home page
-          if (window.location.pathname === '/') {
-            $('form.navbar-search').hide()
-          }
 
         });
         var graphiteUrl = "#{ENV['GRAPHITE_URL']}";
