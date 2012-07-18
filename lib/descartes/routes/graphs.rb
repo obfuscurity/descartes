@@ -45,6 +45,13 @@ module Descartes
 
     put '/graphs/:id/?' do
       # XXX do we want to handle tags here too?
+      @graph = Graph.filter(:uuid => params[:id]).first
+      params.delete('id')
+      params.each do |k,v|
+        @graph.update(k.to_sym => v)
+      end
+      @graph.save
+      @graph.to_json
     end
 
     delete '/graphs/:id/?' do
