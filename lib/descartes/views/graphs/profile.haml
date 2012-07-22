@@ -2,6 +2,7 @@
   %h1.locked= graph[:name]
   /%span.info Created by <span class="owner">#{graph[:owner]}</span> on #{graph[:created_at]}
 .well
+  %a{ :class => "details btn closed", :"data-toggle" => "collapse", :"data-target" => "#details", :href => "#" } Details
   .tools.btn-group
     %button{ :class => "tools btn fullscreen", :title => "toggle fullscreen" }
       %i.icon-fullscreen
@@ -13,6 +14,11 @@
     %button{ :class => "interval btn", :name => 2, :value => '3h' } 3h
     %button{ :class => "interval btn", :name => 3, :value => '6h' } 6h
     %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
+.accordion-group
+  %fieldset#details{ :class => "collapse" }
+    .description.span6
+      %label{ :for => "description" } Description:
+      %span{ :class => "closed", :id => "description" }
 .graphs
   .row
 %script{ :type => "text/javascript", :src => "/js/profile-graph.js" }

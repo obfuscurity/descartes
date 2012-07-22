@@ -163,3 +163,28 @@ span.graph img.view {
   margin: 0 37px 0 0;
 }
 
+.description {
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+
+.description label {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.description span#description span#changeme {
+  font-family: "HelveticaNeue-UltraLight";
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: 100;
+  color: #999;
+}
+
+.description span#description {
+  display: block;
+}
+
+a.description_submit {
+  margin-left: 15px;
+}
