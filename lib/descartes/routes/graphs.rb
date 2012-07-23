@@ -21,7 +21,7 @@ module Descartes
             end
           end
         else
-          @graphs << Graph.filter(:enabled => true).all
+          @graphs << Graph.filter(:enabled => true).order(:id).reverse.all
         end
         content_type "application/json"
         @graphs.flatten.to_json
