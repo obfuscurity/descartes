@@ -5,16 +5,16 @@ module Descartes
       if request.accept.include?("application/json")
         @graphs = []
         if params[:tags]
-          @matching_graphs = []
+          matching_graphs = []
           params[:tags].split(",").each do |tag|
-            @matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :tags).
+            matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :tags).
               where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
               filter(:tags__name.like(/#{tag}/i)).all
-            @matching_graphs << Graph.filter(:name.like(/#{tag}/i)).all
+            matching_graphs << Graph.filter(:name.like(/#{tag}/i)).all
           end
           known_graphs = []
-          @matching_graphs.flatten!
-          @matching_graphs.each do |g|
+          matching_graphs.flatten!
+          matching_graphs.each do |g|
             unless known_graphs.include?(g.values[:id])
               known_graphs.push(g.values[:id])
               @graphs.push(g)
