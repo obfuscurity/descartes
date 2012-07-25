@@ -153,6 +153,8 @@ span.dashboard img.close, span.graph img.close, span.graph img.view {
   margin: -15px -15px 0 0;
   z-index: 150;
   opacity: 1.0;
+  -moz-opacity: 1.0;
+  filter:alpha(opacity=10);
 }
 
 span.graph img.close {
@@ -197,4 +199,16 @@ span.graph img.view {
 .tags-wrapper .tags ul {
   list-style: none;
   margin-left: 0;
+}
+
+.tags-wrapper .tags ul li a {
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=5);
+}
+
+.tags-wrapper .tags ul li a:hover {
+  opacity: 1.0;
+  -moz-opacity: 1.0;
+  filter:alpha(opacity=10);
 }
