@@ -43,10 +43,8 @@ module Descartes
       redirect '/graphs'
     end
 
-    get '/graphs/:id/?' do
-      @graph = Graph.filter(:uuid => params[:id]).first
-      @tags = Tag.filter(:graph_id => @graph.id).all.to_json
-      @graph[:tags] = @tags
+    get '/graphs/:uuid/?' do
+      @graph = Graph.filter(:uuid => params[:uuid]).first
       if request.accept.include?("application/json")
         content_type "application/json"
         @graph.to_json
@@ -55,11 +53,23 @@ module Descartes
       end
     end
 
-    get '/graphs/:id/tags/?' do
+    get '/graphs/:uuid/tags/?' do
       if request.accept.include?("application/json")
         content_type "application/json"
-        @graph = Graph.filter(:uuid => params[:id]).first
-        @tags = Tag.filter(:graph_id => @graph.id).all.to_json
+        @graph = Graph.filter(:uuid => params[:uuid]).first
+        @tags = Tag.filter(:graph_id => @graph.id).order(:id).all.to_json
+      else
+        # halt
+      end
+    end
+
+    post '/graphs/:uuid/tags/?' do
+      if request.accept.include?("application/json")
+        content_type "application/json"
+        @graph = Graph.filter(:uuid => params[:uuid]).first
+        @tag = Tag.new(:name => params[:name], :graph_id => @graph.id)
+        @tag.save
+        status 204
       else
         # halt
       end

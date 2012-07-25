@@ -212,3 +212,15 @@ span.graph img.view {
   -moz-opacity: 1.0;
   filter:alpha(opacity=10);
 }
+
+.tags-wrapper .tags ul li a.tag_add {
+  float: left;
+}
+
+.tags-wrapper .tags ul li i.open {
+  margin-top: 12px;
+}
+
+.tags-wrapper .tags ul li input[name="new_tag"], .tags-wrapper .tags ul li span {
+  margin: 5px 0 0 5px;
+}

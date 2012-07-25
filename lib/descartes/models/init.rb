@@ -14,3 +14,4 @@ require 'graph_dashboard_relations'
 Sequel::Model.plugin :json_serializer
 Graph.plugin :json_serializer
 Dashboard.plugin :json_serializer
+Tag.plugin :json_serializer
