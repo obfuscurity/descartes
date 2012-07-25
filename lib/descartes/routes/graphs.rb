@@ -45,12 +45,33 @@ module Descartes
 
     get '/graphs/:id/?' do
       @graph = Graph.filter(:uuid => params[:id]).first
+      @tags = Tag.filter(:graph_id => @graph.id).all.to_json
+      @graph[:tags] = @tags
       if request.accept.include?("application/json")
         content_type "application/json"
         @graph.to_json
       else
         haml :'graphs/profile', :locals => { :graph => @graph }
       end
+    end
+
+    get '/graphs/:id/tags/?' do
+      if request.accept.include?("application/json")
+        content_type "application/json"
+        @graph = Graph.filter(:uuid => params[:id]).first
+        @tags = Tag.filter(:graph_id => @graph.id).all.to_json
+      else
+        # halt
+      end
+    end
+
+    delete '/graphs/:uuid/tags/:id/?' do
+      @graph = Graph.filter(:uuid => params[:uuid]).first
+      @tag = Tag.select('tags.*'.lit).
+        from(:tags, :graphs).
+        where(:tags__id => params[:id], :graphs__uuid => params[:uuid], :tags__graph_id => :graphs__id).first
+      @tag.destroy
+      status 204
     end
 
     put '/graphs/:id/?' do

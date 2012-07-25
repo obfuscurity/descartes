@@ -163,17 +163,17 @@ span.graph img.view {
   margin: 0 37px 0 0;
 }
 
-.description {
+.description-wrapper, .tags-wrapper {
   margin-top: 8px;
   margin-bottom: 15px;
 }
 
-.description label {
+.description-wrapper label, .tags-wrapper label {
   font-size: 0.9em;
   font-weight: bold;
 }
 
-.description span#description span#changeme {
+.description-wrapper span#description span#changeme, .tags-wrapper .tags span#changeme {
   font-family: "HelveticaNeue-UltraLight";
   font-size: 1.3em;
   font-style: italic;
@@ -181,10 +181,20 @@ span.graph img.view {
   color: #999;
 }
 
-.description span#description {
+.description-wrapper span#description {
   display: block;
+  margin-bottom: 10px;
 }
 
-a.description_submit {
+.description-wrapper a {
+  margin-bottom: 8px;
+}
+
+.description-wrapper a.description_submit {
   margin-left: 15px;
+}
+
+.tags-wrapper .tags ul {
+  list-style: none;
+  margin-left: 0;
 }

@@ -16,9 +16,12 @@
     %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
 .accordion-group
   %fieldset#details{ :class => "collapse" }
-    .description.span6
+    .description-wrapper.span5
       %label{ :for => "description" } Description:
       %span{ :class => "closed", :id => "description" }
+    .tags-wrapper.span3
+      %label{ :for => "tags" } Tags:
+      .tags
 .graphs
   .row
 %script{ :type => "text/javascript", :src => "/js/profile-graph.js" }
