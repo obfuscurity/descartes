@@ -30,14 +30,29 @@ module Descartes
       @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
       @graphs = []
       if params[:tags]
+        matching_graphs = []
         params[:tags].split(",").each do |tag|
-          @graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards, :tags).
+          matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards, :tags).
             where(:graph_dashboard_relations__graph_id => :graphs__id,
                   :graph_dashboard_relations__dashboard_id => @dashboard.id,
                   :dashboards__id => :graph_dashboard_relations__dashboard_id,
                   :tags__graph_id => :graphs__id,
                   :graphs__enabled => true).
             filter(:tags__name.like(/#{tag}/i)).all
+          matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards).
+            where(:graph_dashboard_relations__graph_id => :graphs__id,
+                  :graph_dashboard_relations__dashboard_id => @dashboard.id,
+                  :dashboards__id => :graph_dashboard_relations__dashboard_id,
+                  :graphs__enabled => true).
+            filter(:graphs__name.like(/#{tag}/i)).all
+          known_graphs = []
+          matching_graphs.flatten!
+          matching_graphs.each do |g|
+            unless known_graphs.include?(g.values[:id])
+              known_graphs.push(g.values[:id])
+              @graphs.push(g)
+            end
+          end
         end
         @graphs.flatten!
       else
