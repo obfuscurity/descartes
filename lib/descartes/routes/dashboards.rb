@@ -77,7 +77,7 @@ module Descartes
       GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
         r.destroy
       end
-      @dashboard.destroy
+      status 204
     end
 
     delete '/dashboards/:dashboard_uuid/graphs/:graph_uuid/?' do
