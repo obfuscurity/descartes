@@ -3,18 +3,11 @@ module Descartes
 
     get '/dashboards/?' do
       if request.accept.include?("application/json")
-        if params[:owner]
-          @dashboards = Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
-            from(:dashboards, :graph_dashboard_relations).
-            where(:dashboards__enabled => true, :dashboards__owner => session['user']['email'], :dashboards__id => :graph_dashboard_relations__dashboard_id).
-            group(:dashboards__id)
-        else
-          @dashboards = Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
-            from(:dashboards, :graph_dashboard_relations).
-            where(:dashboards__enabled => true, :dashboards__id => :graph_dashboard_relations__dashboard_id).
-            group(:dashboards__id).
-            order(:dashboards__updated_at).reverse
-        end
+        @dashboards = Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
+          from(:dashboards, :graph_dashboard_relations).
+          where(:dashboards__enabled => true, :dashboards__id => :graph_dashboard_relations__dashboard_id).
+          group(:dashboards__id).
+          order(:dashboards__updated_at).reverse
         content_type "application/json"
         @dashboards.to_json
       else
