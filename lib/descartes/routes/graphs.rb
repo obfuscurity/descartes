@@ -26,7 +26,7 @@ module Descartes
         content_type "application/json"
         @graphs.flatten.to_json
       else
-        haml :'graphs/list'
+        haml :'graphs/list', :locals => { :title => "Descartes - Graph List" }
       end
     end
 
@@ -49,7 +49,7 @@ module Descartes
         content_type "application/json"
         @graph.to_json
       else
-        haml :'graphs/profile', :locals => { :graph => @graph }
+        haml :'graphs/profile', :locals => { :graph => @graph, :title => "Descartes - Graph :: #{@graph.name}" }
       end
     end
 

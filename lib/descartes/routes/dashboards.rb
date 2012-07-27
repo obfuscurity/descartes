@@ -11,7 +11,7 @@ module Descartes
         content_type "application/json"
         @dashboards.to_json
       else
-        haml :'dashboards/list'
+        haml :'dashboards/list', :locals => { :title => "Descartes - Dashboard List" }
       end
     end
 
@@ -64,7 +64,7 @@ module Descartes
         content_type "application/json"
         { :dashboard => @dashboard, :graphs => @graphs }.to_json
       else
-        haml :'dashboards/profile', :locals => { :dashboard => @dashboard }
+        haml :'dashboards/profile', :locals => { :dashboard => @dashboard, :title => "Descartes - Dashboard :: #{@dashboard.name}" }
       end
     end
 
