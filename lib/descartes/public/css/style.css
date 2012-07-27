@@ -165,9 +165,13 @@ span.graph img.view {
   margin: 0 37px 0 0;
 }
 
-.description-wrapper, .tags-wrapper {
-  margin-top: 8px;
-  margin-bottom: 15px;
+.description-wrapper, .tags-wrapper, .settings-wrapper {
+  float: left;
+  margin: 12px 0 22px 30px;
+}
+
+.description-wrapper {
+  width: 400px;
 }
 
 .description-wrapper label, .tags-wrapper label {
@@ -185,7 +189,6 @@ span.graph img.view {
 
 .description-wrapper span#description {
   display: block;
-  margin-bottom: 10px;
 }
 
 .description-wrapper a {
@@ -194,6 +197,10 @@ span.graph img.view {
 
 .description-wrapper a.description_submit {
   margin-left: 15px;
+}
+
+.tags-wrapper {
+  min-width: 200px;
 }
 
 .tags-wrapper .tags ul {
