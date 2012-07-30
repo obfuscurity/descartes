@@ -23,7 +23,31 @@
       %label{ :for => "tags" } Tags:
       .tags
     .settings-wrapper
+      /%label{ :for => "settings" } Advanced Settings:
+      .settings
+        .line_mode.btn-group
+          %button{ :class => "line_mode btn disabled" } Line Mode
+          %button{ :class => "line_mode btn active", :name => 1, :value => "slope" } slope
+          %button{ :class => "line_mode btn", :name => 2, :value => "staircase" } staircase
+          %button{ :class => "line_mode btn", :name => 3, :value => "connected" } connected
+        .area_mode.btn-group
+          %button{ :class => "area_mode btn disabled" } Area Mode
+          %button{ :class => "area_mode btn active", :name => 1, :value => "off" } off
+          %button{ :class => "area_mode btn", :name => 2, :value => "first" } first
+          %button{ :class => "area_mode btn", :name => 3, :value => "all" } all
+          %button{ :class => "area_mode btn", :name => 4, :value => "stacked" } stacked
+        .log_mode.btn-group
+          %button{ :class => "log_mode btn disabled" } Logarithmic Base
+          %button{ :class => "log_mode btn active", :name => 1, :value => "off" } off
+          %button{ :class => "log_mode btn", :name => 2, :value => "10" } 10
+          %button{ :class => "log_mode btn", :name => 3, :value => "2" } 2
+          %button{ :class => "log_mode btn", :name => 4, :value => "e" } e
+        %span{ :class => "null_as_zero" } Render nulls as zeroes?
+        .toggle.null_as_zero{ :"data-enabled" => "ON", :"data-disabled" => "OFF", :"data-toggle" => "toggle" }
+          %input{ :class => "checkbox null_as_zero", :type => "checkbox", :name => "null_as_zero", :value => 1 }
+          %label{ :class => "check null_as_zero", :for => "null_as_zero" }
 .graphs
   .row
+%script{ :type => "text/javascript", :src => "/js/bootstrap-toggle.js" }
 %script{ :type => "text/javascript", :src => "/js/profile-graph.js" }
 %script{ :type => "text/javascript", :src => "/js/render-common.js" }

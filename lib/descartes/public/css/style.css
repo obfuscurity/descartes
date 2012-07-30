@@ -25,6 +25,14 @@ body {
   padding: 10px;
 }
 
+.well .details.btn {
+  margin-left: 18px;
+}
+
+.well .refresh.btn {
+  margin-right: 18px;
+}
+
 .header {
   min-height: 50px;
 }
@@ -74,7 +82,7 @@ body {
 fieldset.collapse.in {
   padding-top: 12px;
   border: 1px solid #e5e5e5;
-  min-height: 75px;
+  min-height: 202px;
 }
 
 .collapse.in select {
@@ -174,7 +182,7 @@ span.graph img.view {
   width: 400px;
 }
 
-.description-wrapper label, .tags-wrapper label {
+.description-wrapper label, .tags-wrapper label, .settings-wrapper label {
   font-size: 0.9em;
   font-weight: bold;
 }
@@ -200,6 +208,7 @@ span.graph img.view {
 }
 
 .tags-wrapper {
+  margin-left: 45px;
   min-width: 200px;
 }
 
@@ -230,4 +239,28 @@ span.graph img.view {
 
 .tags-wrapper .tags ul li input[name="new_tag"], .tags-wrapper .tags ul li span {
   margin: 5px 0 0 5px;
+}
+
+.settings {
+  border-left: 1px solid #bbb;
+}
+.settings .btn-group, .settings span.null_as_zero, .settings .toggle.null_as_zero {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 30px;
+}
+
+.settings .line_mode.btn-group { margin-top: 26px; }
+.settings .area_mode.btn-group { margin-top: 71px; }
+.settings .log_mode.btn-group { margin-top: 116px; }
+.settings .toggle.null_as_zero { margin-top: 161px; }
+
+.settings .line_mode.btn-group button.line_mode.btn.disabled { width: 100px;}
+.settings .area_mode.btn-group button.area_mode.btn.disabled { width: 128px;}
+.settings .log_mode.btn-group button.log_mode.btn.disabled { width: 182px;}
+
+.settings span.null_as_zero {
+  margin-top: 167px;
+  margin-right: 187px;
 }
