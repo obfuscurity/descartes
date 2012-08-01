@@ -42,10 +42,10 @@
           %button{ :class => "log_mode btn", :name => 2, :value => "10" } 10
           %button{ :class => "log_mode btn", :name => 3, :value => "2" } 2
           %button{ :class => "log_mode btn", :name => 4, :value => "e" } e
-        %span{ :class => "null_as_zero" } Render nulls as zeroes?
-        .toggle.null_as_zero{ :"data-enabled" => "ON", :"data-disabled" => "OFF", :"data-toggle" => "toggle" }
-          %input{ :class => "checkbox null_as_zero", :type => "checkbox", :name => "null_as_zero", :value => 1 }
-          %label{ :class => "check null_as_zero", :for => "null_as_zero" }
+        .null_mode.btn-group
+          %button{ :class => "null_mode btn disabled" } Draw Nulls as Zeroes?
+          %button{ :class => "null_mode btn", :name => 1, :value => "off" } off
+          %button{ :class => "null_mode btn active", :name => 2, :value => "on" } on
 .graphs
   .row
 %script{ :type => "text/javascript", :src => "/js/bootstrap-toggle.js" }
