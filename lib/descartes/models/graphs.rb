@@ -46,7 +46,6 @@ class Graph < Sequel::Model
   def after_create
     super
     tags = []
-    #tags << self.tags
     tags.each do |name|
       Tag.new(:name => name, :graph_id => self.id).save;
     end
