@@ -11,6 +11,7 @@ require 'tags'
 require 'dashboards'
 require 'graph_dashboard_relations'
 
+Sequel.extension :pagination
 Sequel::Model.plugin :json_serializer
 Graph.plugin :json_serializer
 Dashboard.plugin :json_serializer
