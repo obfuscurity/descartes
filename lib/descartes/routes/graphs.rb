@@ -21,7 +21,9 @@ module Descartes
             end
           end
         else
-          @graphs << Graph.filter(:enabled => true).order(:id).reverse.all
+          page_index = params[:page] || 1
+          page_count = 12
+          @graphs << Graph.filter(:enabled => true).order(:id).reverse.paginate(page_index, page_count).all
         end
         content_type "application/json"
         @graphs.flatten.to_json
