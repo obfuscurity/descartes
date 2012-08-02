@@ -23,7 +23,7 @@ module Descartes
         else
           page_index = params[:page] || 1
           page_count = 12
-          @graphs << Graph.filter(:enabled => true).order(:id).reverse.paginate(page_index, page_count).all
+          @graphs << Graph.filter(:enabled => true).order(:id).reverse.paginate(page_index.to_i, page_count.to_i).all
         end
         content_type "application/json"
         @graphs.flatten.to_json
