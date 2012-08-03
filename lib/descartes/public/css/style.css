@@ -52,8 +52,14 @@ body {
   color: #5ea9cc;
 }
 
-.import.btn {
+.import.btn, .dashboard.btn {
   margin-right: 16px;
+}
+
+div.append {
+  display: inline-block;
+  height: 18px;
+  margin-bottom: -1px;
 }
 
 .interval.btn-group {

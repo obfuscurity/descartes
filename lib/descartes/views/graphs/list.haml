@@ -6,6 +6,11 @@
 .well
   %a{ :class => "import btn", :"data-toggle" => "collapse", :"data-target" => "#import_form", :href => "#" } Import Graphs
   %a{ :class => "dashboard btn", :"data-toggle" => "collapse", :"data-target" => "#dashboard_form", :href => "#" } New Dashboard
+  .append.btn-group
+    %button{ :class => "append btn" } Add to Dashboard
+    %button{ :class => "append btn dropdown-toggle", :"data-toggle" => "dropdown" }
+      %span.caret
+    %ul{ :class => "append dropdown-menu" }
   .tools.btn-group
     %button{ :class => "tools btn fullscreen", :title => "toggle fullscreen" }
       %i.icon-fullscreen
