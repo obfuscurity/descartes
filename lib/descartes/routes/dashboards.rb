@@ -72,6 +72,19 @@ module Descartes
       # XXX do we want to handle tags here too?
     end
 
+    post '/dashboards/:id/graphs/?' do
+      if request.accept.include?("application/json") && params[:uuids]
+        @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
+        params[:uuids].split(",").each do |g_uuid|
+          @graph = Graph.filter(:enabled => true, :uuid => g_uuid).first
+          GraphDashboardRelation.new(:dashboard_id => @dashboard.id, :graph_id => @graph.id).save
+        end
+        status 204
+      else
+        #halt
+      end
+    end
+
     delete '/dashboards/:id/?' do
       @dashboard = Dashboard.filter(:uuid => params[:id]).first
       GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
