@@ -5,12 +5,7 @@
     %input{ :class => "search-query span2", :type => "text", :name => "tags", :placeholder => "Search tags" }
 .well
   %a{ :class => "import btn", :"data-toggle" => "collapse", :"data-target" => "#import_form", :href => "#" } Import Graphs
-  %a{ :class => "dashboard btn", :"data-toggle" => "collapse", :"data-target" => "#dashboard_form", :href => "#" } New Dashboard
-  .append.btn-group
-    %button{ :class => "append btn" } Add to Dashboard
-    %button{ :class => "append btn dropdown-toggle", :"data-toggle" => "dropdown" }
-      %span.caret
-    %ul{ :class => "append dropdown-menu" }
+  %a{ :class => "dashboard btn", :"data-toggle" => "collapse", :"data-target" => "#dashboard_form", :href => "#" } Add to Dashboard
   .tools.btn-group
     %button{ :class => "tools btn fullscreen", :title => "toggle fullscreen" }
       %i.icon-fullscreen
@@ -36,7 +31,6 @@
           %select{ :id => "node", :name => "node[]", :multiple => "multiple" }
         %li
           %button{ :class => "import_submit btn btn-primary", :name => "submit", :type => "submit" } Import Saved Graphs
-.accordion-group
   %fieldset#dashboard_form{ :class => "collapse" }
     %form{ :method => "post", :action => "/dashboards" }
       %ul
