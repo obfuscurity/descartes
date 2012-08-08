@@ -36,9 +36,8 @@ module Descartes
       if params[:node]
         nodes = []
         nodes.push(params[:node]).flatten!
-        nodes.each do |n|
-          name, url = n.split("!:!")
-          @graph = Graph.new({:owner => session['user']['email'], :name => name, :url => url})
+        nodes.each do |url|
+          @graph = Graph.new({:owner => session['user']['email'], :url => url})
           @graph.save
         end
       end
