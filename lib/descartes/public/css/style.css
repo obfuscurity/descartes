@@ -30,7 +30,7 @@ body {
 }
 
 .well .refresh.btn {
-  margin-right: 18px;
+  margin-right: 16px;
 }
 
 .header {
@@ -52,14 +52,8 @@ body {
   color: #5ea9cc;
 }
 
-.import.btn, .dashboard.btn {
-  margin-right: 16px;
-}
-
-div.append {
-  display: inline-block;
-  height: 18px;
-  margin-bottom: -1px;
+.import.btn {
+  margin: 0 16px;
 }
 
 .interval.btn-group {
@@ -88,7 +82,18 @@ div.append {
 fieldset.collapse.in {
   padding-top: 12px;
   border: 1px solid #e5e5e5;
-  min-height: 202px;
+}
+
+fieldset.collapse.in#import_form {
+  min-height: 190px;
+}
+
+fieldset.collapse.in#dashboard_form {
+  min-height: 90px;
+}
+
+.collapse.in form {
+  margin: 0;
 }
 
 .collapse.in select {
@@ -104,9 +109,18 @@ fieldset.collapse.in {
   padding-left: 8px;
 }
 
-button.import_submit {
+.collapse.in form#graph_select button.import_submit {
   float: left;
-  margin: 121px 0 0 20px;
+  margin-left: 20px;
+}
+
+.collapse.in form#url, .collapse.in form#dashboard_select {
+  float: right;
+  margin-right: 25px;
+}
+
+.collapse.in form#url button.import_submit {
+  margin-left: 20px;
 }
 
 button.dashboard_submit {

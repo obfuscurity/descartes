@@ -25,12 +25,15 @@
     %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
 .accordion-group
   %fieldset#import_form{ :class => "collapse" }
-    %form{ :method => "post", :action => "/graphs" }
+    %form{ :id => "graph_select", :method => "post", :action => "/graphs" }
       %ul
         %li
           %select{ :id => "node", :name => "node[]", :multiple => "multiple" }
         %li
           %button{ :class => "import_submit btn btn-primary", :name => "submit", :type => "submit" } Import Saved Graphs
+    %form{ :id => "url", :method => "post", :action => "/graphs" }
+      %input{ :class => "input-xlarge", :type => "text", :id => "node", :name => "node[]" }
+      %button{ :class => "import_submit btn btn-primary", :name => "submit", :type => "submit" } Import from URL
   %fieldset#dashboard_form{ :class => "collapse" }
     %form{ :method => "post", :action => "/dashboards" }
       %ul
