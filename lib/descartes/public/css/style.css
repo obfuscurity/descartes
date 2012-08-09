@@ -29,7 +29,7 @@ body {
   margin-left: 18px;
 }
 
-.well .refresh.btn {
+.well .trash.btn {
   margin-right: 16px;
 }
 
@@ -75,7 +75,7 @@ body {
   border: 0;
 }
 
-#import_form ul, #dashboard_form ul {
+#destroy_form ul, #import_form ul, #dashboard_form ul {
   list-style: none;
 }
 
@@ -83,6 +83,25 @@ fieldset.collapse.in {
   padding-top: 12px;
   border: 1px solid #e5e5e5;
   background-color: whiteSmoke;
+}
+
+fieldset.collapse.in#destroy_form #destroy_warning ul {
+  margin: 13px 25px 25px 25px;
+  padding: 25px;
+  background-color: rgba(255, 165, 0, 0.53);
+  color: #fff;
+  text-shadow: 2px 2px rgba(182, 182, 182, 0.66);
+}
+
+fieldset.collapse.in#destroy_form #destroy_warning ul li span {
+  font-weight: bold;
+  font-size: 1.8em;
+  line-height: 1.3em;
+}
+
+fieldset.collapse.in#destroy_form button.destroy_submit {
+  margin-top: 42px;
+  float: right;
 }
 
 fieldset.collapse.in#import_form {
@@ -141,6 +160,12 @@ div.graphs div.row, div.dashboards div.row {
 
 span.graph {
   position: relative;
+}
+
+span.graph img.destroy {
+  -moz-box-shadow: 0 0 15px 5px red;
+  -webkit-box-shadow: 0 0 15px 5px red;
+  box-shadow: 0 0 15px 5px red;
 }
 
 div.dashboards {
