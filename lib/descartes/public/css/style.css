@@ -163,9 +163,9 @@ span.graph {
 }
 
 span.graph img:hover {
-  -moz-box-shadow: 0 0 10px 3px rgba(0, 51, 255, 0.76);
-  -webkit-box-shadow: 0 0 10px 3px rgba(0, 51, 255, 0.76);
-  box-shadow: 0 0 10px 3px rgba(0, 51, 255, 0.76);
+  -moz-box-shadow: 5px 5px 10px 3px rgba(134, 134, 134, 0.76);
+  -webkit-box-shadow: 5px 5px 10px 3px rgba(134, 134, 134, 0.76);
+  box-shadow: 5px 5px 10px 3px rgba(134, 134, 134, 0.76);
 }
 
 span.graph img.destroy {
