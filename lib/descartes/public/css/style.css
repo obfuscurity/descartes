@@ -162,6 +162,12 @@ span.graph {
   position: relative;
 }
 
+span.graph img:hover {
+  -moz-box-shadow: 0 0 10px 3px rgba(0, 51, 255, 0.76);
+  -webkit-box-shadow: 0 0 10px 3px rgba(0, 51, 255, 0.76);
+  box-shadow: 0 0 10px 3px rgba(0, 51, 255, 0.76);
+}
+
 span.graph img.destroy {
   -moz-box-shadow: 0 0 15px 5px red;
   -webkit-box-shadow: 0 0 15px 5px red;
