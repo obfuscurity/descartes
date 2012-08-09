@@ -26,8 +26,10 @@ module Descartes
           @graphs << Graph.filter(:enabled => true).order(:id).reverse.paginate(page_index, page_count).all
         end
         content_type "application/json"
+        status 200
         @graphs.flatten.to_json
       else
+        status 200
         haml :'graphs/list', :locals => { :title => "Descartes - Graph List" }
       end
     end
@@ -48,8 +50,10 @@ module Descartes
       @graph = Graph.filter(:uuid => params[:uuid]).first
       if request.accept.include?("application/json")
         content_type "application/json"
+        status 200
         @graph.to_json
       else
+        status 200
         haml :'graphs/profile', :locals => { :graph => @graph, :title => "Descartes - Graph :: #{@graph.name}" }
       end
     end
@@ -58,7 +62,9 @@ module Descartes
       if request.accept.include?("application/json")
         content_type "application/json"
         @graph = Graph.filter(:uuid => params[:uuid]).first
-        @tags = Tag.filter(:graph_id => @graph.id).order(:id).all.to_json
+        @tags = Tag.filter(:graph_id => @graph.id).order(:id).all
+        status 200
+        @tags.to_json
       else
         # halt
       end
@@ -97,6 +103,7 @@ module Descartes
         @graph.update(k.to_sym => v)
       end
       @graph.save
+      status 200
       @graph.to_json
     end
 
@@ -106,6 +113,7 @@ module Descartes
         r.destroy
       end
       @graph.destroy
+      status 204
     end
   end
 end
