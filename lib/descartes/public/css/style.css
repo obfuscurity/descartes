@@ -71,7 +71,7 @@ body {
 }
 
 .accordion-group {
-  margin: 20px 0;
+  margin: 15px 0;
   border: 0;
 }
 
@@ -82,6 +82,7 @@ body {
 fieldset.collapse.in {
   padding-top: 12px;
   border: 1px solid #e5e5e5;
+  background-color: whiteSmoke;
 }
 
 fieldset.collapse.in#import_form {
@@ -90,6 +91,7 @@ fieldset.collapse.in#import_form {
 
 fieldset.collapse.in#dashboard_form {
   min-height: 90px;
+  padding-top: 21px;
 }
 
 .collapse.in form {
@@ -114,23 +116,23 @@ fieldset.collapse.in#dashboard_form {
   margin-left: 20px;
 }
 
-.collapse.in form#url, .collapse.in form#dashboard_select {
+.collapse.in form#graph_url ul li *, .collapse.in form#dashboard_new ul li * {
+  position: relative;
   float: right;
   margin-right: 25px;
 }
 
-.collapse.in form#url button.import_submit {
+.collapse.in #dashboard_select ul li button.dashboard_submit {
   margin-left: 20px;
 }
 
-button.dashboard_submit {
+.collapse.in #dashboard_select *, .collapse.in #dashboard_new * {
   float: left;
-  margin-left: 20px;
 }
 
-.help-block {
-  position: absolute;
-  margin: 42px 0 0 20px;
+.collapse.in #dashboard_new {
+  position: relative;
+  float: right;
 }
 
 div.graphs div.row, div.dashboards div.row {

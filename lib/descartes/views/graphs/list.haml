@@ -24,6 +24,7 @@
     %button{ :class => "interval btn", :name => 3, :value => '6h' } 6h
     %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
 .accordion-group
+  / Forms for importing graphs from saved / by url
   %fieldset#import_form{ :class => "collapse" }
     %form{ :id => "graph_select", :method => "post", :action => "/graphs" }
       %ul
@@ -31,18 +32,27 @@
           %select{ :id => "node", :name => "node[]", :multiple => "multiple" }
         %li
           %button{ :class => "import_submit btn btn-primary", :name => "submit", :type => "submit" } Import Saved Graphs
-    %form{ :id => "url", :method => "post", :action => "/graphs" }
-      %input{ :class => "input-xlarge", :type => "text", :id => "node", :name => "node[]" }
-      %button{ :class => "import_submit btn btn-primary", :name => "submit", :type => "submit" } Import from URL
-  %fieldset#dashboard_form{ :class => "collapse" }
-    %form{ :method => "post", :action => "/dashboards" }
+    %form{ :id => "graph_url", :method => "post", :action => "/graphs" }
       %ul
         %li
-          %input{ :class => "dashboard_name span3", :id => "name", :name => "name", :placeholder => "Dashboard Name" }
+          %button{ :class => "import_submit btn btn-primary", :name => "submit", :type => "submit" } Import from URL
         %li
-          %button{ :class => "dashboard_submit btn btn-primary", :name => "submit", :type => "submit" } Create Dashboard
-    .help-block
-      %span.help-inline create dashboard from current view
+          %input{ :class => "graph_url span3", :id => "node", :name => "node[]", :placeholder => "Graph URL" }
+  / Forms for creating / adding-to dashboards
+  %fieldset#dashboard_form{ :class => "collapse" }
+    #dashboard_select
+      %ul
+        %li
+          %select{ :id => "dashboard_select", :name => "dashboard_select", :multiple => "multiple" }
+        %li
+          %button{ :class => "dashboard_submit btn btn-primary" } Add to Existing Dashboard
+    #dashboard_new
+      %form{ :id => "dashboard_new", :method => "post", :action => "/dashboards" }
+        %ul
+          %li
+            %input{ :class => "dashboard_name span3", :id => "name", :name => "name", :placeholder => "Dashboard Name" }
+          %li
+            %button{ :class => "dashboard_submit btn btn-primary", :name => "submit", :type => "submit" } Create Dashboard
 .graphs
 %script{ :type => "text/javascript", :src => "/js/render-graph.js" }
 %script{ :type => "text/javascript", :src => "/js/render-common.js" }
