@@ -43,9 +43,9 @@
     #dashboard_select
       %ul
         %li
-          %select{ :id => "dashboard_select", :name => "dashboard_select", :multiple => "multiple" }
+          %select{ :id => "dashboard_select", :name => "dashboard_select" }
         %li
-          %button{ :class => "dashboard_submit btn btn-primary" } Add to Existing Dashboard
+          %button{ :class => "dashboard_submit btn btn-primary" } Add to Selected Dashboard
     #dashboard_new
       %form{ :id => "dashboard_new", :method => "post", :action => "/dashboards" }
         %ul

@@ -98,7 +98,7 @@ fieldset.collapse.in#dashboard_form {
   margin: 0;
 }
 
-.collapse.in select {
+.collapse.in#import_form select {
   min-height: 150px;
   min-width: 400px;
   margin-bottom: 20px;
