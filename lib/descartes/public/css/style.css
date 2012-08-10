@@ -169,9 +169,10 @@ span.graph img:hover {
 }
 
 span.graph img.destroy {
-  -moz-box-shadow: 0 0 15px 5px red;
-  -webkit-box-shadow: 0 0 15px 5px red;
-  box-shadow: 0 0 15px 5px red;
+  opacity: 0.8;
+  -moz-filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
 }
 
 div.dashboards {
