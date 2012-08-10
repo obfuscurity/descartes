@@ -91,6 +91,9 @@ fieldset.collapse.in#destroy_form #destroy_warning ul {
   background-color: rgba(255, 165, 0, 0.53);
   color: #fff;
   text-shadow: 2px 2px rgba(182, 182, 182, 0.66);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 
 fieldset.collapse.in#destroy_form #destroy_warning ul li span {
