@@ -1,5 +1,5 @@
 .header
-  %h1= dashboard[:name]
+  %h1.locked= dashboard[:name]
   /%span.info Created by <span class="owner">#{dashboard[:owner]}</span> on #{dashboard[:created_at]}
   %form{ :class => "search pull-left", :action => "" }
     %i.reset-search.icon-remove-circle

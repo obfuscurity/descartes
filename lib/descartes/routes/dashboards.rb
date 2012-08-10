@@ -69,7 +69,14 @@ module Descartes
     end
 
     put '/dashboards/:id/?' do
-      # XXX do we want to handle tags here too?
+      @dashboard = Dashboard.filter(:uuid => params[:id]).first
+      params.delete('id')
+      params.each do |k,v|
+        @dashboard.update(k.to_sym => v)
+      end
+      @dashboard.save
+      status 200
+      @dashboard.to_json
     end
 
     post '/dashboards/:id/graphs/?' do
