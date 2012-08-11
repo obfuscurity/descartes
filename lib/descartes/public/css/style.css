@@ -108,6 +108,10 @@ fieldset.collapse.in#dashboard_form {
   padding-top: 21px;
 }
 
+fieldset.collapse.in#details {
+  min-height: 202px;
+}
+
 .collapse.in form {
   margin: 0;
 }
