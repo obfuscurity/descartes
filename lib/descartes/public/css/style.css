@@ -22,15 +22,7 @@ body {
 
 .well {
   min-height: 26px;
-  padding: 10px;
-}
-
-.well .details.btn {
-  margin-left: 18px;
-}
-
-.well .trash.btn {
-  margin-right: 16px;
+  padding: 10px 26px;
 }
 
 .header {
@@ -53,7 +45,7 @@ body {
 }
 
 .import.btn {
-  margin: 0 16px;
+  margin-right: 16px;
 }
 
 .interval.btn-group {
