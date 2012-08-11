@@ -157,8 +157,16 @@ div.graphs div.row, div.dashboards div.row {
   margin-bottom: 20px;
 }
 
-span.graph {
+span.graph, .preview {
   position: relative;
+  min-height: 168px;
+  background-image: url('/img/spin.gif');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.preview {
+  min-height: 300px;
 }
 
 span.graph img:hover {
