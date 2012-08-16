@@ -153,6 +153,10 @@ fieldset.collapse.in#details {
   float: right;
 }
 
+div.graphs {
+  margin-bottom: 50px;
+}
+
 div.graphs div.row, div.dashboards div.row {
   margin-bottom: 20px;
 }
