@@ -41,6 +41,7 @@ class Graph < Sequel::Model
     self.enabled = true
     self.created_at = Time.now
     self.updated_at = Time.now
+    self.views = 0
   end
 
   def after_create

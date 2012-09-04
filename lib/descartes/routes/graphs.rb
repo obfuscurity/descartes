@@ -53,6 +53,8 @@ module Descartes
         status 200
         @graph.to_json
       else
+        @graph.views += 1
+        @graph.save
         status 200
         haml :'graphs/profile', :locals => { :graph => @graph, :title => "Descartes - Graph :: #{@graph.name}" }
       end
