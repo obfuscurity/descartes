@@ -157,7 +157,7 @@ div.graphs {
   margin-bottom: 50px;
 }
 
-div.graphs div.row, div.dashboards div.row {
+.graphs div.row, .dashboards div.row {
   margin-bottom: 20px;
 }
 
@@ -326,3 +326,20 @@ span.graph img.view {
 .settings .area_mode.btn-group button.area_mode.btn.disabled { width: 128px;}
 .settings .log_mode.btn-group button.log_mode.btn.disabled { width: 182px;}
 .settings .null_mode.btn-group button.null_mode.btn.disabled { width: 238px;}
+
+.metrics .rickshaw_graph {
+  padding: 5px 0;
+}
+
+.metrics .rickshaw_graph svg {
+  border: 1px solid #e2e2e2;
+  margin-right: 20px;
+}
+
+.metrics .rickshaw_graph svg path {
+  fill: steelblue;
+}
+
+.metrics .rickshaw_graph * {
+  vertical-align: middle;
+}
