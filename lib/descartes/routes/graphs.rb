@@ -10,7 +10,7 @@ module Descartes
             matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :tags).
               where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
               filter(:tags__name.like(/#{tag}/i)).all
-            matching_graphs << Graph.filter(:name.like(/#{tag}/i)).reverse(:views).order_more(:id).all
+            matching_graphs << Graph.filter(:name.like(/#{tag}/i)).order(Sequel.desc(:views), Sequel.desc(:id)).all
           end
           known_graphs = []
           matching_graphs.flatten!
@@ -23,7 +23,7 @@ module Descartes
         else
           page_index = (params[:page] || 1).to_i
           page_count = 12
-          @graphs << Graph.filter(:enabled => true).reverse(:views).order_more(:id).paginate(page_index, page_count).all
+          @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:views), Sequel.desc(:id)).paginate(page_index, page_count).all
         end
         content_type "application/json"
         status 200
