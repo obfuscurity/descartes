@@ -1,4 +1,35 @@
 .header
   %h1 Metrics
+  %form{ :class => "search pull-left", :action => "" }
+    %i.reset-search.icon-remove-circle
+    %input{ :class => "search-query span2", :type => "text", :name => "metrics", :placeholder => "Search metrics" }
+.well
+  %a{ :class => "graph btn", :"data-toggle" => "collapse", :"data-target" => "#graph_form", :href => "#" } Add to Graph
+  .tools.btn-group
+    %button{ :class => "tools btn refresh", :title => "refresh metrics" }
+      %i.icon-refresh
+  .interval.btn-group
+    %button{ :class => "interval btn disabled" } Interval
+    %button{ :class => "interval btn active", :name => 1, :value => '1h' } 1h
+    %button{ :class => "interval btn", :name => 2, :value => '3h' } 3h
+    %button{ :class => "interval btn", :name => 3, :value => '6h' } 6h
+    %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
+.accordion-group
+  / Forms for creating / adding-to graphs
+  %fieldset#graph_form{ :class => "collapse" }
+    #graph_select
+      %ul
+        %li
+          %select{ :id => "graph_select", :name => "graph_select" }
+        %li
+          %button{ :class => "graph_submit btn btn-primary" } Add to Selected Graph
+    #graph_new
+      %form{ :id => "graph_new", :method => "post", :action => "/graphs" }
+        %ul
+          %li
+            %input{ :class => "graph_name span3", :id => "name", :name => "name", :placeholder => "Graph Name" }
+          %li
+            %button{ :class => "graph_submit btn btn-primary", :name => "submit", :type => "submit" } Create Graph
 .metrics
 %script{ :type => "text/javascript", :src => "/js/list-metrics.js" }
+%script{ :type => "text/javascript", :src => "/js/render-common.js" }
