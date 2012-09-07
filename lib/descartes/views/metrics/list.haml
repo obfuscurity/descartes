@@ -17,9 +17,12 @@
     #metrics_graph_select
       %ul
         %li
-          %select{ :id => "metircs_graph_select", :name => "metrics_graph_select" }
+          %select{ :class => "span3", :id => "metrics_graph_select", :name => "metrics_graph_select" }
+            %option{ :value => "_new" } New Graph
+            %option{ :value => "_foo" } Really Long Name for an Existing Graph Wat
         %li
           %button{ :class => "metrics_graph_submit btn btn-primary" } Save Graph
+    %span#metrics_graph_preview
 .metrics
 %script{ :type => "text/javascript", :src => "/js/list-metrics.js" }
 %script{ :type => "text/javascript", :src => "/js/render-common.js" }
