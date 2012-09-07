@@ -332,16 +332,18 @@ span.graph img.view {
 .settings .null_mode.btn-group button.null_mode.btn.disabled { width: 238px;}
 
 .metrics .rickshaw_graph {
-  padding: 5px 0;
+  border: 1px solid rgba(68, 68, 68, 0.25);
+  border-radius: 7px;
+  margin-bottom: 7px;
+  padding: 5px 8px;
 }
 
 .metrics .rickshaw_graph svg {
-  border: 1px solid #e4e4e4;
   margin-right: 20px;
 }
 
 .metrics .rickshaw_graph svg path {
-  fill: steelblue;
+  fill: rgba(102, 153, 204, 0.75);
 }
 
 .metrics .rickshaw_graph * {
