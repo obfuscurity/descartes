@@ -112,6 +112,10 @@ fieldset.collapse.in#details {
   min-height: 202px;
 }
 
+fieldset.collapse.in#metrics_graph_form {
+  min-height: 236px;
+}
+  
 .collapse.in form {
   margin: 0;
 }
@@ -342,4 +346,32 @@ span.graph img.view {
 
 .metrics .rickshaw_graph * {
   vertical-align: middle;
+}
+
+#metrics_graph_select {
+  float: left;
+  margin-top: 12px;
+}
+
+#metrics_graph_select * {
+  margin: 0;
+}
+
+#metrics_graph_select ul li {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 25px;
+}
+
+#metrics_graph_select ul li button.metrics_graph_submit {
+  margin-bottom: 9px;
+}
+
+span#metrics_graph_preview {
+  display: inline-block;
+  float: right;
+  min-width: 600px;
+  min-height: 200px;
+  margin: 12px 26px 0 0;
+  background-color: #ddd;
 }
