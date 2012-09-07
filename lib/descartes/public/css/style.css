@@ -370,6 +370,16 @@ div.metrics {
   padding: 5px 8px;
 }
 
+.metrics .rickshaw_graph:hover {
+  border: 1px solid rgba(68, 68, 68, 0.55);
+  cursor: pointer;
+}
+
+.metrics .rickshaw_graph.selected {
+  border: 1px solid rgb(70, 223, 70);
+  background-color: rgba(70, 223, 70, 0.15);
+}
+
 .metrics .rickshaw_graph svg {
   margin-right: 20px;
 }
