@@ -67,7 +67,7 @@ body {
   border: 0;
 }
 
-#destroy_form ul, #import_form ul, #dashboard_form ul {
+#destroy_form ul, #import_form ul, #dashboard_form ul, #metrics_graph_form ul {
   list-style: none;
 }
 
