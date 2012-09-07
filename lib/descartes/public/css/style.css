@@ -113,7 +113,7 @@ fieldset.collapse.in#details {
 }
 
 fieldset.collapse.in#metrics_graph_form {
-  min-height: 236px;
+  min-height: 186px;
 }
   
 .collapse.in form {
@@ -331,25 +331,6 @@ span.graph img.view {
 .settings .log_mode.btn-group button.log_mode.btn.disabled { width: 182px;}
 .settings .null_mode.btn-group button.null_mode.btn.disabled { width: 238px;}
 
-.metrics .rickshaw_graph {
-  border: 1px solid rgba(68, 68, 68, 0.25);
-  border-radius: 7px;
-  margin-bottom: 7px;
-  padding: 5px 8px;
-}
-
-.metrics .rickshaw_graph svg {
-  margin-right: 20px;
-}
-
-.metrics .rickshaw_graph svg path {
-  fill: rgba(102, 153, 204, 0.75);
-}
-
-.metrics .rickshaw_graph * {
-  vertical-align: middle;
-}
-
 #metrics_graph_select {
   float: left;
   margin-top: 12px;
@@ -372,8 +353,31 @@ span.graph img.view {
 span#metrics_graph_preview {
   display: inline-block;
   float: right;
-  min-width: 600px;
-  min-height: 200px;
+  width: 600px;
+  height: 150px;
   margin: 12px 26px 0 0;
   background-color: #ddd;
+}
+
+div.metrics {
+  margin-top: 30px;
+}
+
+.metrics .rickshaw_graph {
+  border: 1px solid rgba(68, 68, 68, 0.25);
+  border-radius: 7px;
+  margin-bottom: 7px;
+  padding: 5px 8px;
+}
+
+.metrics .rickshaw_graph svg {
+  margin-right: 20px;
+}
+
+.metrics .rickshaw_graph svg path {
+  fill: rgba(102, 153, 204, 0.75);
+}
+
+.metrics .rickshaw_graph * {
+  vertical-align: middle;
 }
