@@ -113,7 +113,7 @@ fieldset.collapse.in#details {
 }
 
 fieldset.collapse.in#metrics_graph_form {
-  min-height: 186px;
+  min-height: 236px;
 }
   
 .collapse.in form {
@@ -353,8 +353,10 @@ span.graph img.view {
 span#metrics_graph_preview {
   display: inline-block;
   float: right;
+  background-image: none;
   width: 600px;
-  height: 150px;
+  height: 200px;
+  min-height: 0;
   margin: 12px 26px 0 0;
   background-color: #ddd;
 }
