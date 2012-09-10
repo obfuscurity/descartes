@@ -402,3 +402,30 @@ div.metrics {
 .metrics .rickshaw_graph * {
   vertical-align: middle;
 }
+
+.metrics .rickshaw_graph .options {
+  float: right;
+  visibility: hidden;
+  line-height: 24px;
+}
+
+.metrics .rickshaw_graph.selected .options {
+  visibility: visible;
+}
+
+.metrics .rickshaw_graph .options a.axis {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 4px 6px;
+  color: #929292;
+}
+
+.metrics .rickshaw_graph .options a.axis.left {
+  margin-right: 5px;
+}
+
+.metrics .rickshaw_graph .options a.axis.selected {
+  border: 1px solid #46DF46;
+  color: rgb(0, 216, 0);
+}
+
