@@ -361,6 +361,14 @@ span#metrics_graph_preview {
   background-color: #ddd;
 }
 
+span#metrics_graph_preview span#empty {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 200px;
+}
+
 div.metrics {
   margin-top: 30px;
 }
