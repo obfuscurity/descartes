@@ -429,3 +429,16 @@ div.metrics {
   color: rgb(0, 216, 0);
 }
 
+div.loading {
+  display: block;
+  min-height: 100px;
+  margin-bottom: 100px;
+  background-image: url('/img/spin.gif');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  text-align: center;
+}
+
+div.loading.hidden {
+  display: none;
+}
