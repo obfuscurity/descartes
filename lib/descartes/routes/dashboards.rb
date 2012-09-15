@@ -104,6 +104,7 @@ module Descartes
       @graph = Graph.filter(:uuid => params[:graph_uuid]).first
       @dashboard = Dashboard.filter(:uuid => params[:dashboard_uuid]).first
       GraphDashboardRelation.filter(:dashboard_id => @dashboard.id, :graph_id => @graph.id).first.destroy
+      status 204
     end
   end
 end
