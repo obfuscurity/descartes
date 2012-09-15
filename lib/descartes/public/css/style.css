@@ -95,8 +95,19 @@ fieldset.collapse.in#destroy_form #destroy_warning ul li span {
 }
 
 fieldset.collapse.in#destroy_form button.destroy_submit {
-  margin-top: 42px;
+  margin-top: 32px;
   float: right;
+}
+
+fieldset.collapse.in#destroy_form #destroy_warning .destroy_all {
+  display: inline-block;
+  height: 20px;
+  width: 150px;
+  margin: 12px 0 0 25px;
+}
+
+fieldset.collapse.in#destroy_form #destroy_warning .destroy_all input {
+  margin: -2px 10px 0 0;
 }
 
 fieldset.collapse.in#import_form {
