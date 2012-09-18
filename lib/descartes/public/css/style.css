@@ -361,6 +361,17 @@ span.graph img.view {
   margin-bottom: 9px;
 }
 
+#metrics_graph_select ul.search-ahead {
+  position: absolute;
+  overflow: auto;
+  float: left;
+  bottom: 25px;
+}
+
+#metrics_graph_select ul.search-ahead li input.search-ahead {
+  width: 375px;
+}
+
 span#metrics_graph_preview {
   display: inline-block;
   float: right;
