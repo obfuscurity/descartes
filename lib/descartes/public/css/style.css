@@ -351,14 +351,17 @@ span.graph img.view {
   margin: 0;
 }
 
-#metrics_graph_select ul li {
-  display: inline-block;
-  vertical-align: top;
+#metrics_graph_select ul {
   margin-left: 25px;
 }
 
+#metrics_graph_select ul li {
+  display: inline-block;
+  vertical-align: top;
+}
+
 #metrics_graph_select ul li button.metrics_graph_submit {
-  margin-bottom: 9px;
+  margin: 2px 0 0 15px;
 }
 
 #metrics_graph_select ul.search-ahead {
@@ -366,10 +369,6 @@ span.graph img.view {
   overflow: auto;
   float: left;
   bottom: 25px;
-}
-
-#metrics_graph_select ul.search-ahead li input.search-ahead {
-  width: 375px;
 }
 
 span#metrics_graph_preview {
@@ -414,7 +413,7 @@ div.metrics {
 }
 
 .metrics .rickshaw_graph svg {
-  margin-right: 20px;
+  margin: 0 20px;
 }
 
 .metrics .rickshaw_graph svg path {
@@ -425,10 +424,20 @@ div.metrics {
   vertical-align: middle;
 }
 
+.metrics .rickshaw_graph span.target {
+  display: inline-block;
+  width: 600px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left: 20px;
+}
+
 .metrics .rickshaw_graph .options {
   float: right;
   visibility: hidden;
   line-height: 24px;
+  margin-right: 20px;
 }
 
 .metrics .rickshaw_graph.selected .options {
