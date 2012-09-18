@@ -67,7 +67,7 @@ body {
   border: 0;
 }
 
-#destroy_form ul, #import_form ul, #dashboard_form ul {
+#destroy_form ul, #import_form ul, #dashboard_form ul, #metrics_graph_form ul {
   list-style: none;
 }
 
@@ -95,8 +95,19 @@ fieldset.collapse.in#destroy_form #destroy_warning ul li span {
 }
 
 fieldset.collapse.in#destroy_form button.destroy_submit {
-  margin-top: 42px;
+  margin-top: 32px;
   float: right;
+}
+
+fieldset.collapse.in#destroy_form #destroy_warning .destroy_all {
+  display: inline-block;
+  height: 20px;
+  width: 150px;
+  margin: 12px 0 0 25px;
+}
+
+fieldset.collapse.in#destroy_form #destroy_warning .destroy_all input {
+  margin: -2px 10px 0 0;
 }
 
 fieldset.collapse.in#import_form {
@@ -112,6 +123,10 @@ fieldset.collapse.in#details {
   min-height: 202px;
 }
 
+fieldset.collapse.in#metrics_graph_form {
+  min-height: 236px;
+}
+  
 .collapse.in form {
   margin: 0;
 }
@@ -157,7 +172,7 @@ div.graphs {
   margin-bottom: 50px;
 }
 
-div.graphs div.row, div.dashboards div.row {
+.graphs div.row, .dashboards div.row {
   margin-bottom: 20px;
 }
 
@@ -326,3 +341,135 @@ span.graph img.view {
 .settings .area_mode.btn-group button.area_mode.btn.disabled { width: 128px;}
 .settings .log_mode.btn-group button.log_mode.btn.disabled { width: 182px;}
 .settings .null_mode.btn-group button.null_mode.btn.disabled { width: 238px;}
+
+#metrics_graph_select {
+  float: left;
+  margin-top: 12px;
+}
+
+#metrics_graph_select * {
+  margin: 0;
+}
+
+#metrics_graph_select ul {
+  margin-left: 25px;
+}
+
+#metrics_graph_select ul li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#metrics_graph_select ul li button.metrics_graph_submit {
+  margin: 2px 0 0 15px;
+}
+
+#metrics_graph_select ul.search-ahead {
+  position: absolute;
+  overflow: auto;
+  float: left;
+  bottom: 25px;
+}
+
+span#metrics_graph_preview {
+  display: inline-block;
+  float: right;
+  background-image: none;
+  width: 600px;
+  height: 200px;
+  min-height: 0;
+  margin: 12px 26px 0 0;
+  background-color: #ddd;
+}
+
+span#metrics_graph_preview span#empty {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 200px;
+}
+
+div.metrics {
+  margin: 30px 0;
+}
+
+.metrics .rickshaw_graph {
+  border: 1px solid rgba(68, 68, 68, 0.25);
+  border-radius: 7px;
+  margin-bottom: 7px;
+  padding: 5px 8px;
+  color: #858585;
+}
+
+.metrics .rickshaw_graph:hover {
+  border: 1px solid rgba(68, 68, 68, 0.55);
+  cursor: pointer;
+}
+
+.metrics .rickshaw_graph.selected {
+  border: 1px solid rgb(70, 223, 70);
+  background-color: rgba(70, 223, 70, 0.15);
+}
+
+.metrics .rickshaw_graph svg {
+  margin: 0 20px;
+}
+
+.metrics .rickshaw_graph svg path {
+  fill: rgba(102, 153, 204, 0.75);
+}
+
+.metrics .rickshaw_graph * {
+  vertical-align: middle;
+}
+
+.metrics .rickshaw_graph span.target {
+  display: inline-block;
+  width: 600px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left: 20px;
+}
+
+.metrics .rickshaw_graph .options {
+  float: right;
+  visibility: hidden;
+  line-height: 24px;
+  margin-right: 20px;
+}
+
+.metrics .rickshaw_graph.selected .options {
+  visibility: visible;
+}
+
+.metrics .rickshaw_graph .options a.axis {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 4px 6px;
+  color: #929292;
+}
+
+.metrics .rickshaw_graph .options a.axis.left {
+  margin-right: 5px;
+}
+
+.metrics .rickshaw_graph .options a.axis.selected {
+  border: 1px solid #2EAD2E;
+  color: rgb(0, 216, 0);
+}
+
+div.loading {
+  display: block;
+  min-height: 100px;
+  margin-bottom: 100px;
+  background-image: url('/img/spin.gif');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  text-align: center;
+}
+
+div.loading.hidden {
+  display: none;
+}

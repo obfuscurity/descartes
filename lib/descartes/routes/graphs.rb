@@ -38,12 +38,18 @@ module Descartes
       if params[:node]
         nodes = []
         nodes.push(params[:node]).flatten!
+        name = params[:name] || nil
         nodes.each do |url|
-          @graph = Graph.new({:owner => session['user']['email'], :url => url})
+          @graph = Graph.new({:owner => session['user']['email'], :url => url, :name => name}.reject {|k,v| v.nil?})
           @graph.save
         end
       end
-      redirect '/graphs'
+      if request.accept.include?("application/json")
+        status 200
+        @graph.to_json
+      else
+        redirect "/graphs/#{@graph.uuid}"
+      end
     end
 
     get '/graphs/:uuid/?' do

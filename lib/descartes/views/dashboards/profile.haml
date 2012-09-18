@@ -32,6 +32,10 @@
             You have enabled a destructive mode. Click to select any graphs you wish to delete, then click the button to the right.
         %li.span2
           %button{ :class => "destroy_submit btn btn-danger btn-large" } Delete Graphs
+          .destroy_all
+            %label{ :class => "checkbox", :for => "destroy_all" }
+              Entire Dashboard
+              %input{ :type => "checkbox", :name => "destroy_all" }
 .graphs
 %script{ :type => "text/javascript", :src => "/js/render-dashboard.js" }
 %script{ :type => "text/javascript", :src => "/js/render-common.js" }
