@@ -16,16 +16,18 @@
   %fieldset#metrics_graph_form{ :class => "collapse" }
     #metrics_graph_select
       %ul
+        //%li
+        //  %select{ :class => "span3", :id => "metrics_graph_select", :name => "metrics_graph_select" }
+        //    %option{ :value => "_new" } New Graph
         %li
-          %select{ :class => "span3", :id => "metrics_graph_select", :name => "metrics_graph_select" }
-            %option{ :value => "_new" } New Graph
-            %option{ :value => "_foo" } Really Long Name for an Existing Graph Wat
+          %label{ :for => "new-graph-name" }
+          %input{ :class => "new-graph-name span3", :type => "text", :disabled => true, :placeholder => "New graph name" }
         %li
-          %button{ :class => "metrics_graph_submit btn btn-primary" } Save Graph
+          %button{ :class => "metrics_graph_submit btn btn-primary disabled" } Save Graph
       %ul.search-ahead
         %li
           %label{ :for => "search-ahead" } Filter metrics:
-          %input{ :class => "search-ahead", :type => "text", :placeholder => "Enter search term" }
+          %input{ :class => "search-ahead span4", :type => "text", :placeholder => "Enter search term" }
     %span.graph#metrics_graph_preview
 .metrics
 .loading.hidden
