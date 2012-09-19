@@ -375,7 +375,6 @@ span#metrics_graph_preview {
   display: inline-block;
   float: right;
   background-image: none;
-  width: 600px;
   height: 200px;
   min-height: 0;
   margin: 12px 26px 0 0;
