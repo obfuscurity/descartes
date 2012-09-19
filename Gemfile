@@ -14,4 +14,7 @@ gem "json"
 
 group :development do
   gem "foreman"
+  gem "rack-test"
+  gem "rake"
+  gem "rspec"
 end
