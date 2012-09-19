@@ -195,10 +195,9 @@ span.graph img:hover {
 }
 
 span.graph img.destroy {
-  opacity: 0.5;
-  -moz-filter: grayscale(1);
-  -webkit-filter: grayscale(1);
-  filter: grayscale(1);
+  -moz-filter: grayscale(1) invert(1);
+  -webkit-filter: grayscale(1) invert(1);
+  filter: grayscale(1) invert(1);
 }
 
 div.dashboards {
