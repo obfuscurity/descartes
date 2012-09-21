@@ -17,6 +17,7 @@ module Descartes
     require 'descartes/routes/auth'
     require 'descartes/routes/graphs'
     require 'descartes/routes/dashboards'
+    require 'descartes/routes/metrics'
 
     get '/' do
       haml :index
