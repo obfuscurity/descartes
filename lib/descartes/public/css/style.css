@@ -149,7 +149,7 @@ fieldset.collapse.in#metrics_graph_form {
   margin-left: 20px;
 }
 
-.collapse.in form#graph_url ul li *, .collapse.in form#dashboard_new ul li * {
+.collapse.in form#graph_url , .collapse.in form#dashboard_new {
   position: relative;
   float: right;
   margin-right: 25px;
