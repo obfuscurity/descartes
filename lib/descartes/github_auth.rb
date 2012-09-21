@@ -3,14 +3,10 @@ require "sinatra_auth_github"
 module Descartes
   class GithubAuth < Sinatra::Base
 
-    def self.fetch_env(key)
-      ENV.fetch(key) { raise "No ENV var named #{key.inspect}" }
-    end
-
     set :github_options, {
-      :secret    => fetch_env('GITHUB_CLIENT_SECRET'),
-      :client_id => fetch_env('GITHUB_CLIENT_ID'),
-      :org_id    => fetch_env('GITHUB_ORG_ID'),
+      :secret    => ENV['GITHUB_CLIENT_SECRET'],
+      :client_id => ENV['GITHUB_CLIENT_ID'],
+      :org_id    => ENV['GITHUB_ORG_ID'],
     }
 
     register Sinatra::Auth::Github
