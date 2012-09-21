@@ -18,7 +18,6 @@ module Descartes
     before do
       unless github_user
         github_organization_authenticate!(settings.github_options[:org_id])
-        binding.pry
         github_callback
       end
     end
