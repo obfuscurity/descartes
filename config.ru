@@ -1,5 +1,7 @@
+$stdout.sync = true
 $:.unshift File.dirname(__FILE__) + '/lib'
 require 'descartes/web'
+require 'descartes/github_auth'
 require 'rack-canonical-host'
 
 use Rack::CanonicalHost do
@@ -12,9 +14,13 @@ use Rack::Session::Cookie, :key => "rack.session",
   :expire_after => 1209600,
   :secret => (ENV["SESSION_SECRET"] || raise("missing SESSION_SECRET"))
 
-use OmniAuth::Strategies::GoogleApps,
-  OpenID::Store::Redis.new(Redis.connect(:url => ENV["REDISTOGO_URL"]) || OpenID::Store::Redis.new(Redis.connect(:url => "redis://localhost:6379/1"))),
-  :name => "google",
-  :domain => ENV["GOOGLE_OAUTH_DOMAIN"]
+use OmniAuth::Builder do
+  provider :google_apps,
+    :store => OpenID::Store::Redis.new(Redis.connect(:url => ENV["REDISTOGO_URL"]) || OpenID::Store::Redis.new(Redis.connect(:url => "redis://localhost:6379/1"))),
+    :name => 'google',
+    :domain => ENV["GOOGLE_OAUTH_DOMAIN"]
+end
+
+use Descartes::GithubAuth unless ENV["GOOGLE_OAUTH_DOMAIN"]
 
 run Descartes::Web
