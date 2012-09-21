@@ -55,8 +55,27 @@ $ git push $DEPLOY master
 $ heroku scale -r $DEPLOY web=1
 $ heroku open -r $DEPLOY
 ```
+### GitHub™ Auth
+
+If `GOOGLE_OAUTH_DOMAIN` is not set, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, and
+`GITHUB_ORG_ID`(just the name of your organization) have to be set to use GitHub™ for authentication.
+
+[Register a new application for this here](https://github.com/settings/applications/new).
+#### Development
+
+```bash
+$ export GITHUB_CLIENT_ID=...
+$ export GITHUB_CLIENT_SECRET=...
+$ export GITHUB_ORG_ID=...
+```
+#### Production
+
+```bash
+$ heroku config:set -r $DEPLOY GITHUB_CLIENT_ID=...
+$ heroku config:set -r $DEPLOY GITHUB_CLIENT_SECRET=...
+$ heroku config:set -r $DEPLOY GITHUB_ORG_ID=...
+```
 
 ## LICENSE
 
 Descartes is distributed under the MIT license. Third-party software libraries included with this project are distributed under their respective licenses.
-
