@@ -16,7 +16,8 @@ use Rack::Session::Cookie, :key => "rack.session",
 
 use OmniAuth::Builder do
   provider :google_apps,
-    :store => OpenID::Store::Redis.new(Redis.connect(:url => ENV["REDISTOGO_URL"]) || OpenID::Store::Redis.new(Redis.connect(:url => "redis://localhost:6379/1"))),
+    :store => OpenID::Store::Redis.new(Redis.connect(:url => ENV["REDISTOGO_URL"]) ||
+      OpenID::Store::Redis.new(Redis.connect(:url => "redis://localhost:6379/1"))),
     :name => 'google',
     :domain => ENV["GOOGLE_OAUTH_DOMAIN"]
 end

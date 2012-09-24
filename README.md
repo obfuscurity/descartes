@@ -26,12 +26,34 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 * PostgreSQL
 * Redis
 
+### Authorization
+
+Descartes provides organizational authorization using either Google OpenID or GitHub OAuth.
+The `OAUTH_PROVIDER` environment variable can be set to either `google` or `github` to
+determine which type to use.
+
+Based on `OAUTH_PROVIDER`, some additional environment variables must be set:
+
+#### Google OpenID
+
+* `GOOGLE_OAUTH_DOMAIN`
+
+#### GitHub OAuth
+
+* `GITHUB_CLIENT_ID`
+* `GITHUB_CLIENT_SECRET`
+* `GITHUB_ORG_ID` (The name of the organization)
+
+A new GitHub application will also need to be [registered](https://github.com/settings/applications/new)
+to use GitHub OAuth 
+
 ### Development
 
 ```bash
 $ rvm use 1.9.2
 $ bundle install
-$ export GOOGLE_OAUTH_DOMAIN=...
+$ export OAUTH_PROVIDER=...
+$ export <auth provider tokens>=...
 $ export GRAPHITE_URL=...
 $ export SESSION_SECRET=...
 $ createdb descartes
@@ -47,33 +69,14 @@ $ export DEPLOY=production/staging/you
 $ heroku create -r $DEPLOY -s cedar
 $ heroku addons:add redistogo -r $DEPLOY
 $ heroku addons:add heroku-postgresql:dev -r $DEPLOY
-$ heroku config:set -r $DEPLOY GOOGLE_OAUTH_DOMAIN=...
+$ heroku config:set -r $DEPLOY OAUTH_PROVIDER=...
+$ heroku config:set -r $DEPLOY <auth provider tokens>=...
 $ heroku config:set -r $DEPLOY GRAPHITE_URL=...
 $ heroku config:set -r $DEPLOY SESSION_SECRET...
 $ heroku config:set -r $DEPLOY RAKE_ENV=production
 $ git push $DEPLOY master
 $ heroku scale -r $DEPLOY web=1
 $ heroku open -r $DEPLOY
-```
-### GitHub™ Auth
-
-If `GOOGLE_OAUTH_DOMAIN` is not set, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, and
-`GITHUB_ORG_ID`(just the name of your organization) have to be set to use GitHub™ for authentication.
-
-[Register a new application for this here](https://github.com/settings/applications/new).
-#### Development
-
-```bash
-$ export GITHUB_CLIENT_ID=...
-$ export GITHUB_CLIENT_SECRET=...
-$ export GITHUB_ORG_ID=...
-```
-#### Production
-
-```bash
-$ heroku config:set -r $DEPLOY GITHUB_CLIENT_ID=...
-$ heroku config:set -r $DEPLOY GITHUB_CLIENT_SECRET=...
-$ heroku config:set -r $DEPLOY GITHUB_ORG_ID=...
 ```
 
 ## LICENSE
