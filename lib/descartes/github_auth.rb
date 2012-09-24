@@ -12,13 +12,11 @@ module Descartes
     register Sinatra::Auth::Github
 
     before do
-      unless github_user
-        github_organization_authenticate!(settings.github_options[:org_id])
-        github_callback
-      end
+      github_organization_authenticate!(settings.github_options[:org_id])
+      set_user_session
     end
 
-    def github_callback
+    def set_user_session
       unless session['user']
         user = github_user.login
         email = github_user.email || nil

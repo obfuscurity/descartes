@@ -21,6 +21,4 @@ use OmniAuth::Builder do
     :domain => ENV["GOOGLE_OAUTH_DOMAIN"]
 end
 
-use Descartes::GithubAuth unless ENV["GOOGLE_OAUTH_DOMAIN"]
-
-run Descartes::Web
+run Rack::URLMap.new("/" => Descartes::Web, "/auth/github" => Descartes::GithubAuth)
