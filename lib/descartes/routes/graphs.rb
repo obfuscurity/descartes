@@ -48,7 +48,11 @@ module Descartes
         status 200
         @graph.to_json
       else
-        redirect "/graphs/#{@graph.uuid}"
+        if nodes.count > 1
+          redirect '/graphs'
+        else
+          redirect "/graphs/#{@graph.uuid}"
+        end
       end
     end
 
