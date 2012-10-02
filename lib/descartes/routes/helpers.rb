@@ -1,3 +1,4 @@
+require "pry"
 module Descartes
   class Web < Sinatra::Base
 
@@ -7,7 +8,7 @@ module Descartes
       end
       def google_callback
         unless session['user']
-          user = env['omniauth.auth']['user_info']
+          user = env['omniauth.auth']['info']
           email = user['email'].is_a?(Array) ? user['email'].first : user['email']
           email = email.downcase
           session['user'] = {
