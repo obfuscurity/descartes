@@ -26,12 +26,34 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 * PostgreSQL
 * Redis
 
+### Authorization
+
+Descartes provides organizational authorization using either Google OpenID or GitHub OAuth.
+The `OAUTH_PROVIDER` environment variable can be set to either `google` or `github` to
+determine which type to use.
+
+Based on `OAUTH_PROVIDER`, some additional environment variables must be set:
+
+#### Google OpenID
+
+* `GOOGLE_OAUTH_DOMAIN`
+
+#### GitHub OAuth
+
+* `GITHUB_CLIENT_ID`
+* `GITHUB_CLIENT_SECRET`
+* `GITHUB_ORG_ID` (The name of the organization)
+
+A new GitHub application will also need to be [registered](https://github.com/settings/applications/new)
+to use GitHub OAuth 
+
 ### Development
 
 ```bash
 $ rvm use 1.9.2
 $ bundle install
-$ export GOOGLE_OAUTH_DOMAIN=...
+$ export OAUTH_PROVIDER=...
+$ export <auth provider tokens>=...
 $ export GRAPHITE_URL=...
 $ export SESSION_SECRET=...
 $ createdb descartes
@@ -47,7 +69,8 @@ $ export DEPLOY=production/staging/you
 $ heroku create -r $DEPLOY -s cedar
 $ heroku addons:add redistogo -r $DEPLOY
 $ heroku addons:add heroku-postgresql:dev -r $DEPLOY
-$ heroku config:set -r $DEPLOY GOOGLE_OAUTH_DOMAIN=...
+$ heroku config:set -r $DEPLOY OAUTH_PROVIDER=...
+$ heroku config:set -r $DEPLOY <auth provider tokens>=...
 $ heroku config:set -r $DEPLOY GRAPHITE_URL=...
 $ heroku config:set -r $DEPLOY SESSION_SECRET...
 $ heroku config:set -r $DEPLOY RAKE_ENV=production
@@ -59,4 +82,3 @@ $ heroku open -r $DEPLOY
 ## LICENSE
 
 Descartes is distributed under the MIT license. Third-party software libraries included with this project are distributed under their respective licenses.
-

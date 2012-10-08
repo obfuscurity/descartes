@@ -3,7 +3,7 @@ module Descartes
 
     get '/auth/unauthorized' do
       session.clear
-      redirect '/auth/google', 302
+      redirect "/auth/#{ENV['OAUTH_PROVIDER']}", 302
     end
 
     get '/auth/google/callback' do
