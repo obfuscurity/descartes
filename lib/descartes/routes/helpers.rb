@@ -1,4 +1,3 @@
-require "pry"
 module Descartes
   class Web < Sinatra::Base
 
