@@ -6,7 +6,6 @@ module Descartes
 
     def self.canonical_host; ENV["CANONICAL_HOST"]; end
     def self.force_https; ENV["FORCE_HTTPS"]; end
-    def self.google_oauth_domain; env!("GOOGLE_OAUTH_DOMAIN"); end
     def self.port; env!("PORT").to_i; end
     def self.rack_env; env!("RACK_ENV"); end
     def self.user; env!("REMOTE_USER"); end
