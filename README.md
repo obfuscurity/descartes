@@ -26,6 +26,12 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 * PostgreSQL
 * Redis
 
+### Options
+
+Currently the only optional environment variable is `USE_SVG` which, when set to `true`, will cause Descartes to load SVG output from Graphite instead of the default PNG output. In the future SVG will become the default format, but there is currently a bug in stable Graphite (0.9.10 as of this writing) which causes SVG rendering to fail whenever `secondYAxis` is enabled on any target in a graph.
+
+* `USE_SVG`
+
 ### Authorization
 
 Descartes provides organizational authorization using either Google OpenID or GitHub OAuth.
