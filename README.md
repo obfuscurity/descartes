@@ -54,6 +54,30 @@ A new GitHub application will need to be [registered](https://github.com/setting
 * `GITHUB_CLIENT_SECRET`
 * `GITHUB_ORG_ID` (The name of your organization)
 
+### Graphite Server Configuration
+
+In order to support CORS with JSON instead of JSONP, we need to allow specific headers and allow the cross-domain origin request. The following are suggested settings for Apache 2.x. Adjust as necessary for your environment or webserver.
+
+```
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, OPTIONS"
+Header set Access-Control-Allow-Headers "origin, authorization, accept"
+```
+
+If your Graphite composer is proteced by basic authentication, you have to ensure that the HTTP verb OPTIONS is allowed unauthenticated. This looks like the following for Apache:
+```
+<Location />
+    AuthName "graphs restricted"
+    AuthType Basic
+    AuthUserFile /etc/apache2/htpasswd
+    <LimitExcept OPTIONS>
+      require valid-user
+    </LimitExcept>
+</Location>
+```
+
+See http://blog.rogeriopvl.com/archives/nginx-and-the-http-options-method/ for an Nginx example.
+
 ### Development
 
 ```bash
