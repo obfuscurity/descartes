@@ -32,7 +32,9 @@ Currently the only optional environment variable is `USE_SVG` which, when set to
 
 * `USE_SVG`
 
-### Authorization
+### Sessions and Authorization
+
+The default session cookie should be randomized by setting `SESSION_SECRET` to a random string.
 
 Descartes provides organizational authorization using either Google OpenID or GitHub OAuth.
 The `OAUTH_PROVIDER` environment variable can be set to either `google` or `github` to
@@ -46,12 +48,11 @@ Based on `OAUTH_PROVIDER`, some additional environment variables must be set:
 
 #### GitHub OAuth
 
+A new GitHub application will need to be [registered](https://github.com/settings/applications/new). The Main and Callback URLs should be the URL of your application.
+
 * `GITHUB_CLIENT_ID`
 * `GITHUB_CLIENT_SECRET`
-* `GITHUB_ORG_ID` (The name of the organization)
-
-A new GitHub application will also need to be [registered](https://github.com/settings/applications/new)
-to use GitHub OAuth 
+* `GITHUB_ORG_ID` (The name of your organization)
 
 ### Development
 
