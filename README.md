@@ -80,6 +80,8 @@ See http://blog.rogeriopvl.com/archives/nginx-and-the-http-options-method/ for a
 
 ### Development
 
+Descartes uses the Sinatra web framework under Ruby 1.9. Anyone wishing to run Descartes as a local service should be familiar with common Ruby packaging and dependency management utilities such as RVM and Bundler. If you are installing a new Ruby version with RVM, make sure that you have the appropriate OpenSSL development libraries installed before compiling Ruby.
+
 ```bash
 $ rvm use 1.9.2
 $ bundle install
