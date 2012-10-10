@@ -13,11 +13,10 @@ gem "rack-canonical-host"
 gem "rack-ssl-enforcer"
 gem "haml"
 gem "json"
+gem "rspec"
 
 group :development do
   gem "foreman"
   gem "pry"
   gem "rack-test"
-  gem "rake"
-  gem "rspec"
 end
