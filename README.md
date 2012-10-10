@@ -21,7 +21,7 @@ Design, build and deploy a dashboard that allows users to correlate multiple met
 
 Descartes stores configuration data in PostgreSQL and Google OpenID state in Redis. It is assumed you have local PostgreSQL and Redis servers running for local development.
 
-### Dependencies
+### Service Dependencies
 
 * PostgreSQL
 * Redis
