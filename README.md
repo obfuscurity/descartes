@@ -106,6 +106,7 @@ $ heroku config:set -r $DEPLOY GRAPHITE_URL=...
 $ heroku config:set -r $DEPLOY SESSION_SECRET...
 $ heroku config:set -r $DEPLOY RAKE_ENV=production
 $ git push $DEPLOY master
+$ heroku run bundle exec rake db:migrate:up
 $ heroku scale -r $DEPLOY web=1
 $ heroku open -r $DEPLOY
 ```
