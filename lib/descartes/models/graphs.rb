@@ -25,7 +25,7 @@ class Graph < Sequel::Model
   def before_validation
     super
     self.configuration = deconstruct(self.url)
-    self.name ||= (JSON.parse(self.configuration)["name"].first || JSON.parse(self.configuration)["title"].first || "Please name me")
+    self.name ||= (JSON.parse(self.configuration)["name"] || JSON.parse(self.configuration)["title"] || "Please name me")
   end
 
   def validate
@@ -63,7 +63,11 @@ class Graph < Sequel::Model
   end
 
   def deconstruct(url)
-    CGI.parse(URI.parse(url).query).to_json
+    c = {}
+    CGI.parse(URI.parse(url).query).each do |k,v|
+      v.count === 1 ? c[k] = v.first : c[k] = v
+    end
+    c.to_json
   end
 
   def restore
