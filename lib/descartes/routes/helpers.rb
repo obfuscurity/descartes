@@ -6,6 +6,10 @@ module Descartes
         @current_user ||= session['user']
       end
       def google_callback
+        if session['redirect_to']
+          redirect_to = session['redirect_to']
+          session.clear
+        end
         unless session['user']
           user = env['omniauth.auth']['info']
           email = user['email'].is_a?(Array) ? user['email'].first : user['email']
@@ -17,7 +21,7 @@ module Descartes
             'last_name' => user['last_name']
           }
         end
-        redirect '/'
+        redirect redirect_to || '/'
       end
     end
   end
