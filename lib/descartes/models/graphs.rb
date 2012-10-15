@@ -65,7 +65,12 @@ class Graph < Sequel::Model
   def deconstruct(url)
     c = {}
     CGI.parse(URI.parse(url).query).each do |k,v|
-      v.count === 1 ? c[k] = v.first : c[k] = v
+      # flatten all values except 'target'
+      if (v.count === 1) && (!k.eql?('target'))
+        v.count === 1 ? c[k] = v.first : c[k] = v
+      else
+        c[k] = v
+      end
     end
     c.to_json
   end
