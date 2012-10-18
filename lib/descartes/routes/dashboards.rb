@@ -7,7 +7,7 @@ module Descartes
           from(:dashboards, :graph_dashboard_relations).
           where(:dashboards__enabled => true, :dashboards__id => :graph_dashboard_relations__dashboard_id).
           group(:dashboards__id).
-          order(:dashboards__updated_at).reverse
+          order('LOWER(dashboards.name)'.lit)
         content_type "application/json"
         @dashboards.to_json
       else
