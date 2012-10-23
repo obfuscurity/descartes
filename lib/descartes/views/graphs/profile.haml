@@ -3,6 +3,7 @@
   /%span.info Created by <span class="owner">#{graph[:owner]}</span> on #{graph[:created_at]}
 .well
   %a{ :class => "details btn closed", :"data-toggle" => "collapse", :"data-target" => "#details", :href => "#" } Details
+  %input{ :id => "dateRange", :class => "ui-rangepicker-input ui-widget-content", :type => "text" }
   .tools.btn-group
     %button{ :class => "tools btn refresh", :title => "refresh graphs" }
       %i.icon-refresh
