@@ -14,6 +14,7 @@ gem "rack-ssl-enforcer"
 gem "haml"
 gem "json"
 gem "rspec"
+gem "carrierwave-sequel"
 
 group :development do
   gem "foreman"
