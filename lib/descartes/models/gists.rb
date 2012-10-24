@@ -20,13 +20,16 @@ class Gist < Sequel::Model
 
   class Uploader < CarrierWave::Uploader::Base
     include CarrierWave::RMagick
+
     version :thumb do
       process :resize_to_fill => [300,150]
     end
+
     storage :fog
     def cache_dir
       File.expand_path('./tmp/uploads')
     end
+    
     def store_dir
       model.uuid
     end
