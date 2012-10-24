@@ -15,12 +15,13 @@ class Graph < Sequel::Model
 
   many_to_many :dashboards
   one_to_many :tags
+  one_to_many :gists
   
   plugin :boolean_readers
   plugin :prepared_statements
   plugin :prepared_statements_safe
   plugin :validation_helpers
-  plugin :association_dependencies, :tags => :destroy
+  plugin :association_dependencies, :tags => :destroy, :gists => :destroy
 
   def before_validation
     super
@@ -60,6 +61,7 @@ class Graph < Sequel::Model
   def before_destroy
     super
     Tag.filter(:graph_id => self.id).destroy
+    Gist.filter(:graph_id => self.id).destroy
   end
 
   def deconstruct(url)
