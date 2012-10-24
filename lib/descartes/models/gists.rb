@@ -20,6 +20,9 @@ class Gist < Sequel::Model
 
   class Uploader < CarrierWave::Uploader::Base
     storage :fog
+    def cache_dir
+      File.expand_path('./tmp/uploads')
+    end
     def store_dir
       model.uuid
     end
