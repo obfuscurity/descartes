@@ -48,4 +48,9 @@ class Gist < Sequel::Model
     self.uuid = SecureRandom.hex(16)
     self.created_at = Time.now
   end
+
+  def before_destroy
+    super
+    self.remove_url!
+  end
 end
