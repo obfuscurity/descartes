@@ -94,18 +94,6 @@ module Descartes
       end
     end
 
-    post '/graphs/:id/gists/?' do
-      if request.accept.include?("application/json")
-        content_type "application/json"
-        @graph = Graph.filter(:uuid => params[:uuid]).first
-        @gist = Gist.new(:url => params[:url], :graph_id => @graph.id)
-        @gist.save
-        status 204
-      else
-        # halt
-      end
-    end
-
     delete '/graphs/:uuid/tags/:id/?' do
       @graph = Graph.filter(:uuid => params[:uuid]).first
       @tag = Tag.select('tags.*'.lit).
@@ -138,6 +126,18 @@ module Descartes
       end
       @graph.destroy
       status 204
+    end
+
+    post '/graphs/:id/gists/?' do
+      if request.accept.include?("application/json")
+        content_type "application/json"
+        @graph = Graph.filter(:uuid => params[:uuid]).first
+        @gist = Gist.new(:url => params[:url], :graph_id => @graph.id)
+        @gist.save
+        status 204
+      else
+        # halt
+      end
     end
   end
 end
