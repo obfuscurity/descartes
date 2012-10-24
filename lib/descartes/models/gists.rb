@@ -31,6 +31,12 @@ class Gist < Sequel::Model
 
   mount_uploader :url, Uploader
 
+  def validate
+    super
+    validates_presence :owner
+    validates_presence :url
+  end
+
   def before_create
     super
     self.uuid = SecureRandom.hex(16)
