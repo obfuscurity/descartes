@@ -16,4 +16,5 @@ class Gist < Sequel::Model
   plugin :prepared_statements_safe
   plugin :validation_helpers
 
+  mount_uploader :url, Uploader
 end
