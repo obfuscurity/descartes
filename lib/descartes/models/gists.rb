@@ -13,14 +13,17 @@ CarrierWave.configure do |config|
     :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
     :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY']
   }
-  config.fog_directory = ENV['S3_DIRECTORY']
-end
-
-class Uploader < CarrierWave::Uploader::Base
-  storage :fog
+  config.fog_directory = ENV['S3_BUCKET']
 end
 
 class Gist < Sequel::Model
+
+  class Uploader < CarrierWave::Uploader::Base
+    storage :fog
+    def store_dir
+      model.uuid
+    end
+  end
 
   many_to_one :graphs
   
