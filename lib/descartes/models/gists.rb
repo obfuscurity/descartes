@@ -17,7 +17,7 @@ CarrierWave.configure do |config|
 end
 
 class Uploader < CarrierWave::Uploader::Base
-  storage :url
+  storage :fog
 end
 
 class Gist < Sequel::Model
@@ -30,4 +30,10 @@ class Gist < Sequel::Model
   plugin :validation_helpers
 
   mount_uploader :url, Uploader
+
+  def before_create
+    super
+    self.uuid = SecureRandom.hex(16)
+    self.created_at = Time.now
+  end
 end
