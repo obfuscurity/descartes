@@ -42,12 +42,12 @@ class Gist < Sequel::Model
   plugin :prepared_statements_safe
   plugin :validation_helpers
 
-  mount_uploader :url, Uploader
+  mount_uploader :image, Uploader
 
   def validate
     super
     validates_presence :owner
-    validates_presence :url
+    validates_presence :image
   end
 
   def before_create
@@ -58,6 +58,6 @@ class Gist < Sequel::Model
 
   def before_destroy
     super
-    self.remove_url!
+    self.remove_image!
   end
 end

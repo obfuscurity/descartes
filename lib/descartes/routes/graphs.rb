@@ -132,7 +132,7 @@ module Descartes
       if request.accept.include?("application/json")
         content_type "application/json"
         @graph = Graph.filter(:uuid => params[:uuid]).first
-        @gist = Gist.new(:owner => session['user']['email'], :remote_url_url => params[:url], :graph_id => @graph.id)
+        @gist = Gist.new(:owner => session['user']['email'], :remote_image_url => params[:url], :graph_id => @graph.id)
         @gist.save
         status 200
         @gist.to_json

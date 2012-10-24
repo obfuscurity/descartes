@@ -5,7 +5,7 @@ Sequel.migration do
       primary_key :id
       String      :uuid,       :size => 32,  :null => false, :index => true, :unique => true
       String      :owner,      :size => 80,  :null => false, :index => true
-      String      :url,                      :null => false, :index => true
+      String      :image,                    :null => false, :index => true
       Text        :description
       DateTime    :created_at,               :null => false
       DateTime    :expires_at
