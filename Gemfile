@@ -16,6 +16,7 @@ gem "json"
 gem "rspec"
 gem "fog"
 gem "carrierwave-sequel"
+gem "rmagick"
 
 group :development do
   gem "foreman"
