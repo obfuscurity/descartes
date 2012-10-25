@@ -140,5 +140,18 @@ module Descartes
         # halt
       end
     end
+
+    post '/graphs/:id/comments/?' do
+      if request.accept.include?("application/json")
+        content_type "application/json"
+        @graph = Graph.filter(:uuid => params[:uuid]).first
+        @comment = Comment.new(:owner => session['user']['email'], :uuid => @graph.uuid)
+        @comment.save
+        status 200
+        @comment.to_json
+      else
+        # halt
+      end
+    end
   end
 end
