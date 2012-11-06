@@ -116,6 +116,7 @@ DEPENDENCIES
   rack-ssl-enforcer
   rack-test
   rake
+  rest-client
   rspec
   sequel
   sinatra (= 1.3.1)
