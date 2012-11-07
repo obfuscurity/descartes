@@ -13,6 +13,7 @@ require 'dashboards'
 require 'graph_dashboard_relations'
 require 'gists'
 require 'comments'
+require 'metrics'
 
 Sequel.extension :pagination
 Sequel::Model.plugin :json_serializer
