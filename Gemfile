@@ -15,6 +15,8 @@ gem "rest-client"
 gem "haml"
 gem "json"
 gem "rspec"
+gem "resque"
+gem "resque-scheduler"
 
 group :development do
   gem "foreman"
