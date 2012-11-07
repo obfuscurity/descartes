@@ -10,6 +10,7 @@ require 'graphs'
 require 'tags'
 require 'dashboards'
 require 'graph_dashboard_relations'
+require 'metrics'
 
 Sequel.extension :pagination
 Sequel::Model.plugin :json_serializer
