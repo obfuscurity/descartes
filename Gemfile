@@ -11,9 +11,12 @@ gem "sinatra_auth_github", "0.9.0"
 gem "openid-redis-store"
 gem "rack-canonical-host"
 gem "rack-ssl-enforcer"
+gem "rest-client"
 gem "haml"
 gem "json"
 gem "rspec"
+gem "resque"
+gem "resque-scheduler"
 
 group :development do
   gem "foreman"

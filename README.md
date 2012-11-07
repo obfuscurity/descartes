@@ -28,6 +28,8 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 
 ### Options
 
+* `METRICS_UPDATE_INTERVAL` - How frequently to update the list of known metrics from the remote Graphite server. The more often you add new metrics, the lower this value should be. A reasonable default for most installations would be `1h` (time strings as understood by [Rufus scheduler](https://github.com/jmettraux/rufus-scheduler#the-time-strings-understood-by-rufus-scheduler)). If users complain that they don't see new metrics, it means that it hasn't synced since a new metric has been added. You can simply restart Descartes, and optionally lower this value to suit your users' patience threshold, to manually update the metrics list. __Note__ - this feature adds `scheduler` and `worker` resque classes; if you're hosting your Descartes on Heroku, you will be charged for the extra dyno time.
+
 * `USE_SVG` - When set to `true`, will cause Descartes to load SVG output from Graphite instead of the default PNG output. In the future SVG will become the default format, but there is currently a bug in stable Graphite (0.9.10 as of this writing) which causes SVG rendering to fail whenever `secondYAxis` is enabled on any target in a graph.
 
 * `GRAPH_TEMPLATE` - Specify the [Graphite graph template](https://graphite.readthedocs.org/en/latest/render_api.html?#template) to use when rendering graphs.
@@ -82,13 +84,11 @@ See http://blog.rogeriopvl.com/archives/nginx-and-the-http-options-method/ for a
 
 Descartes uses the Sinatra web framework under Ruby 1.9. Anyone wishing to run Descartes as a local service should be familiar with common Ruby packaging and dependency management utilities such as RVM and Bundler. If you are installing a new Ruby version with RVM, make sure that you have the appropriate OpenSSL development libraries installed before compiling Ruby.
 
+All environment variables can be set from the command-line, although it's suggested to use `.env` instead. This file will automatically be picked up by foreman, which is also helpful when debugging (e.g. `foreman run pry`). This file will not be committed (unless you remove or modify `.gitignore`) so you shouldn't have to worry about accidentally leaking credentials.
+
 ```bash
 $ rvm use 1.9.2
 $ bundle install
-$ export OAUTH_PROVIDER=...
-$ export <auth provider tokens>=...
-$ export GRAPHITE_URL=...
-$ export SESSION_SECRET=...
 $ createdb descartes
 $ bundle exec rake db:migrate:up
 $ foreman start
@@ -105,6 +105,7 @@ $ heroku addons:add heroku-postgresql:dev -r $DEPLOY
 $ heroku config:set -r $DEPLOY OAUTH_PROVIDER=...
 $ heroku config:set -r $DEPLOY <auth provider tokens>=...
 $ heroku config:set -r $DEPLOY GRAPHITE_URL=...
+$ heroku config:set -r $DEPLOY METRICS_UPDATE_INTERVAL=1h
 $ heroku config:set -r $DEPLOY SESSION_SECRET...
 $ heroku config:set -r $DEPLOY RAKE_ENV=production
 $ git push $DEPLOY master

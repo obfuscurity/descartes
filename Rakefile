@@ -41,4 +41,25 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.ruby_opts = '-I .'
 end
 
+# Resque tasks
+require 'resque/tasks'
+require 'resque_scheduler/tasks'
+
+namespace :resque do
+  task :setup do
+    require './lib/descartes/models/init'
+    require 'resque'
+    require 'resque/scheduler'
+    require 'resque_scheduler'
+    Resque.redis = ENV['REDISTOGO_URL'] || 'redis://localhost:6379/1'
+    Resque::Scheduler.dynamic = true
+    Resque.set_schedule('metrics_update', {
+      :every => ENV['METRICS_UPDATE_INTERVAL'],
+      :class => 'MetricListUpdate',
+      :queue => 'low',
+      :description => 'This job will download /metrics/index.json from Graphite and update our metrics list.'
+    })
+  end
+end
+
 task :default => :spec
