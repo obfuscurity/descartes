@@ -1,6 +1,5 @@
 require 'sequel'
 require 'securerandom'
-require 'rest-client'
 require 'json'
 require 'carrierwave/sequel'
 
