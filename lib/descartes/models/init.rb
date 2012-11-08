@@ -1,5 +1,6 @@
 require 'sequel'
 require 'securerandom'
+require 'rest-client'
 require 'json'
 
 db = ENV['DATABASE_URL'] || 'postgres://localhost/descartes'
