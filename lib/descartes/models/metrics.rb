@@ -18,7 +18,12 @@ class Metric
   end
 
   def self.update
-    response = RestClient.get("#{ENV['GRAPHITE_URL']}/metrics/index.json")
+    u = URI.parse(ENV['GRAPHITE_URL'])
+    if (!ENV['GRAPHITE_USER'].empty? && !ENV['GRAPHITE_PASS'].empty?)
+      u.user = ENV['GRAPHITE_USER']
+      u.password = ENV['GRAPHITE_PASS']
+    end
+    response = RestClient.get("#{u.to_s}/metrics/index.json")
     @@paths = JSON.parse(response)
   end
 end
