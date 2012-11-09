@@ -1,7 +1,6 @@
 .header
   %h1 Metrics
 .well
-  %a{ :class => "metrics_graph btn closed", :"data-toggle" => "collapse", :"data-target" => "#metrics_graph_form", :href => "#" } Add to Graph
   .tools.btn-group
     %button{ :class => "tools btn refresh", :title => "refresh metrics" }
       %i.icon-refresh
@@ -13,7 +12,7 @@
     %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
 .accordion-group
   / Form for adding metrics to an existing (or new) graph
-  %fieldset#metrics_graph_form{ :class => "collapse" }
+  %fieldset#metrics_graph_form{ :class => "collapse in" }
     #metrics_graph_select
       %ul
         //%li
