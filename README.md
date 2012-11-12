@@ -38,6 +38,8 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 
 The default session cookie should be randomized by setting `SESSION_SECRET` to a random string.
 
+If your Graphite web server requires Basic Authentication, these credentials can be set using the `GRAPHITE_USER` and `GRAPHITE_PASS` environment variables.
+
 Descartes provides organizational authorization using either Google OpenID or GitHub OAuth.
 The `OAUTH_PROVIDER` environment variable can be set to either `google` or `github` to
 determine which type to use.
