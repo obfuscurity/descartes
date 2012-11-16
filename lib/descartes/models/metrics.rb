@@ -27,9 +27,3 @@ class Metric
     @@paths = JSON.parse(response)
   end
 end
-
-class MetricListUpdate
-  def self.perform
-    Metric.update
-  end
-end
