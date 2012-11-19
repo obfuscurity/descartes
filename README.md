@@ -38,6 +38,8 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 
 The default session cookie should be randomized by setting `SESSION_SECRET` to a random string.
 
+If your Graphite web server requires Basic Authentication, these credentials can be set using the `GRAPHITE_USER` and `GRAPHITE_PASS` environment variables.
+
 Descartes provides organizational authorization using either Google OpenID or GitHub OAuth.
 The `OAUTH_PROVIDER` environment variable can be set to either `google` or `github` to
 determine which type to use.
@@ -58,15 +60,16 @@ A new GitHub application will need to be [registered](https://github.com/setting
 
 ### Graphite Server Configuration
 
-In order to support CORS with JSON instead of JSONP, we need to allow specific headers and allow the cross-domain origin request. The following are suggested settings for Apache 2.x. Adjust as necessary for your environment or webserver.
+In order to support CORS with JSON instead of JSONP, we need to allow specific headers and allow the cross-domain origin request. The base URL of your Descartes application will need to be allowed as an origin. The following example is suitable for a test Descartes application running on localhost connecting to a remote Graphite/Apache 2.x server. Adjust as necessary for your environment or webserver.
 
 ```
-Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Origin "http://127.0.0.1:5000"
 Header set Access-Control-Allow-Methods "GET, OPTIONS"
 Header set Access-Control-Allow-Headers "origin, authorization, accept"
+Header set Access-Control-Allow-Credentials true
 ```
 
-If your Graphite composer is proteced by basic authentication, you have to ensure that the HTTP verb OPTIONS is allowed unauthenticated. This looks like the following for Apache:
+If your Graphite composer is protected by basic authentication, you have to ensure that the HTTP verb OPTIONS is allowed unauthenticated. This looks like the following for Apache:
 ```
 <Location />
     AuthName "graphs restricted"
