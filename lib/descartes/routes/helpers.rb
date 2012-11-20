@@ -3,7 +3,7 @@ module Descartes
 
     helpers do
       def api_token?
-        request['X-DESCARTES-API-TOKEN'].eql?(ENV['API_TOKEN'])
+        request.env['HTTP_X_DESCARTES_API_TOKEN'].eql?(ENV['API_TOKEN'])
       end
       def current_user
         @current_user ||= session['user']
