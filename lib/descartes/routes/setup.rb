@@ -11,7 +11,7 @@ module Descartes
     before do
       if !(request.path_info =~ /\/auth/)
         if !(api_token? && request.accept.include?("application/json"))
-          if !current_user || !api_token?
+          if !current_user
             session.clear
             session['redirect_to'] = request.path_info
             redirect '/auth/unauthorized'
