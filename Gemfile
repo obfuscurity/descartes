@@ -7,7 +7,7 @@ gem "pg"
 gem "sequel"
 gem "omniauth"
 gem 'omniauth-google-apps'
-gem "sinatra_auth_github", "0.12.0"
+gem "sinatra_auth_github", "0.12.1"
 gem "openid-redis-store"
 gem "rack-canonical-host"
 gem "rack-ssl-enforcer"
