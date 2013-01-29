@@ -6,6 +6,7 @@ module Descartes
       disable :raise_errors if Config.rack_env.eql?("production")
       disable :show_exceptions if Config.rack_env.eql?("production")
       use Rack::SslEnforcer if Config.force_https
+      set :session_secret, Config.session_secret
     end
 
     before do
