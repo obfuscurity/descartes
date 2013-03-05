@@ -1,6 +1,6 @@
 # Descartes
 
-![dashboard](https://github.com/obfuscurity/descartes/raw/master/lib/descartes/public/i/descartes.png "Descartes")
+![dashboard](https://github.com/obfuscurity/descartes/raw/master/lib/descartes/public/img/descartes.png "Descartes")
 
 ## Purpose
 
