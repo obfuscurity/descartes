@@ -1,5 +1,7 @@
 # Descartes
 
+![dashboard](https://github.com/obfuscurity/descartes/raw/master/lib/descartes/public/img/descartes.png "Descartes")
+
 ## Purpose
 
 Provide an additional level of insight and collaboration that is neither available nor appropriate for a real-time utility such as Tasseo.
