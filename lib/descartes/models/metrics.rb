@@ -25,5 +25,13 @@ class Metric
     end
     response = RestClient.get("#{u.to_s}/metrics/index.json")
     @@paths = JSON.parse(response)
+    MetricCacheInfo.update
+  end
+end
+
+class MetricCacheInfo < Sequel::Model
+  def update
+    super
+    self.updated_at = Time.now
   end
 end
