@@ -341,6 +341,10 @@ span.graph img.view {
 .settings .log_mode.btn-group button.log_mode.btn.disabled { width: 182px;}
 .settings .null_mode.btn-group button.null_mode.btn.disabled { width: 238px;}
 
+div.metrics-cache-status {
+  float: left;
+}
+
 #metrics_graph_select {
   float: left;
   margin-top: 12px;

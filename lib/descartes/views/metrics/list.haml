@@ -1,6 +1,8 @@
 .header
   %h1 Metrics
 .well
+  .metrics-cache-status
+    %input{ :class => "metrics-cache-status span4", :type => "text", :disabled => true }
   .tools.btn-group
     %button{ :class => "tools btn refresh", :title => "refresh metrics" }
       %i.icon-refresh
