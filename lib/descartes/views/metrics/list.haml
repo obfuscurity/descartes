@@ -2,7 +2,7 @@
   %h1 Metrics
 .well
   .metrics-cache-status
-    %input{ :class => "metrics-cache-status span4", :type => "text", :disabled => true }
+    %input{ :class => "metrics-cache-status", :type => "text", :disabled => true, :placeholder => "Cache last updated at " + cache_age }
   .tools.btn-group
     %button{ :class => "tools btn refresh", :title => "refresh metrics" }
       %i.icon-refresh

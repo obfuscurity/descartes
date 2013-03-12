@@ -345,6 +345,11 @@ div.metrics-cache-status {
   float: left;
 }
 
+.metrics-cache-status input {
+  width: 300px;
+  padding-left: 10px;
+}
+
 #metrics_graph_select {
   float: left;
   margin-top: 12px;
