@@ -29,7 +29,7 @@ class Metric
   end
 end
 
-class MetricCacheInfo < Sequel::Model
+class MetricCacheStatus < Sequel::Model
   def update
     super
     self.updated_at = Time.now
