@@ -25,7 +25,7 @@ class Metric
     end
     response = RestClient.get("#{u.to_s}/metrics/index.json")
     @@paths = JSON.parse(response)
-    MetricCacheInfo.update
+    MetricCacheStatus.update
   end
 end
 
