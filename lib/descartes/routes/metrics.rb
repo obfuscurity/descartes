@@ -7,7 +7,7 @@ module Descartes
         status 200
         Metric.all.to_json
       else
-        haml :'metrics/list', :title => "Descartes - Metrics List"
+        haml :'metrics/list', :locals => { :title => "Descartes - Metrics List", :cache_age => MetricCacheStatus.first.updated_at.to_s }
       end
     end
 

@@ -25,5 +25,9 @@ class Metric
     end
     response = RestClient.get("#{u.to_s}/metrics/index.json")
     @@paths = JSON.parse(response)
+    MetricCacheStatus.update(:updated_at => Sequel.function(:NOW))
   end
+end
+
+class MetricCacheStatus < Sequel::Model(:metric_cache_status)
 end
