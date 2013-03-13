@@ -131,7 +131,7 @@ module Descartes
     post '/graphs/:id/gists/?' do
       if request.accept.include?("application/json")
         content_type "application/json"
-        @graph = Graph.filter(:uuid => params[:uuid]).first
+        @graph = Graph.filter(:uuid => params[:id]).first
         @gist = Gist.new(:owner => session['user']['email'], :url => params[:url], :name => @graph.name, :data => params[:data], :graph_id => @graph.id)
         @gist.save
         status 200
