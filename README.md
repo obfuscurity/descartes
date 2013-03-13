@@ -119,11 +119,11 @@ $ heroku scale -r $DEPLOY web=1
 $ heroku open -r $DEPLOY
 ```
 
-## UPGRADES
+## Upgrades
 
 Upgrades are typically performed by updating your in-place copy of the Descartes checkout. If you are using a third-party package, please refer to their upgrade documentation.
 
-### MIGRATIONS
+### Migrations
 
 Database upgrades (or downgrades) should use the built-in `rake` migration targets. For upgrading to the newest version in your development or non-Heroku production environment:
 
@@ -139,6 +139,6 @@ $ bundle exec VERSION=3 rake db:migrate:to
 
 If you're running on Heroku, simply prefix the aforementioned commands with `heroku run` (and any other relevant options).
 
-## LICENSE
+## License
 
 Descartes is distributed under the MIT license. Third-party software libraries included with this project are distributed under their respective licenses.
