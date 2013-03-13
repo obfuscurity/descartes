@@ -38,21 +38,34 @@ module Descartes
       if params[:node]
         nodes = []
         nodes.push(params[:node]).flatten!
+        if params[:tag]
+          tags = []
+          tags.push(params[:tag]).flatten!
+        end
+        owner = api_token? ? 'api@localhost' : session['user']['email']
         name = params[:name] || nil
         nodes.each do |url|
-          @graph = Graph.new({:owner => session['user']['email'], :url => url, :name => name}.reject {|k,v| v.nil?})
+          @graph = Graph.new({:owner => owner, :url => url, :name => name}.reject {|k,v| v.nil?})
           @graph.save
+          if !tags.empty?
+            tags.each do |tag|
+              @tag = Tag.new(:name => tag, :graph_id => @graph.id)
+              @tag.save
+            end
+          end
         end
-      end
-      if request.accept.include?("application/json")
-        status 200
-        @graph.to_json
-      else
-        if nodes.count > 1
-          redirect '/graphs'
+        if request.accept.include?("application/json")
+          status 200
+          @graph.to_json
         else
-          redirect "/graphs/#{@graph.uuid}"
+          if nodes.count > 1
+            redirect '/graphs'
+          else
+            redirect "/graphs/#{@graph.uuid}"
+          end
         end
+      else
+        halt 400
       end
     end
 
