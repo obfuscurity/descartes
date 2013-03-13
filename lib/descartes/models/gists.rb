@@ -1,5 +1,3 @@
-require 'cgi'
-require 'uri'
 
 class NilClass
   def method_missing(name, *args, &block)
@@ -7,26 +5,20 @@ class NilClass
 end
 
 class Sequel::Model
-  #def validates_url_format(input)
-  #end
 end
 
-class Graph < Sequel::Model
+class Gist < Sequel::Model
 
-  many_to_many :dashboards
-  one_to_many :tags
-  one_to_many :gists
+  many_to_one :graphs
   
   plugin :boolean_readers
   plugin :prepared_statements
   plugin :prepared_statements_safe
   plugin :validation_helpers
-  plugin :association_dependencies, :tags => :destroy, :gists => :destroy
 
   def before_validation
     super
     self.configuration = deconstruct(self.url)
-    self.name ||= (JSON.parse(self.configuration)["name"] || JSON.parse(self.configuration)["title"] || "Please name me")
   end
 
   def validate
@@ -34,7 +26,7 @@ class Graph < Sequel::Model
     validates_presence :owner
     validates_presence :name
     validates_presence :url
-    #validates_url_format self.url
+    validates_min_length 3, :data
   end
 
   def before_create
@@ -43,26 +35,11 @@ class Graph < Sequel::Model
     self.enabled = true
     self.created_at = Time.now
     self.updated_at = Time.now
-    self.views = 0
-  end
-
-  def after_create
-    super
-    tags = []
-    tags.each do |name|
-      Tag.new(:name => name, :graph_id => self.id).save;
-    end
   end
 
   def before_update
     super
     self.updated_at = Time.now
-  end
-
-  def before_destroy
-    super
-    Tag.filter(:graph_id => self.id).destroy
-    Gist.filter(:graph_id => self.id).destroy
   end
 
   def deconstruct(url)
@@ -76,10 +53,5 @@ class Graph < Sequel::Model
       end
     end
     c.to_json
-  end
-
-  def restore
-    self.enabled = true
-    self.save
   end
 end

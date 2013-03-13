@@ -127,5 +127,31 @@ module Descartes
       @graph.destroy
       status 204
     end
+
+    post '/graphs/:id/gists/?' do
+      if request.accept.include?("application/json")
+        content_type "application/json"
+        @graph = Graph.filter(:uuid => params[:id]).first
+        @gist = Gist.new(:owner => session['user']['email'], :url => params[:url], :name => @graph.name, :data => params[:data], :graph_id => @graph.id)
+        @gist.save
+        status 200
+        @gist.to_json
+      else
+        # halt
+      end
+    end
+
+    post '/graphs/:id/comments/?' do
+      if request.accept.include?("application/json")
+        content_type "application/json"
+        @graph = Graph.filter(:uuid => params[:uuid]).first
+        @comment = Comment.new(:owner => session['user']['email'], :uuid => @graph.uuid)
+        @comment.save
+        status 200
+        @comment.to_json
+      else
+        # halt
+      end
+    end
   end
 end
