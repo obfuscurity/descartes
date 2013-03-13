@@ -26,6 +26,7 @@ class Gist < Sequel::Model
     validates_presence :owner
     validates_presence :name
     validates_presence :url
+    validates_min_length 3, :data
   end
 
   def before_create
