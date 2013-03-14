@@ -15,6 +15,9 @@ gem "rest-client"
 gem "haml"
 gem "json"
 gem "rspec"
+gem "fog"
+gem "carrierwave-sequel"
+gem "rmagick"
 gem "rufus-scheduler"
 
 group :development do

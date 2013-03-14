@@ -31,7 +31,6 @@ class Graph < Sequel::Model
 
   def validate
     super
-    validates_presence :owner
     validates_presence :name
     validates_presence :url
     #validates_url_format self.url

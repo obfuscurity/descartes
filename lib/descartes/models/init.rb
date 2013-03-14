@@ -1,6 +1,7 @@
 require 'sequel'
 require 'securerandom'
 require 'json'
+require 'carrierwave/sequel'
 
 db = ENV['DATABASE_URL'] || 'postgres://localhost/descartes'
 Sequel.connect(db)

@@ -7,7 +7,33 @@ end
 class Sequel::Model
 end
 
+CarrierWave.configure do |config|
+  config.fog_credentials = {
+    :provider               => 'AWS',
+    :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
+    :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY']
+  }
+  config.fog_directory = ENV['S3_BUCKET']
+end
+
 class Gist < Sequel::Model
+
+  class Uploader < CarrierWave::Uploader::Base
+    include CarrierWave::RMagick
+
+    version :thumb do
+      process :resize_to_fill => [300,150]
+    end
+
+    storage :fog
+    def cache_dir
+      File.expand_path('./tmp/uploads')
+    end
+    
+    def store_dir
+      model.uuid
+    end
+  end
 
   many_to_one :graphs
   
@@ -16,42 +42,22 @@ class Gist < Sequel::Model
   plugin :prepared_statements_safe
   plugin :validation_helpers
 
-  def before_validation
-    super
-    self.configuration = deconstruct(self.url)
-  end
+  mount_uploader :image, Uploader
 
   def validate
     super
     validates_presence :owner
-    validates_presence :name
-    validates_presence :url
-    validates_min_length 3, :data
+    validates_presence :image
   end
 
   def before_create
     super
     self.uuid = SecureRandom.hex(16)
-    self.enabled = true
     self.created_at = Time.now
-    self.updated_at = Time.now
   end
 
-  def before_update
+  def before_destroy
     super
-    self.updated_at = Time.now
-  end
-
-  def deconstruct(url)
-    c = {}
-    CGI.parse(URI.parse(url).query).each do |k,v|
-      # flatten all values except 'target'
-      if (v.count === 1) && (!k.eql?('target'))
-        v.count === 1 ? c[k] = v.first : c[k] = v
-      else
-        c[k] = v
-      end
-    end
-    c.to_json
+    self.remove_image!
   end
 end
