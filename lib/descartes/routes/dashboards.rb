@@ -91,7 +91,7 @@ module Descartes
         end
         status 204
       else
-        #halt
+        halt 400
       end
     end
 

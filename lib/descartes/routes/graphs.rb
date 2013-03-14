@@ -92,7 +92,7 @@ module Descartes
         status 200
         @tags.to_json
       else
-        # halt
+        halt 400
       end
     end
 
@@ -112,7 +112,7 @@ module Descartes
         end
         status 204
       else
-        # halt
+        halt 400
       end
     end
 
@@ -161,7 +161,7 @@ module Descartes
         status 200
         @gist.to_json
       else
-        # halt
+        halt 400
       end
     end
 
@@ -174,7 +174,7 @@ module Descartes
         status 200
         @comment.to_json
       else
-        # halt
+        halt 400
       end
     end
   end
