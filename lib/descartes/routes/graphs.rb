@@ -87,7 +87,7 @@ module Descartes
       if request.accept.include?("application/json")
         content_type "application/json"
         @graph = Graph.filter(:uuid => params[:uuid]).first
-        @tags = Tag.filter(:graph_id => @graph.id).order(:id).all
+        @tags = Tag.select(:id, :name).filter(:graph_id => @graph.id).order(:id).all
         status 200
         @tags.to_json
       else
