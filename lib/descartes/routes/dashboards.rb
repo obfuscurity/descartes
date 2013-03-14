@@ -95,18 +95,18 @@ module Descartes
       end
     end
 
+    delete '/dashboards/:dashboard_uuid/graphs/:graph_uuid/?' do
+      @graph = Graph.filter(:uuid => params[:graph_uuid]).first
+      @dashboard = Dashboard.filter(:uuid => params[:dashboard_uuid]).first
+      GraphDashboardRelation.filter(:dashboard_id => @dashboard.id, :graph_id => @graph.id).first.destroy
+      status 204
+    end
+
     delete '/dashboards/:id/?' do
       @dashboard = Dashboard.filter(:uuid => params[:id]).first
       GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
         r.destroy
       end
-      status 204
-    end
-
-    delete '/dashboards/:dashboard_uuid/graphs/:graph_uuid/?' do
-      @graph = Graph.filter(:uuid => params[:graph_uuid]).first
-      @dashboard = Dashboard.filter(:uuid => params[:dashboard_uuid]).first
-      GraphDashboardRelation.filter(:dashboard_id => @dashboard.id, :graph_id => @graph.id).first.destroy
       status 204
     end
   end
