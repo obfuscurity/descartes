@@ -56,6 +56,7 @@ module Descartes
         end
         if request.accept.include?("application/json")
           status 200
+          # XXX - should return tags too
           @graph.to_json
         else
           if nodes.count > 1

@@ -3,6 +3,7 @@ module Descartes
 
     get '/dashboards/?' do
       if request.accept.include?("application/json")
+        # XXX - should return graph uuids for each dashboard
         @dashboards = Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
           from(:dashboards, :graph_dashboard_relations).
           where(:dashboards__enabled => true, :dashboards__id => :graph_dashboard_relations__dashboard_id).
@@ -28,6 +29,7 @@ module Descartes
     end
 
     get '/dashboards/:id/?' do
+      # XXX - should return graph uuids for each dashboard
       @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
       @graphs = []
       if params[:tags]
