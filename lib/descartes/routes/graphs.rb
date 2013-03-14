@@ -98,9 +98,17 @@ module Descartes
     post '/graphs/:uuid/tags/?' do
       if request.accept.include?("application/json")
         content_type "application/json"
+        if params[:name]
+          tags = []
+          tags.push(params[:name]).flatten!
+        end
         @graph = Graph.filter(:uuid => params[:uuid]).first
-        @tag = Tag.new(:name => params[:name], :graph_id => @graph.id)
-        @tag.save
+        if !tags.empty?
+          tags.each do |tag|
+            @tag = Tag.new(:name => tag, :graph_id => @graph.id)
+            @tag.save
+          end
+        end
         status 204
       else
         # halt
