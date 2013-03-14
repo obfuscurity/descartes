@@ -17,12 +17,13 @@ module Descartes
 
     post '/dashboards/?' do
       if request.accept.include?("application/json") && params[:uuids] && params[:name]
-        @dashboard = Dashboard.new({ :owner => session['user']['email'], :name => params[:name] })
+        owner = api_token? ? 'api@localhost' : session['user']['email']
+        @dashboard = Dashboard.new({ :owner => owner, :name => params[:name] })
         @dashboard.save
         @dashboard.add_graphs(params[:uuids])
         @dashboard.to_json
       else
-        #halt
+        halt 400
       end
     end
 
