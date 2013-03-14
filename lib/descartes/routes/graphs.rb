@@ -119,9 +119,11 @@ module Descartes
     put '/graphs/:id/?' do
       @graph = Graph.filter(:uuid => params[:id]).first
       params.delete('id')
-      # Need to serialize this here or Sequel::Model.plugin :json_serializer fucks with us
       if params[:overrides]
-        @graph.update(:overrides => params[:overrides].to_json)
+        # check to see if our data came in as a String (e.g. curl) or real JSON (from Descartes UI)
+        overrides = params[:overrides].class.eql?(String) ? JSON.parse(params[:overrides]) : params[:overrides]
+        # Need to serialize this here or Sequel::Model.plugin :json_serializer fucks with us
+        @graph.update(:overrides => overrides.to_json)
         params.delete('overrides')
       end
       params.each do |k,v|
