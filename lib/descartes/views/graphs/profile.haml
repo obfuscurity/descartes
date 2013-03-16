@@ -4,17 +4,29 @@
 .well
   %a{ :class => "details btn closed", :"data-toggle" => "collapse", :"data-target" => "#details", :href => "#" } Details
   .tools.btn-group
-    %button{ :class => "tools btn refresh", :title => "refresh graphs" }
+    %button{ :class => "tools btn refresh", :title => "refresh graph" }
       %i.icon-refresh
-    %button{ :class => "tools btn gist", :title => "gist graphs" }
+    %button{ :class => "tools btn gist", :title => "gist graph" }
       %i.icon-camera
+    %button{ :class => "tools btn delete", :title => "delete graph", :"data-toggle" => "modal", :"data-target" => "#destroy_modal" }
+      %i.icon-trash
   .interval.btn-group
     %button{ :class => "interval btn disabled" } Interval
     %button{ :class => "interval btn active", :name => 1, :value => '1h' } 1h
     %button{ :class => "interval btn", :name => 2, :value => '3h' } 3h
     %button{ :class => "interval btn", :name => 3, :value => '6h' } 6h
     %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
+.modal#destroy_modal{ :class => "hide fade" }
+  .modal-header
+    %button{ :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => true } &times
+    %h2 Delete Graph
+  .modal-body
+    Are you <b>REALLY</b> sure you want to delete this graph?
+  .modal-footer
+    %button{ :class => "btn", :"data-dismiss" => "modal", :"aria-hidden" => true } Cancel
+    %button{ :class => "btn btn-danger delete" } Destroy
 .accordion-group
+  / Graph details
   %fieldset#details{ :class => "collapse" }
     .description-wrapper
       %label{ :for => "description" } Description:
