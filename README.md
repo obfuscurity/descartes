@@ -62,7 +62,8 @@ A new GitHub application will need to be [registered](https://github.com/setting
 
 **Important**: Don't forget to go over to your organization's member page and set yourself as a public
 member. This can be found at https://github.com/YOUR-ORG?tab=members (replace YOUR-ORG with your actual
-organization name).
+organization name). Once there, ensure that the button says "Conceal membership". If that's the button
+you see this means you're already public, otherwise click "Publicize membership".
 
 ### Graphite Server Configuration
 
