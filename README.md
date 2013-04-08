@@ -60,6 +60,11 @@ A new GitHub application will need to be [registered](https://github.com/setting
 * `GITHUB_CLIENT_SECRET`
 * `GITHUB_ORG_ID` (The name of your organization)
 
+**Important**: Don't forget to go over to your organization's member page and set yourself as a public
+member. This can be found at https://github.com/YOUR-ORG?tab=members (replace YOUR-ORG with your actual
+organization name). Once there, ensure that the button says "Conceal membership". If that's the button
+you see this means you're already public, otherwise click "Publicize membership".
+
 ### Graphite Server Configuration
 
 In order to support CORS with JSON instead of JSONP, we need to allow specific headers and allow the cross-domain origin request. The base URL of your Descartes application will need to be allowed as an origin. The following example is suitable for a test Descartes application running on localhost connecting to a remote Graphite/Apache 2.x server. Adjust as necessary for your environment or webserver.
