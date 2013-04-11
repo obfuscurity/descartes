@@ -100,6 +100,8 @@ All environment variables can be set from the command-line, although it's sugges
 $ rvm use 1.9.2
 $ bundle install
 $ createdb descartes
+$ cp .env.example .env
+$ $EDITOR .env
 $ bundle exec rake db:migrate:up
 $ foreman start
 $ open http://127.0.0.1:5000
