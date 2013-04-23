@@ -90,7 +90,7 @@ If your Graphite composer is protected by basic authentication, you have to ensu
 
 See http://blog.rogeriopvl.com/archives/nginx-and-the-http-options-method/ for an Nginx example.
 
-### Development
+### Local
 
 Descartes uses the Sinatra web framework under Ruby 1.9. Anyone wishing to run Descartes as a local service should be familiar with common Ruby packaging and dependency management utilities such as RVM and Bundler. If you are installing a new Ruby version with RVM, make sure that you have the appropriate OpenSSL development libraries installed before compiling Ruby.
 
@@ -107,7 +107,7 @@ $ foreman start
 $ open http://127.0.0.1:5000
 ```
 
-### Production
+### Heroku
 
 ```bash
 $ export DEPLOY=production/staging/you
