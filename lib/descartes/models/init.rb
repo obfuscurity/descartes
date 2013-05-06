@@ -2,8 +2,8 @@ require 'sequel'
 require 'securerandom'
 require 'json'
 
-db = ENV['DATABASE_URL'] || 'postgres://localhost/descartes'
-Sequel.connect(db)
+dsn = ENV['DATABASE_URL'] || 'postgres://localhost/descartes'
+DB = Sequel.connect(dsn)
 
 $LOAD_PATH.unshift File.dirname(__FILE__)
 require 'graphs'
