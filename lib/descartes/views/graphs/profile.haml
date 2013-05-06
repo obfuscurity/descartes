@@ -3,6 +3,7 @@
   /%span.info Created by <span class="owner">#{graph[:owner]}</span> on #{graph[:created_at]}
 .well
   %a{ :class => "details btn closed", :"data-toggle" => "collapse", :"data-target" => "#details", :href => "#" } Details
+  %a{ :class => "dashboard btn", :"data-toggle" => "collapse", :"data-target" => "#dashboard_form", :href => "#" } Add to Dashboard
   .tools.btn-group
     %button{ :class => "tools btn refresh", :title => "refresh graph" }
       %i.icon-refresh
@@ -61,6 +62,21 @@
           %button{ :class => "null_mode btn disabled" } Draw Nulls as Zeroes?
           %button{ :class => "null_mode btn", :name => 1, :value => "off" } off
           %button{ :class => "null_mode btn active", :name => 2, :value => "on" } on
+  / Forms for creating / adding-to dashboards
+  %fieldset#dashboard_form{ :class => "collapse" }
+    #dashboard_select
+      %ul
+        %li
+          %select{ :id => "dashboard_select", :name => "dashboard_select" }
+        %li
+          %button{ :class => "dashboard_submit btn btn-primary" } Add to Selected Dashboard
+    #dashboard_new
+      %form{ :id => "dashboard_new", :method => "post", :action => "/dashboards" }
+        %ul
+          %li
+            %input{ :class => "dashboard_name span3", :id => "name", :name => "name", :placeholder => "Dashboard Name" }
+          %li
+            %button{ :class => "dashboard_submit btn btn-primary", :name => "submit", :type => "submit" } Create Dashboard
 .graphs
   .row
 %script{ :type => "text/javascript", :src => "/js/profile-graph.js" }
