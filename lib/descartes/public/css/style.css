@@ -44,7 +44,7 @@ body {
   color: #5ea9cc;
 }
 
-.import.btn {
+.import.btn, .details.btn {
   margin-right: 16px;
 }
 
