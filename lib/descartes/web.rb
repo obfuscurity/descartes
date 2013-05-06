@@ -24,6 +24,17 @@ module Descartes
     get '/' do
       haml :index
     end
+
+    get '/metrics/find' do
+      RestClient.get("#{ENV['GRAPHITE_URL']}#{request.env['REQUEST_URI']}")
+    end
+
+    get '/render/?' do
+      RestClient.get("#{ENV['GRAPHITE_URL']}#{request.env['REQUEST_URI']}")
+    end
+
+    get '/browser/usergraph/?' do
+      RestClient.get("#{ENV['GRAPHITE_URL']}#{request.env['REQUEST_URI']}")
+    end
   end
 end
-
