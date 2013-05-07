@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gem "rake"
 gem "sinatra", "1.3.1"
-gem "thin", "1.5.1"
+gem "puma"
 gem "pg"
 gem "sequel"
 gem "omniauth"
