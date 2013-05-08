@@ -48,6 +48,10 @@ body {
   margin-right: 16px;
 }
 
+.interval ul {
+  margin-left: 0;
+}
+
 .interval.btn-group {
   float: right;
   margin-right: 20px;
