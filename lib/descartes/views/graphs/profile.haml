@@ -11,15 +11,7 @@
       %i.icon-camera
     %button{ :class => "tools btn delete", :title => "delete graph", :"data-toggle" => "modal", :"data-target" => "#destroy_modal" }
       %i.icon-trash
-  .interval.btn-group
-    %button{ :class => "interval btn disabled" } Interval
-    %button{ :class => "interval btn active", :name => 1, :value => '1h' } 1h
-    %button{ :class => "interval btn", :name => 2, :value => '3h' } 3h
-    %button{ :class => "interval btn", :name => 3, :value => '6h' } 6h
-    %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
-    %button{ :class => "interval btn", :name => 5, :value => '1w' } 1w
-    %button{ :class => "interval btn", :name => 6, :value => '4w' } 4w
-    %button{ :class => "interval btn", :name => 7, :value => '1y' } 1y
+  = haml :"common/_interval"
 .modal#destroy_modal{ :class => "hide fade" }
   .modal-header
     %button{ :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => true } &times
