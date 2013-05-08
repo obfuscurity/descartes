@@ -25,7 +25,7 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 
 ### Service Dependencies
 
-* PostgreSQL (9.1)
+* PostgreSQL
 * Redis
 
 ### Options
