@@ -1,9 +1,23 @@
 .interval.btn-group
-  %button{ :class => "interval btn disabled" } Interval
-  %button{ :class => "interval btn active", :name => 1, :value => '1h' } 1h
-  %button{ :class => "interval btn", :name => 2, :value => '3h' } 3h
-  %button{ :class => "interval btn", :name => 3, :value => '6h' } 6h
-  %button{ :class => "interval btn", :name => 4, :value => '24h' } 24h
-  %button{ :class => "interval btn", :name => 5, :value => '1w' } 1w
-  %button{ :class => "interval btn", :name => 6, :value => '4w' } 4w
-  %button{ :class => "interval btn", :name => 7, :value => '1y' } 1y
+  %button{ :class => "btn dropdown-toggle", :"data-toggle" => "dropdown"}
+    Interval - 
+    %span.caret
+  %ul{ :class => "dropdown-menu" }
+    %li
+      %a{ :href => "#", :name => "15min" } 15 minutes
+    %li
+      %a{ :href => "#", :name => "1h" } 1 hour
+    %li
+      %a{ :href => "#", :name => "3h" } 3 hours
+    %li
+      %a{ :href => "#", :name => "6h" } 6 hours
+    %li
+      %a{ :href => "#", :name => "24h" } 1 day
+    %li
+      %a{ :href => "#", :name => "1w" } 1 week
+    %li
+      %a{ :href => "#", :name => "4w" } 1 month
+    %li
+      %a{ :href => "#", :name => "1y" } 1 year
+    %li
+      %a{ :href => "#", :name => "custom" } Custom
