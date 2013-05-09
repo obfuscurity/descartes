@@ -4,6 +4,8 @@
   .metrics-cache-status
     %input{ :class => "metrics-cache-status", :type => "text", :disabled => true, :placeholder => "Cache last updated at " + cache_age }
   .tools.btn-group
+    %button{ :class => "tools btn reset", :title => "reset view" }
+      %i.icon-fire
     %button{ :class => "tools btn refresh", :title => "refresh metrics" }
       %i.icon-refresh
   = haml :"common/_interval"
