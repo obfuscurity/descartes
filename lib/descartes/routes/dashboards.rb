@@ -75,7 +75,11 @@ module Descartes
         content_type "application/json"
         { :dashboard => @dashboard, :graphs => @graphs }.to_json
       else
-        haml :'dashboards/profile', :locals => { :dashboard => @dashboard, :title => "Descartes - Dashboard :: #{@dashboard.name}" }
+        if @dashboard.nil?
+          redirect to '/dashboards', 303
+        else
+          haml :'dashboards/profile', :locals => { :dashboard => @dashboard, :title => "Descartes - Dashboard :: #{@dashboard.name}" }
+        end
       end
     end
 
