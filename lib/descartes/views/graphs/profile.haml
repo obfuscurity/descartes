@@ -24,9 +24,27 @@
 .accordion-group
   / Graph details
   %fieldset#details{ :class => "collapse" }
-    .description-wrapper
-      %label{ :for => "description" } Description:
-      %span{ :class => "closed", :id => "description" }
+    .info-and-description-wrapper
+      .info-wrapper
+        %table
+          %tr
+            %td
+              %label{ :for => "owner" } Owner:
+            %td
+              %span#owner
+          %tr
+            %td
+              %label{ :for => "created_at" } Created:
+            %td
+              %span#created_at
+          %tr
+            %td
+              %label{ :for => "updated_at" } Updated:
+            %td
+              %span#updated_at
+      .description-wrapper
+        %label{ :for => "description" } Description:
+        %span{ :class => "closed", :id => "description" }
     .tags-wrapper
       %label{ :for => "tags" } Tags:
       .tags
