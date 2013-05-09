@@ -260,18 +260,32 @@ span.graph img.view {
   margin: 0 37px 0 0;
 }
 
-.description-wrapper, .tags-wrapper, .settings-wrapper {
+.info-and-description-wrapper {
+  float: left;
+  width: 400px;
+}
+
+.info-wrapper, .description-wrapper {
+  margin: 12px 0 22px 30px;
+}
+
+.tags-wrapper, .settings-wrapper {
   float: left;
   margin: 12px 0 22px 30px;
 }
 
-.description-wrapper {
-  width: 400px;
+.info-wrapper label {
+  display: inline;
+  padding-right: 10px;
 }
 
-.description-wrapper label, .tags-wrapper label, .settings-wrapper label {
+.info-wrapper label, .description-wrapper label, .tags-wrapper label, .settings-wrapper label {
   font-size: 0.9em;
   font-weight: bold;
+}
+
+.info-wrapper span {
+  color: rgba(51, 51, 51, 0.55);
 }
 
 .description-wrapper span#description span#changeme, .tags-wrapper .tags span#changeme {
