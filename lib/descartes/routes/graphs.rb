@@ -4,13 +4,13 @@ module Descartes
     get '/graphs/?' do
       if request.accept.include?("application/json")
         @graphs = []
-        if params[:tags]
+        if params[:search]
           matching_graphs = []
-          params[:tags].split(",").each do |tag|
+          params[:search].split(",").each do |search|
             matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :tags).
               where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
-              filter(:tags__name.like(/#{tag}/i)).all
-            matching_graphs << Graph.filter(:name.like(/#{tag}/i)).order(Sequel.desc(:views), Sequel.desc(:id)).all
+              filter(:tags__name.like(/#{search}/i)).all
+            matching_graphs << Graph.filter(:name.like(/#{search}/i)).order(Sequel.desc(:views), Sequel.desc(:id)).all
           end
           known_graphs = []
           matching_graphs.flatten!

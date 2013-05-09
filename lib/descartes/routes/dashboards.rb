@@ -40,22 +40,22 @@ module Descartes
       # XXX - should return graph uuids for each dashboard
       @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
       @graphs = []
-      if params[:tags]
+      if params[:search]
         matching_graphs = []
-        params[:tags].split(",").each do |tag|
+        params[:search].split(",").each do |search|
           matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards, :tags).
             where(:graph_dashboard_relations__graph_id => :graphs__id,
                   :graph_dashboard_relations__dashboard_id => @dashboard.id,
                   :dashboards__id => :graph_dashboard_relations__dashboard_id,
                   :tags__graph_id => :graphs__id,
                   :graphs__enabled => true).
-            filter(:tags__name.like(/#{tag}/i)).all
+            filter(:tags__name.like(/#{search}/i)).all
           matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards).
             where(:graph_dashboard_relations__graph_id => :graphs__id,
                   :graph_dashboard_relations__dashboard_id => @dashboard.id,
                   :dashboards__id => :graph_dashboard_relations__dashboard_id,
                   :graphs__enabled => true).
-            filter(:graphs__name.like(/#{tag}/i)).all
+            filter(:graphs__name.like(/#{search}/i)).all
           known_graphs = []
           matching_graphs.flatten!
           matching_graphs.each do |g|
