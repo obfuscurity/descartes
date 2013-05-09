@@ -3,7 +3,6 @@ body {
 }
 
 .reset-search.icon-remove-circle {
-  margin-top: -2px;
   margin-right: 5px;
   opacity: 0.8;
   -moz-opacity: 0.8;
@@ -18,6 +17,10 @@ body {
 
 .search {
   float: right;
+}
+
+.search input {
+  margin-top: 3px;
 }
 
 .well {
