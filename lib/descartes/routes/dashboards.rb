@@ -3,22 +3,53 @@ module Descartes
 
     get '/dashboards/?' do
       if request.accept.include?("application/json")
-        # XXX - should return graph uuids for each dashboard
-        @dashboards = Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
-          from(:dashboards, :graph_dashboard_relations).
-          where(:dashboards__enabled => true, :dashboards__id => :graph_dashboard_relations__dashboard_id).
-          group(:dashboards__id,
-                :dashboards__uuid,
-                :dashboards__owner,
-                :dashboards__name,
-                :dashboards__description,
-                :dashboards__configuration,
-                :dashboards__enabled,
-                :dashboards__created_at,
-                :dashboards__updated_at).
-          order('LOWER(dashboards.name)'.lit)
+        @dashboards = []
+        if params[:search]
+          matching_dashboards = []
+          params[:search].split(",").each do |search|
+            matching_dashboards << Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
+              from(:dashboards, :graph_dashboard_relations).
+              where(:dashboards__enabled => true).
+              where(:dashboards__id => :graph_dashboard_relations__dashboard_id).
+              where(:dashboards__name.like(/#{search}/i)).
+              group(:dashboards__id,
+                    :dashboards__uuid,
+                    :dashboards__owner,
+                    :dashboards__name,
+                    :dashboards__description,
+                    :dashboards__configuration,
+                    :dashboards__enabled,
+                    :dashboards__created_at,
+                    :dashboards__updated_at).
+              order('LOWER(dashboards.name)'.lit).all
+          end
+          # Filter out duplicates
+          known_dashboards = []
+          matching_dashboards.flatten!
+          matching_dashboards.each do |d|
+            unless known_dashboards.include?(d.values[:id])
+              known_dashboards.push(d.values[:id])
+              @dashboards.push(d)
+            end
+          end
+        else
+          @dashboards << Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
+            from(:dashboards, :graph_dashboard_relations).
+            where(:dashboards__enabled => true).
+            where(:dashboards__id => :graph_dashboard_relations__dashboard_id).
+            group(:dashboards__id,
+                  :dashboards__uuid,
+                  :dashboards__owner,
+                  :dashboards__name,
+                  :dashboards__description,
+                  :dashboards__configuration,
+                  :dashboards__enabled,
+                  :dashboards__created_at,
+                  :dashboards__updated_at).
+            order('LOWER(dashboards.name)'.lit).all
+        end
         content_type "application/json"
-        @dashboards.to_json
+        @dashboards.flatten.to_json
       else
         haml :'dashboards/list', :locals => { :title => "Descartes - Dashboard List" }
       end
