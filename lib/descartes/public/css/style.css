@@ -32,6 +32,31 @@ body {
   min-height: 50px;
 }
 
+.header span.star {
+  float: left;
+  margin: 10px 10px 0 0;
+}
+
+.header .star a {
+  font-size: 1.6em;
+  color: rgb(214, 214, 214);
+}
+
+.header .star a:hover {
+  text-decoration: none;
+}
+
+.header .star a:hover:before, .star a.active:before {
+  position: absolute;
+  content: "\2605";
+  color: rgb(255, 184, 0);
+}
+
+.header .star a.active:hover:before {
+  content: "\2606";
+  color: rgb(214, 214, 214);
+}  
+
 .header h1 {
   float: left;
 }
