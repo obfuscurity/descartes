@@ -12,6 +12,7 @@ module Descartes
               filter(:tags__name.like(/#{search}/i)).all
             matching_graphs << Graph.filter(:name.like(/#{search}/i)).order(Sequel.desc(:views), Sequel.desc(:id)).all
           end
+          # Filter out duplicates
           known_graphs = []
           matching_graphs.flatten!
           matching_graphs.each do |g|
