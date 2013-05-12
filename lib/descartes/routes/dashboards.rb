@@ -125,6 +125,34 @@ module Descartes
       @dashboard.to_json
     end
 
+    post '/dashboards/:id/favorite/?' do
+      if request.accept.include?("application/json")
+        if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
+          User.filter(:email => session['user']['email']).add_favorite(@dashboard.uuid)
+          session['user']['preferences'] = User.filter(:email => session['user']['email']).preferences
+          status 204
+        else
+          halt 404
+        end
+      else
+        halt 400
+      end
+    end
+
+    delete '/dashboards/:id/favorite/?' do
+      if request.accept.include?("application/json")
+        if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
+          User.filter(:email => session['user']['email']).remove_favorite(@dashboard.uuid)
+          session['user']['preferences'] = User.filter(:email => session['user']['email']).preferences
+          status 204
+        else
+          halt 404
+        end
+      else
+        halt 400
+      end
+    end
+
     post '/dashboards/:id/graphs/?' do
       if request.accept.include?("application/json") && params[:uuids]
         @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
