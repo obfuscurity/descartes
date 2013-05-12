@@ -34,16 +34,12 @@ class User < Sequel::Model
   end
 
   def add_favorite(uuid)
-    preferences = JSON.parse(self.preferences)
-    preferences['favorites'].push(uuid).uniq!
-    self.preferences = preferences.to_json
+    self.preferences.favorites.push(uuid).uniq!
     self.save
   end
 
   def remove_favorite(uuid)
-    preferences = JSON.parse(self.preferences)
-    preferences['favorites'].delete_if {|f| f === uuid}
-    self.preferences = preferences.to_json
+    self.preferences.favorites.delete_if {|f| f === uuid}
     self.save
   end
 end
