@@ -17,13 +17,11 @@ module Descartes
           user = env['omniauth.auth']['info']
           email = user['email'].is_a?(Array) ? user['email'].first : user['email']
           email = email.downcase
-
           session['user'] = {
             'identity_url' => env['omniauth.auth']['uid'],
             'email' => email,
             'first_name' => user['first_name'],
             'last_name' => user['last_name'],
-            'preferences' => User.find_or_create_by_email(:email => email).preferences
           }
         end
         redirect redirect_to || '/'
