@@ -15,6 +15,8 @@ module Descartes
             session.clear
             session['redirect_to'] = request.path_info
             redirect '/auth/unauthorized'
+          else
+            session['user']['preferences'] = User.find_or_create_by_email(session['user']['email']).preferences
           end
         end
       end
