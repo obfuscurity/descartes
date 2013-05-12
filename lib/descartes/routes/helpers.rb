@@ -21,7 +21,7 @@ module Descartes
             'identity_url' => env['omniauth.auth']['uid'],
             'email' => email,
             'first_name' => user['first_name'],
-            'last_name' => user['last_name']
+            'last_name' => user['last_name'],
           }
         end
         redirect redirect_to || '/'
