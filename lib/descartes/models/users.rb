@@ -32,4 +32,14 @@ class User < Sequel::Model
   def self.find_or_create_by_email(email)
     User.filter(:email => email).first or User.new(:email => email).save
   end
+
+  def add_favorite(uuid)
+    self.preferences.favorites.push(uuid).uniq!
+    self.save
+  end
+
+  def remove_favorite(uuid)
+    self.preferences.favorites.delete_if {|f| f === uuid}
+    self.save
+  end
 end
