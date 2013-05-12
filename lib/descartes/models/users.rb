@@ -29,7 +29,7 @@ class User < Sequel::Model
     self.updated_at = Time.now
   end
 
-  def find_or_create_by_email(email)
+  def self.find_or_create_by_email(email)
     User.filter(:email => email).first or User.new(:email => email).save
   end
 end
