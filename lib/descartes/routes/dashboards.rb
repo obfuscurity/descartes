@@ -128,8 +128,8 @@ module Descartes
     post '/dashboards/:id/favorite/?' do
       if request.accept.include?("application/json")
         if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
-          User.filter(:email => session['user']['email']).first.add_favorite(@dashboard.uuid)
-          session['user']['preferences'] = User.filter(:email => session['user']['email']).first.preferences
+          User.filter(:email => session['user']['email']).add_favorite(@dashboard.uuid)
+          session['user']['preferences'] = User.filter(:email => session['user']['email']).preferences
           status 204
         else
           halt 404
@@ -142,8 +142,8 @@ module Descartes
     delete '/dashboards/:id/favorite/?' do
       if request.accept.include?("application/json")
         if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
-          User.filter(:email => session['user']['email']).first.remove_favorite(@dashboard.uuid)
-          session['user']['preferences'] = User.filter(:email => session['user']['email']).first.preferences
+          User.filter(:email => session['user']['email']).remove_favorite(@dashboard.uuid)
+          session['user']['preferences'] = User.filter(:email => session['user']['email']).preferences
           status 204
         else
           halt 404
