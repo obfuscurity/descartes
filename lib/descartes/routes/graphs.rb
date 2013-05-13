@@ -2,11 +2,11 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/graphs/?' do
-      if request.accept.include?("application/json")
+      if request.accept.include?('application/json')
         @graphs = []
         if params[:search]
           matching_graphs = []
-          params[:search].split(",").each do |search|
+          params[:search].split(',').each do |search|
             matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :tags).
               where(:graphs__enabled => true, :graphs__id => :tags__graph_id).
               filter(:tags__name.like(/#{search}/i)).all
@@ -26,12 +26,12 @@ module Descartes
           page_count = 12
           @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:views), Sequel.desc(:id)).paginate(page_index, page_count).all
         end
-        content_type "application/json"
+        content_type 'application/json'
         status 200
         @graphs.flatten.to_json
       else
         status 200
-        haml :'graphs/list', :locals => { :title => "Descartes - Graph List" }
+        haml :'graphs/list', :locals => { :title => 'Descartes - Graph List' }
       end
     end
 
@@ -55,7 +55,7 @@ module Descartes
             end
           end
         end
-        if request.accept.include?("application/json")
+        if request.accept.include?('application/json')
           status 200
           # XXX - should return tags too
           @graph.to_json
@@ -73,8 +73,8 @@ module Descartes
 
     get '/graphs/:uuid/?' do
       @graph = Graph.filter(:uuid => params[:uuid]).first
-      if request.accept.include?("application/json")
-        content_type "application/json"
+      if request.accept.include?('application/json')
+        content_type 'application/json'
         status 200
         @graph.to_json
       else
@@ -86,8 +86,8 @@ module Descartes
     end
 
     get '/graphs/:uuid/tags/?' do
-      if request.accept.include?("application/json")
-        content_type "application/json"
+      if request.accept.include?('application/json')
+        content_type 'application/json'
         @graph = Graph.filter(:uuid => params[:uuid]).first
         @tags = Tag.select(:id, :name).filter(:graph_id => @graph.id).order(:id).all
         status 200
@@ -98,8 +98,8 @@ module Descartes
     end
 
     post '/graphs/:uuid/tags/?' do
-      if request.accept.include?("application/json")
-        content_type "application/json"
+      if request.accept.include?('application/json')
+        content_type 'application/json'
         if params[:name]
           tags = []
           tags.push(params[:name]).flatten!
@@ -154,8 +154,8 @@ module Descartes
     end
 
     post '/graphs/:id/gists/?' do
-      if request.accept.include?("application/json")
-        content_type "application/json"
+      if request.accept.include?('application/json')
+        content_type 'application/json'
         @graph = Graph.filter(:uuid => params[:id]).first
         @gist = Gist.new(:owner => session['user']['email'], :url => params[:url], :name => @graph.name, :data => params[:data], :graph_id => @graph.id)
         @gist.save
@@ -167,8 +167,8 @@ module Descartes
     end
 
     post '/graphs/:id/comments/?' do
-      if request.accept.include?("application/json")
-        content_type "application/json"
+      if request.accept.include?('application/json')
+        content_type 'application/json'
         @graph = Graph.filter(:uuid => params[:uuid]).first
         @comment = Comment.new(:owner => session['user']['email'], :uuid => @graph.uuid)
         @comment.save
