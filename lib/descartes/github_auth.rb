@@ -19,8 +19,9 @@ module Descartes
 
     def set_user_session
       unless session['user']
+        p github_user.__id__
         session['user'] = {
-          'uid'    => github_user.id,
+          'uid'    => github_user.__id__,
           'email' => github_user.email
         }
       end
