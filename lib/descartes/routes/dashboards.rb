@@ -57,7 +57,7 @@ module Descartes
 
     post '/dashboards/?' do
       if request.accept.include?('application/json') && params[:uuids] && params[:name]
-        owner = api_token? ? 'api@localhost' : session['user']['email']
+        owner = api_token? ? 'api@localhost' : session['user']['uid']
         @dashboard = Dashboard.new({ :owner => owner, :name => params[:name] })
         @dashboard.save
         @dashboard.add_graphs(params[:uuids])
@@ -128,8 +128,8 @@ module Descartes
     post '/dashboards/:id/favorite/?' do
       if request.accept.include?('application/json')
         if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
-          User.filter(:email => session['user']['email']).first.add_favorite(@dashboard.uuid)
-          session['user']['preferences'] = User.filter(:email => session['user']['email']).first.preferences
+          User.filter(:uid => session['user']['uid']).first.add_favorite(@dashboard.uuid)
+          session['user']['preferences'] = User.filter(:uid => session['user']['uid']).first.preferences
           status 204
         else
           halt 404
@@ -142,8 +142,8 @@ module Descartes
     delete '/dashboards/:id/favorite/?' do
       if request.accept.include?('application/json')
         if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
-          User.filter(:email => session['user']['email']).first.remove_favorite(@dashboard.uuid)
-          session['user']['preferences'] = User.filter(:email => session['user']['email']).first.preferences
+          User.filter(:uid => session['user']['uid']).first.remove_favorite(@dashboard.uuid)
+          session['user']['preferences'] = User.filter(:uid => session['user']['uid']).first.preferences
           status 204
         else
           halt 404

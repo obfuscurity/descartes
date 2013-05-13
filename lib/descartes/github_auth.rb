@@ -19,11 +19,9 @@ module Descartes
 
     def set_user_session
       unless session['user']
-        user = github_user.login
-        email = github_user.email || github_user.login
         session['user'] = {
-            "email" => email,
-            "github_user" => user
+          'uid'    => github_user.id.to_s,
+          'email' => github_user.email
         }
       end
       redirect '/'

@@ -13,7 +13,7 @@ class User < Sequel::Model
 
   def validate
     super
-    validates_presence :email
+    validates_presence :uid
   end
 
   def before_create
@@ -29,8 +29,8 @@ class User < Sequel::Model
     self.updated_at = Time.now
   end
 
-  def self.find_or_create_by_email(email)
-    User.filter(:email => email).first or User.new(:email => email).save
+  def self.find_or_create_by_uid(user)
+    User.filter(:uid => user['uid']).first or User.new(:uid => user['uid'], :email => user['email']).save
   end
 
   def favorites
