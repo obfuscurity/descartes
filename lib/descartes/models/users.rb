@@ -33,6 +33,10 @@ class User < Sequel::Model
     User.filter(:email => email).first or User.new(:email => email).save
   end
 
+  def favorites
+    JSON.parse(self.preferences)['favorites']
+  end
+
   def add_favorite(uuid)
     preferences = JSON.parse(self.preferences)
     preferences['favorites'].push(uuid).uniq!
