@@ -14,7 +14,7 @@ module Descartes
     post '/gists/?' do
       if request.accept.include?("application/json")
         content_type "application/json"
-        @gist = Gist.new(:owner => session['user']['email'], :remote_image_url => params[:url])
+        @gist = Gist.new(:owner => session['user']['uid'], :remote_image_url => params[:url])
         @gist.save
         status 200
         @gist.to_json
@@ -63,7 +63,7 @@ module Descartes
       if request.accept.include?("application/json")
         content_type "application/json"
         @gist = Gist.filter(:uuid => params[:uuid]).first
-        @comment = Comment.new(:owner => session['user']['email'], :g_uuid => params[:uuid], :body => params[:body])
+        @comment = Comment.new(:owner => session['user']['uid'], :g_uuid => params[:uuid], :body => params[:body])
         @comment.save
         status 200
         @comment.to_json
