@@ -2,11 +2,11 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/dashboards/?' do
-      if request.accept.include?("application/json")
+      if request.accept.include?('application/json')
         @dashboards = []
         if params[:search]
           matching_dashboards = []
-          params[:search].split(",").each do |search|
+          params[:search].split(',').each do |search|
             matching_dashboards << Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
               from(:dashboards, :graph_dashboard_relations).
               where(:dashboards__enabled => true).
@@ -48,15 +48,15 @@ module Descartes
                   :dashboards__updated_at).
             order('LOWER(dashboards.name)'.lit).all
         end
-        content_type "application/json"
+        content_type 'application/json'
         @dashboards.flatten.to_json
       else
-        haml :'dashboards/list', :locals => { :title => "Descartes - Dashboard List" }
+        haml :'dashboards/list', :locals => { :title => 'Descartes - Dashboard List' }
       end
     end
 
     post '/dashboards/?' do
-      if request.accept.include?("application/json") && params[:uuids] && params[:name]
+      if request.accept.include?('application/json') && params[:uuids] && params[:name]
         owner = api_token? ? 'api@localhost' : session['user']['email']
         @dashboard = Dashboard.new({ :owner => owner, :name => params[:name] })
         @dashboard.save
@@ -73,7 +73,7 @@ module Descartes
       @graphs = []
       if params[:search]
         matching_graphs = []
-        params[:search].split(",").each do |search|
+        params[:search].split(',').each do |search|
           matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards, :tags).
             where(:graph_dashboard_relations__graph_id => :graphs__id,
                   :graph_dashboard_relations__dashboard_id => @dashboard.id,
@@ -102,8 +102,8 @@ module Descartes
           @graphs.push(Graph[r.graph_id])
         end
       end
-      if request.accept.include?("application/json")
-        content_type "application/json"
+      if request.accept.include?('application/json')
+        content_type 'application/json'
         { :dashboard => @dashboard, :graphs => @graphs }.to_json
       else
         if @dashboard.nil?
@@ -126,7 +126,7 @@ module Descartes
     end
 
     post '/dashboards/:id/favorite/?' do
-      if request.accept.include?("application/json")
+      if request.accept.include?('application/json')
         if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
           User.filter(:email => session['user']['email']).first.add_favorite(@dashboard.uuid)
           session['user']['preferences'] = User.filter(:email => session['user']['email']).first.preferences
@@ -140,7 +140,7 @@ module Descartes
     end
 
     delete '/dashboards/:id/favorite/?' do
-      if request.accept.include?("application/json")
+      if request.accept.include?('application/json')
         if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
           User.filter(:email => session['user']['email']).first.remove_favorite(@dashboard.uuid)
           session['user']['preferences'] = User.filter(:email => session['user']['email']).first.preferences
@@ -154,9 +154,9 @@ module Descartes
     end
 
     post '/dashboards/:id/graphs/?' do
-      if request.accept.include?("application/json") && params[:uuids]
+      if request.accept.include?('application/json') && params[:uuids]
         @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
-        params[:uuids].split(",").each do |g_uuid|
+        params[:uuids].split(',').each do |g_uuid|
           @graph = Graph.filter(:enabled => true, :uuid => g_uuid).first
           GraphDashboardRelation.new(:dashboard_id => @dashboard.id, :graph_id => @graph.id).save
         end
