@@ -15,6 +15,7 @@ module Descartes
         end
         unless session['user']
           user = env['omniauth.auth']['info']
+          p env['omniauth.auth']
           email = user['email'].is_a?(Array) ? user['email'].first : user['email']
           email = email.downcase
           session['user'] = {
