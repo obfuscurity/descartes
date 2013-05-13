@@ -29,8 +29,8 @@ class User < Sequel::Model
     self.updated_at = Time.now
   end
 
-  def self.find_or_create_by_uid(uid)
-    User.filter(:uid => uid).first or User.new(:uid => uid).save
+  def self.find_or_create_by_uid(user)
+    User.filter(:uid => user['uid']).first or User.new(:uid => user['uid'], :email => user['email']).save
   end
 
   def add_favorite(uuid)
