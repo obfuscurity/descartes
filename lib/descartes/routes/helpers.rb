@@ -14,14 +14,11 @@ module Descartes
           session.clear
         end
         unless session['user']
-          user = env['omniauth.auth']['info']
-          email = user['email'].is_a?(Array) ? user['email'].first : user['email']
-          email = email.downcase
+          info = env['omniauth.auth']['info']
+          email = info['email'].is_a?(Array) ? info['email'].first : info['email']
           session['user'] = {
-            'identity_url' => env['omniauth.auth']['uid'],
-            'email' => email,
-            'first_name' => user['first_name'],
-            'last_name' => user['last_name'],
+            'uid'   => env['omniauth.auth']['uid'].split('id=')[-1],
+            'email' => email.downcase
           }
         end
         redirect redirect_to || '/'

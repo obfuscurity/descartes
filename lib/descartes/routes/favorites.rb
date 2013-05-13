@@ -5,7 +5,7 @@ module Descartes
       if request.accept.include?("application/json")
         content_type "application/json"
         status 200
-        JSON.parse(User.filter(:email => session['user']['email']).first.preferences)['favorites'].to_json
+        JSON.parse(User.filter(:uid => session['user']['uid']).first.preferences)['favorites'].to_json
       else
         halt 404
       end
