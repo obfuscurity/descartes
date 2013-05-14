@@ -16,6 +16,7 @@ gem "haml"
 gem "json"
 gem "rspec"
 gem "rufus-scheduler"
+gem "nokogiri"
 
 group :development do
   gem "foreman"
