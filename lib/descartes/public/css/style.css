@@ -276,6 +276,11 @@ span.dashboard span.star {
   bottom: 0;
   margin: 0 0 13px 15px;
   font-size: 8.0em;
+  color: #FFD045;
+}
+
+span.dashboard:hover span.star {
+  color: #FF4D00;
 }
 
 span.dashboard.favorite span.star {
