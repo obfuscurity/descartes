@@ -242,6 +242,7 @@ div.dashboards {
 
 span.dashboard {
   position: relative;
+  overflow: hidden;
   min-height: 200px;
   margin-bottom: 12px;
   border-radius: 15px;
@@ -267,6 +268,18 @@ span.dashboard span.count {
   right: 0;
   margin: 0 28px 60px 0;
   font-size: 7.0em;
+}
+
+span.dashboard span.star {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  margin: 0 0 13px 15px;
+  font-size: 8.0em;
+}
+
+span.dashboard.favorite span.star {
+  visibility: visible;
 }
 
 span.dashboard img.close, span.graph img.close, span.graph img.view {
