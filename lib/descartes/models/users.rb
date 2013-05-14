@@ -50,4 +50,10 @@ class User < Sequel::Model
     self.preferences = preferences.to_json
     self.save
   end
+
+  def self.remove_favorite_for_everyone(uuid)
+    User.where(Sequel.like(:preferences, "%#{uuid}%")).all.each do |user|
+      User[user.id].remove_favorite(uuid)
+    end
+  end
 end
