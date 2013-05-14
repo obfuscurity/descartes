@@ -32,6 +32,22 @@ module Descartes
               @dashboards.push(d)
             end
           end
+        elsif params[:favorites] == 'true'
+          @dashboards << Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
+            from(:dashboards, :graph_dashboard_relations, :users).
+            where(:dashboards__enabled => true).
+            where(:dashboards__id => :graph_dashboard_relations__dashboard_id).
+            where(:dashboards__uuid => User.filter(:uid => session['user']['uid']).first.favorites).
+            group(:dashboards__id,
+                  :dashboards__uuid,
+                  :dashboards__owner,
+                  :dashboards__name,
+                  :dashboards__description,
+                  :dashboards__configuration,
+                  :dashboards__enabled,
+                  :dashboards__created_at,
+                  :dashboards__updated_at).
+            order('LOWER(dashboards.name)'.lit).all
         else
           @dashboards << Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
             from(:dashboards, :graph_dashboard_relations).
