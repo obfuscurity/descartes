@@ -174,7 +174,12 @@ module Descartes
         @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
         params[:uuids].split(',').each do |g_uuid|
           @graph = Graph.filter(:enabled => true, :uuid => g_uuid).first
-          GraphDashboardRelation.new(:dashboard_id => @dashboard.id, :graph_id => @graph.id).save
+          begin
+            GraphDashboardRelation.new(:dashboard_id => @dashboard.id, :graph_id => @graph.id).save
+          rescue Sequel::DatabaseError => e
+            p e.message
+            redirect to "/dashboards/#{@dashboard.uuid}", 302
+          end
         end
         status 204
       else
