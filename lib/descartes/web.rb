@@ -6,6 +6,8 @@ require 'rest-client'
 require 'redis'
 require 'haml'
 require 'json'
+require 'nokogiri'
+require 'open-uri'
 
 require 'descartes/config'
 require 'descartes/models/init'
@@ -22,6 +24,7 @@ module Descartes
     require 'descartes/routes/gists'
     require 'descartes/routes/favorites'
     require 'descartes/routes/chartroulette'
+    require 'descartes/routes/cats'
 
     get '/' do
       haml :index
