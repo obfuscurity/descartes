@@ -37,6 +37,11 @@ class Dashboard < Sequel::Model
     #validates_config_syntax self.configuration
   end
 
+  def after_destroy
+    super
+    User.remove_favorite_for_everyone(self.uuid)
+  end
+
   def graph_count
     self[:graph_count]
   end
