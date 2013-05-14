@@ -5,64 +5,11 @@ module Descartes
       if request.accept.include?('application/json')
         @dashboards = []
         if params[:search]
-          matching_dashboards = []
-          params[:search].split(',').each do |search|
-            matching_dashboards << Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
-              from(:dashboards, :graph_dashboard_relations).
-              where(:dashboards__enabled => true).
-              where(:dashboards__id => :graph_dashboard_relations__dashboard_id).
-              where(:dashboards__name.like(/#{search}/i)).
-              group(:dashboards__id,
-                    :dashboards__uuid,
-                    :dashboards__owner,
-                    :dashboards__name,
-                    :dashboards__description,
-                    :dashboards__configuration,
-                    :dashboards__enabled,
-                    :dashboards__created_at,
-                    :dashboards__updated_at).
-              order('LOWER(dashboards.name)'.lit).all
-          end
-          # Filter out duplicates
-          known_dashboards = []
-          matching_dashboards.flatten!
-          matching_dashboards.each do |d|
-            unless known_dashboards.include?(d.values[:id])
-              known_dashboards.push(d.values[:id])
-              @dashboards.push(d)
-            end
-          end
+          @dashboards = Dashboard.get_dashboards_with_graphs_by_search(params[:search])
         elsif params[:favorites] == 'true'
-          @dashboards << Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
-            from(:dashboards, :graph_dashboard_relations).
-            where(:dashboards__enabled => true).
-            where(:dashboards__id => :graph_dashboard_relations__dashboard_id).
-            where(:dashboards__uuid => User.filter(:uid => session['user']['uid']).first.favorites).
-            group(:dashboards__id,
-                  :dashboards__uuid,
-                  :dashboards__owner,
-                  :dashboards__name,
-                  :dashboards__description,
-                  :dashboards__configuration,
-                  :dashboards__enabled,
-                  :dashboards__created_at,
-                  :dashboards__updated_at).
-            order('LOWER(dashboards.name)'.lit).all
+          @dashboards = Dashboard.get_favorite_dashboards_with_graphs_by_user(session['user']['uid'])
         else
-          @dashboards << Dashboard.select('dashboards.*'.lit, 'COUNT(graph_dashboard_relations.*) AS graph_count'.lit).
-            from(:dashboards, :graph_dashboard_relations).
-            where(:dashboards__enabled => true).
-            where(:dashboards__id => :graph_dashboard_relations__dashboard_id).
-            group(:dashboards__id,
-                  :dashboards__uuid,
-                  :dashboards__owner,
-                  :dashboards__name,
-                  :dashboards__description,
-                  :dashboards__configuration,
-                  :dashboards__enabled,
-                  :dashboards__created_at,
-                  :dashboards__updated_at).
-            order('LOWER(dashboards.name)'.lit).all
+          @dashboards = Dashboard.get_dashboards_with_graphs
         end
         content_type 'application/json'
         @dashboards.flatten.to_json
