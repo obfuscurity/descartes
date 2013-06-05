@@ -23,7 +23,9 @@ class Metric
       u.user = ENV['GRAPHITE_USER']
       u.password = CGI.escape(ENV['GRAPHITE_PASS'])
     end
-    response = RestClient.get("#{u.to_s}/metrics/index.json")
+    timeout = defined? ENV['METRICS_UPDATE_TIMEOUT'] ? ENV['METRICS_UPDATE_TIMEOUT'].to_i : 300
+    request = RestClient::Resource.new("#{u.to_s}/metrics/index.json", :timeout => -1)
+    response = request.get
     @@paths = JSON.parse(response)
     MetricCacheStatus.update(:updated_at => Sequel.function(:NOW))
   end

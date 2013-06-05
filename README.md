@@ -32,6 +32,10 @@ Descartes stores configuration data in PostgreSQL and Google OpenID state in Red
 
 * `METRICS_UPDATE_INTERVAL` - How frequently to update the list of known metrics from the remote Graphite server. The more often you add new metrics, the lower this value should be. A reasonable default for most installations would be `1h` (time strings as understood by [Rufus scheduler](https://github.com/jmettraux/rufus-scheduler#the-time-strings-understood-by-rufus-scheduler)). If users complain that they don't see new metrics, it means that it hasn't synced since a new metric has been added. You can simply restart Descartes, and optionally lower this value to suit your users' patience threshold, to manually update the metrics list.
 
+* `METRICS_UPDATE_ON_BOOT` - Determines whether the list of known metrics should attempt to be loaded from the remote Graphite server at startup. Large metric stores can cause a significant delay here, so some users may wish to disable by setting `false` here.
+
+* `METRICS_UPDATE_TIMEOUT` - The timeout value for downloading the metrics list. Defaults to `300` seconds.
+
 * `USE_SVG` - When set to `true`, will cause Descartes to load SVG output from Graphite instead of the default PNG output. In the future SVG will become the default format, but there is currently a bug in stable Graphite (0.9.10 as of this writing) which causes SVG rendering to fail whenever `secondYAxis` is enabled on any target in a graph.
 
 * `GRAPH_TEMPLATE` - Specify the [Graphite graph template](https://graphite.readthedocs.org/en/latest/render_api.html?#template) to use when rendering graphs.
