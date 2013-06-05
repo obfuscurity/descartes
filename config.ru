@@ -25,7 +25,7 @@ end
 run Rack::URLMap.new('/' => Descartes::Web, '/auth/github' => Descartes::GithubAuth)
 
 # seed our Metrics list at startup
-Metric.load
+Metric.load unless ENV['METRICS_UPDATE_ON_BOOT'] == 'false'
 
 # update our Metrics list at regular intervals
 require 'rufus/scheduler'
