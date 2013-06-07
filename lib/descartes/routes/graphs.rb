@@ -31,7 +31,7 @@ module Descartes
         @graphs.flatten.to_json
       else
         status 200
-        haml :'graphs/list', :locals => { :title => 'Descartes - Graph List' }
+        haml :'graphs/index', :locals => { :title => 'Descartes - Graph List' }
       end
     end
 
@@ -81,7 +81,7 @@ module Descartes
         @graph.views += 1
         @graph.save
         status 200
-        haml :'graphs/profile', :locals => { :graph => @graph, :title => "Descartes - Graph :: #{@graph.name}" }
+        haml :'graphs/show', :locals => { :graph => @graph, :title => "Descartes - Graph :: #{@graph.name}" }
       end
     end
 

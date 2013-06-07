@@ -14,7 +14,7 @@ module Descartes
         content_type 'application/json'
         @dashboards.flatten.to_json
       else
-        haml :'dashboards/list', :locals => { :title => 'Descartes - Dashboard List' }
+        haml :'dashboards/index', :locals => { :title => 'Descartes - Dashboard List' }
       end
     end
 
@@ -72,7 +72,7 @@ module Descartes
         if @dashboard.nil?
           redirect to '/dashboards', 303
         else
-          haml :'dashboards/profile', :locals => { :dashboard => @dashboard, :title => "Descartes - Dashboard :: #{@dashboard.name}" }
+          haml :'dashboards/show', :locals => { :dashboard => @dashboard, :title => "Descartes - Dashboard :: #{@dashboard.name}" }
         end
       end
     end
