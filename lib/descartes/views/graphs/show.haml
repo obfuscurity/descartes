@@ -23,6 +23,11 @@
   .modal-footer
     %button{ :class => "btn", :"data-dismiss" => "modal", :"aria-hidden" => true } Cancel
     %button{ :class => "btn btn-danger delete" } Destroy
+.modal#composer_modal{ :class => "large hide" }
+  .modal-header
+    %img#preview.span8
+    %label{ :for => "targets_editor" } Targets:
+    %textarea#targets_editor.span8
 .accordion-group
   / Graph details
   %fieldset#details{ :class => "collapse" }
