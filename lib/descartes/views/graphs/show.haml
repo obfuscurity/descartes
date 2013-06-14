@@ -14,6 +14,7 @@
     %button{ :class => "tools btn delete", :title => "delete graph", :"data-toggle" => "modal", :"data-target" => "#destroy_modal" }
       %i.icon-trash
   = haml :"common/_interval"
+/ Destroy graph modal
 .modal#destroy_modal{ :class => "hide fade" }
   .modal-header
     %button{ :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => true } &times
@@ -23,11 +24,18 @@
   .modal-footer
     %button{ :class => "btn", :"data-dismiss" => "modal", :"aria-hidden" => true } Cancel
     %button{ :class => "btn btn-danger delete" } Destroy
+/ Composer modal for targets
 .modal#composer_modal{ :class => "large hide" }
   .modal-header
+    %button{ :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => true } &times
+    %h2 Edit Graph Targets
+  .modal-body
     %img#preview.span8
     %label{ :for => "targets_editor" } Targets:
     %textarea#targets_editor.span8
+  .modal-footer
+    %button{ :class => "btn", :"data-dismiss" => "modal", :"aria-hidden" => true } Cancel
+    %button{ :class => "targets_submit btn btn-primary" } Update Targets
 .accordion-group
   / Graph details
   %fieldset#details{ :class => "collapse" }
