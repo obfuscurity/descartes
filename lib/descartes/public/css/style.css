@@ -415,8 +415,10 @@ span.graph img.view {
   margin-left: -400px;
 }
 
+#composer_modal .modal-body { max-height: 450px; }
+
 #composer_modal img { margin: 20px 0; }
-#composer_modal textarea { height: 200px; }
+#composer_modal textarea { height: 150px; }
 
 div.metrics-cache-status {
   float: left;
