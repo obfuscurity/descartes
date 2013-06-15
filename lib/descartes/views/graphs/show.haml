@@ -5,6 +5,8 @@
   %a{ :class => "details btn closed", :"data-toggle" => "collapse", :"data-target" => "#details", :href => "#" } Details
   %a{ :class => "dashboard btn", :"data-toggle" => "collapse", :"data-target" => "#dashboard_form", :href => "#" } Add to Dashboard
   .tools.btn-group
+    %button{ :class => "tools btn edit", :title => "edit targets" }
+      %i.icon-list
     %button{ :class => "tools btn reset", :title => "reset view" }
       %i.icon-fire
     %button{ :class => "tools btn refresh", :title => "refresh graph" }
@@ -14,6 +16,7 @@
     %button{ :class => "tools btn delete", :title => "delete graph", :"data-toggle" => "modal", :"data-target" => "#destroy_modal" }
       %i.icon-trash
   = haml :"common/_interval"
+/ Destroy graph modal
 .modal#destroy_modal{ :class => "hide fade" }
   .modal-header
     %button{ :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => true } &times
@@ -23,6 +26,18 @@
   .modal-footer
     %button{ :class => "btn", :"data-dismiss" => "modal", :"aria-hidden" => true } Cancel
     %button{ :class => "btn btn-danger delete" } Destroy
+/ Composer modal for targets
+.modal#composer_modal{ :class => "large hide" }
+  .modal-header
+    %button{ :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => true } &times
+    %h2 Edit Graph Targets
+  .modal-body
+    %img#preview.span8
+    %label{ :for => "targets_editor" } Targets:
+    %textarea#targets_editor.span8
+  .modal-footer
+    %button{ :class => "btn", :"data-dismiss" => "modal", :"aria-hidden" => true } Cancel
+    %button{ :class => "targets_submit btn btn-primary" } Update Targets
 .accordion-group
   / Graph details
   %fieldset#details{ :class => "collapse" }
@@ -86,5 +101,6 @@
             %button{ :class => "dashboard_submit btn btn-primary", :name => "submit", :type => "submit" } Create Dashboard
 .graphs
   .row
+%script{ :type => "text/javascript", :src => "/js/graphs.js" }
 %script{ :type => "text/javascript", :src => "/js/profile-graph.js" }
 %script{ :type => "text/javascript", :src => "/js/render-common.js" }
