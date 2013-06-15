@@ -326,7 +326,7 @@ span.graph img.view {
   padding-right: 10px;
 }
 
-.info-wrapper label, .description-wrapper label, .tags-wrapper label, .settings-wrapper label {
+.info-wrapper label, .description-wrapper label, .tags-wrapper label, .settings-wrapper label, #composer_modal label {
   font-size: 0.9em;
   font-weight: bold;
 }
@@ -405,10 +405,20 @@ span.graph img.view {
 .settings .log_mode.btn-group { margin-top: 116px; }
 .settings .null_mode.btn-group { margin-top: 161px; }
 
-.settings .line_mode.btn-group button.line_mode.btn.disabled { width: 100px;}
-.settings .area_mode.btn-group button.area_mode.btn.disabled { width: 128px;}
-.settings .log_mode.btn-group button.log_mode.btn.disabled { width: 182px;}
-.settings .null_mode.btn-group button.null_mode.btn.disabled { width: 238px;}
+.settings .line_mode.btn-group button.line_mode.btn.disabled { width: 100px; }
+.settings .area_mode.btn-group button.area_mode.btn.disabled { width: 128px; }
+.settings .log_mode.btn-group button.log_mode.btn.disabled { width: 182px; }
+.settings .null_mode.btn-group button.null_mode.btn.disabled { width: 238px; }
+
+.modal.large {
+  width: 800px;
+  margin-left: -400px;
+}
+
+#composer_modal .modal-body { max-height: 450px; }
+
+#composer_modal img { margin: 20px 0; }
+#composer_modal textarea { height: 150px; }
 
 div.metrics-cache-status {
   float: left;
