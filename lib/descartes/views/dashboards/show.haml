@@ -1,34 +1,39 @@
-.header
-  %span.star
-    %a.inactive{ :href => "#" } &#9734
-  %h1.locked= dashboard[:name]
-  %form{ :class => "search pull-left", :action => "" }
-    %i.reset-search.icon-remove-circle
-    %input{ :class => "search-query span2", :type => "text", :name => "search", :placeholder => "Search graphs" }
-.well
-  .tools.btn-group
-    %button{ :class => "tools btn reset", :title => "reset view" }
-      %i.icon-fire
-    %button{ :class => "tools btn refresh", :title => "refresh graphs" }
-      %i.icon-refresh
-    %a{ :class => "tools btn trash", :"data-toggle" => "collapse", :"data-target" => "#destroy_form", :href => "#" }
-      %i.icon-trash
-  = haml :"common/_columns"
-  = haml :"common/_interval"
-.accordion-group
-  / Form for deleting graphs
-  %fieldset#destroy_form{ :class => "collapse" }
-    #destroy_warning.span9.offset1
-      %ul.span8
-        %li.span4.offset1
-          %span
-            You have enabled a destructive mode. Click to select any graphs you wish to delete, then click the button to the right.
-        %li.span2
-          %button{ :class => "destroy_submit btn btn-danger btn-large" } Delete Graphs
-          .destroy_all
-            %label{ :class => "checkbox", :for => "destroy_all" }
-              Entire Dashboard
-              %input{ :type => "checkbox", :name => "destroy_all" }
+- unless fullscreen
+  .header
+    %span.star
+      %a.inactive{ :href => "#" } &#9734
+    %h1.locked= dashboard[:name]
+    %form{ :class => "search pull-left", :action => "" }
+      %i.reset-search.icon-remove-circle
+      %input{ :class => "search-query span2", :type => "text", :name => "search", :placeholder => "search graphs" }
+  .well
+    .tools.btn-group
+      %button{ :class => "tools btn reset", :title => "reset view" }
+        %i.icon-fire
+      %button{ :class => "tools btn refresh", :title => "refresh graphs" }
+        %i.icon-refresh
+      %button{ :class => "tools btn fullscreen", :title => "fullscreen view" }
+        %i.icon-fullscreen
+      %a{ :class => "tools btn trash", :"data-toggle" => "collapse", :"data-target" => "#destroy_form", :href => "#" }
+        %i.icon-trash
+    = haml :"common/_columns"
+    = haml :"common/_interval"
+  .accordion-group
+    / Form for deleting graphs
+    %fieldset#destroy_form{ :class => "collapse" }
+      #destroy_warning.span9.offset1
+        %ul.span8
+          %li.span4.offset1
+            %span
+              You have enabled a destructive mode. Click to select any graphs you wish to delete, then click the button to the right.
+          %li.span2
+            %button{ :class => "destroy_submit btn btn-danger btn-large" } Delete Graphs
+            .destroy_all
+              %label{ :class => "checkbox", :for => "destroy_all" }
+                Entire Dashboard
+                %input{ :type => "checkbox", :name => "destroy_all" }
+- else
+  %h1.fullscreen= dashboard[:name]
 .graphs
 %script{ :type => "text/javascript", :src => "/js/render-dashboard.js" }
 %script{ :type => "text/javascript", :src => "/js/render-common.js" }
