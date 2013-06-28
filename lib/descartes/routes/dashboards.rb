@@ -72,7 +72,8 @@ module Descartes
         if @dashboard.nil?
           redirect to '/dashboards', 303
         else
-          haml :'dashboards/show', :locals => { :dashboard => @dashboard, :title => "Descartes - Dashboard :: #{@dashboard.name}" }
+          fullscreen = params[:fullscreen] === 'true' ? true : false
+          haml :'dashboards/show', :locals => { :dashboard => @dashboard, :title => "Descartes - Dashboard :: #{@dashboard.name}", :fullscreen => fullscreen }
         end
       end
     end

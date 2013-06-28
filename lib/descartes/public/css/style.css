@@ -61,6 +61,12 @@ body {
   float: left;
 }
 
+h1.fullscreen {
+  float: right;
+  margin: -45px 0 20px 0;
+  opacity: 0.5;
+}
+
 .header span.info {
   float: right;
   margin-top: 22px;
@@ -222,6 +228,11 @@ span.graph, .preview {
 
 .preview {
   min-height: 300px;
+}
+
+span.graph label {
+  font-weight: bold;
+  color: #888;
 }
 
 span.graph img:hover {
