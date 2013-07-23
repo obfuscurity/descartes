@@ -34,6 +34,7 @@ module Descartes
       # XXX - should return graph uuids for each dashboard
       @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
       @graphs = []
+      puts params.inspect
       if params[:search]
         matching_graphs = []
         params[:search].split(',').each do |search|
@@ -43,15 +44,13 @@ module Descartes
                   :dashboards__id => :graph_dashboard_relations__dashboard_id,
                   :tags__graph_id => :graphs__id,
                   :graphs__enabled => true).
-            filter(:tags__name.like(/#{search}/i)).
-            order('LOWER(graphs.name)'.lit).all
+            filter(:tags__name.like(/#{search}/i)).all
           matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards).
             where(:graph_dashboard_relations__graph_id => :graphs__id,
                   :graph_dashboard_relations__dashboard_id => @dashboard.id,
                   :dashboards__id => :graph_dashboard_relations__dashboard_id,
                   :graphs__enabled => true).
-            filter(:graphs__name.like(/#{search}/i)).
-            order('LOWER(graphs.name)'.lit).all
+            filter(:graphs__name.like(/#{search}/i)).all
           known_graphs = []
           matching_graphs.flatten!
           matching_graphs.each do |g|
@@ -60,11 +59,21 @@ module Descartes
               @graphs.push(g)
             end
           end
+          if params[:sort].to_i == 2
+            @graphs.sort_by! { |k| k[:name].downcase }
+          elsif params[:sort].to_i == 3
+            @graphs.sort_by! { |k| k[:name].downcase }.reverse!
+          end
         end
         @graphs.flatten!
       else
         GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
           @graphs.push(Graph[r.graph_id])
+        end
+        if params[:sort].to_i == 2
+          @graphs.sort_by! { |k| k[:name].downcase }
+        elsif params[:sort].to_i == 3
+          @graphs.sort_by! { |k| k[:name].downcase }.reverse!
         end
       end
       if request.accept.include?('application/json')

@@ -24,7 +24,13 @@ module Descartes
         else
           page_index = (params[:page] || 1).to_i
           page_count = 12
-          @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:views), Sequel.desc(:id)).paginate(page_index, page_count).all
+          if params[:sort].to_i == 2
+            @graphs << Graph.filter(:enabled => true).order(Sequel.asc(:name)).paginate(page_index, page_count).all
+          elsif params[:sort].to_i == 3
+            @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:name)).paginate(page_index, page_count).all
+          else
+            @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:views), Sequel.desc(:id)).paginate(page_index, page_count).all
+          end
         end
         content_type 'application/json'
         status 200
