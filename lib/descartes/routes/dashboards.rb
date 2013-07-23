@@ -43,13 +43,15 @@ module Descartes
                   :dashboards__id => :graph_dashboard_relations__dashboard_id,
                   :tags__graph_id => :graphs__id,
                   :graphs__enabled => true).
-            filter(:tags__name.like(/#{search}/i)).all
+            filter(:tags__name.like(/#{search}/i)).
+            order('LOWER(graphs.name)'.lit).all
           matching_graphs << Graph.select('graphs.*'.lit).from(:graphs, :graph_dashboard_relations, :dashboards).
             where(:graph_dashboard_relations__graph_id => :graphs__id,
                   :graph_dashboard_relations__dashboard_id => @dashboard.id,
                   :dashboards__id => :graph_dashboard_relations__dashboard_id,
                   :graphs__enabled => true).
-            filter(:graphs__name.like(/#{search}/i)).all
+            filter(:graphs__name.like(/#{search}/i)).
+            order('LOWER(graphs.name)'.lit).all
           known_graphs = []
           matching_graphs.flatten!
           matching_graphs.each do |g|
