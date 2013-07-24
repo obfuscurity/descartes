@@ -34,7 +34,6 @@ module Descartes
       # XXX - should return graph uuids for each dashboard
       @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
       @graphs = []
-      puts params.inspect
       if params[:search]
         matching_graphs = []
         params[:search].split(',').each do |search|
