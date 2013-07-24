@@ -21,13 +21,36 @@ module Descartes
               @graphs.push(g)
             end
           end
+          case params[:sort].to_s
+          when 'name_asc'
+            @graphs.sort_by! { |k| k[:name].downcase }
+          when 'name_desc'
+            @graphs.sort_by! { |k| k[:name].downcase }.reverse!
+          when 'view_asc'
+            @graphs.sort_by! { |k| k[:views] }
+          when 'view_desc'
+            @graphs.sort_by! { |k| k[:views] }.reverse!
+          when 'oldest'
+            @graphs.sort_by! { |k| k[:created_at] }
+          when 'newest'
+            @graphs.sort_by! { |k| k[:created_at] }.reverse!
+          end
         else
           page_index = (params[:page] || 1).to_i
           page_count = 12
-          if params[:sort].to_i == 2
+          case params[:sort].to_s
+          when 'name_asc'
             @graphs << Graph.filter(:enabled => true).order(Sequel.asc(:name)).paginate(page_index, page_count).all
-          elsif params[:sort].to_i == 3
+          when 'name_desc'
             @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:name)).paginate(page_index, page_count).all
+          when 'view_asc'
+            @graphs << Graph.filter(:enabled => true).order(Sequel.asc(:views)).paginate(page_index, page_count).all
+          when 'view_desc'
+            @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:views)).paginate(page_index, page_count).all
+          when 'oldest'
+            @graphs << Graph.filter(:enabled => true).order(Sequel.asc(:created_at)).paginate(page_index, page_count).all
+          when 'newest'
+            @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:created_at)).paginate(page_index, page_count).all
           else
             @graphs << Graph.filter(:enabled => true).order(Sequel.desc(:views), Sequel.desc(:id)).paginate(page_index, page_count).all
           end
