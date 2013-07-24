@@ -58,11 +58,6 @@ module Descartes
               @graphs.push(g)
             end
           end
-          if params[:sort].to_i == 2
-            @graphs.sort_by! { |k| k[:name].downcase }
-          elsif params[:sort].to_i == 3
-            @graphs.sort_by! { |k| k[:name].downcase }.reverse!
-          end
         end
         case params[:sort].to_s
         when 'name_asc'
