@@ -95,6 +95,19 @@ h1.fullscreen {
   margin-right: 5px;
 }
 
+.sort.btn-group {
+  float: right;
+  margin-right: 20px;
+}
+
+.sort.btn-group ul {
+  margin-left: 0;
+}
+
+.sort.btn-group button.dropdown-toggle span.current_value {
+  margin-right: 5px;
+}
+
 .columns.btn-group {
   float: right;
   margin-right: 20px;

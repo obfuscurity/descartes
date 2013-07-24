@@ -58,21 +58,39 @@ module Descartes
               @graphs.push(g)
             end
           end
-          if params[:sort].to_i == 2
-            @graphs.sort_by! { |k| k[:name].downcase }
-          elsif params[:sort].to_i == 3
-            @graphs.sort_by! { |k| k[:name].downcase }.reverse!
-          end
+        end
+        case params[:sort].to_s
+        when 'name_asc'
+          @graphs.sort_by! { |k| k[:name].downcase }
+        when 'name_desc'
+          @graphs.sort_by! { |k| k[:name].downcase }.reverse!
+        when 'view_asc'
+          @graphs.sort_by! { |k| k[:views] }
+        when 'view_desc'
+          @graphs.sort_by! { |k| k[:views] }.reverse!
+        when 'oldest'
+          @graphs.sort_by! { |k| k[:created_at] }
+        when 'newest'
+          @graphs.sort_by! { |k| k[:created_at] }.reverse!
         end
         @graphs.flatten!
       else
         GraphDashboardRelation.filter(:dashboard_id => @dashboard.id).all.each do |r|
           @graphs.push(Graph[r.graph_id])
         end
-        if params[:sort].to_i == 2
+        case params[:sort].to_s
+        when 'name_asc'
           @graphs.sort_by! { |k| k[:name].downcase }
-        elsif params[:sort].to_i == 3
+        when 'name_desc'
           @graphs.sort_by! { |k| k[:name].downcase }.reverse!
+        when 'view_asc'
+          @graphs.sort_by! { |k| k[:views] }
+        when 'view_desc'
+          @graphs.sort_by! { |k| k[:views] }.reverse!
+        when 'oldest'
+          @graphs.sort_by! { |k| k[:created_at] }
+        when 'newest'
+          @graphs.sort_by! { |k| k[:created_at] }.reverse!
         end
       end
       if request.accept.include?('application/json')
