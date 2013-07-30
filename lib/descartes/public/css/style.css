@@ -236,6 +236,19 @@ div.graphs {
   margin-bottom: 20px;
 }
 
+.graphs div.row-fluid, .dashboards div.row-fluid {
+  margin-bottom: 20px;
+}
+
+
+div.row-fluid span.graph, .preview {
+  position: relative;
+  min-height: 168px;
+  background-image: url('/img/spin.gif');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
 span.graph, .preview {
   position: relative;
   min-height: 168px;
