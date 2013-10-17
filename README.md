@@ -125,7 +125,7 @@ $ heroku config:set -r $DEPLOY METRICS_UPDATE_INTERVAL=1h
 $ heroku config:set -r $DEPLOY SESSION_SECRET...
 $ heroku config:set -r $DEPLOY RAKE_ENV=production
 $ git push $DEPLOY master
-$ heroku run bundle exec rake db:migrate:up
+$ heroku run -r $DEPLOY bundle exec rake db:migrate:up
 $ heroku scale -r $DEPLOY web=1
 $ heroku open -r $DEPLOY
 ```

@@ -1,0 +1,20 @@
+.sort.btn-group
+  %button{ :class => 'btn dropdown-toggle', :'data-toggle' => 'dropdown'}
+    Sort - 
+    %span.current_value
+    %span.caret
+  %ul{ :class => 'dropdown-menu' }
+    %li
+      %a{ :href => '#', :name => 'default' } Default
+    %li
+      %a{ :href => '#', :name => 'name_asc' } Name Ascending
+    %li
+      %a{ :href => '#', :name => 'name_desc' } Name Descending
+    %li
+      %a{ :href => '#', :name => 'view_asc' } Views Ascending
+    %li
+      %a{ :href => '#', :name => 'view_desc' } Views Descending
+    %li
+      %a{ :href => '#', :name => 'oldest' } Oldest
+    %li
+      %a{ :href => '#', :name => 'newest' } Newest
