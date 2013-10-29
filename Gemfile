@@ -19,6 +19,7 @@ gem "json"
 gem "rspec"
 gem "rufus-scheduler"
 gem "nokogiri"
+gem "dotenv"
 
 group :development do
   gem "foreman"

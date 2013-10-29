@@ -1,3 +1,5 @@
+require 'dotenv'
+Dotenv.load
 
 namespace :db do
   require 'sequel'
