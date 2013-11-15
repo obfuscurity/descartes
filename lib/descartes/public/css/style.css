@@ -27,8 +27,14 @@ body.night {
   margin-top: 3px;
 }
 
-search-query.night {
+.search input .night {
   background-color: #2c2c2c;
+  color: #fff;
+}
+
+.search-query.night {
+  background-color: #2c2c2c;
+  border: 1px solid #2c2c2c;
   color: #fff;
 }
 
@@ -43,9 +49,17 @@ search-query.night {
   padding: 10px 26px;
 }
 
+.btn-inverse {
+  color: #BBBBBB;
+}
+
 .btn night {
   background-color: #333;
-  color: #fff;
+  color: #dddddd;
+}
+
+.btn i.night {
+  opacity: 0.4;
 }
 
 .header {
