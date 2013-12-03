@@ -15,6 +15,7 @@ require 'comments'
 require 'metrics'
 require 'users'
 
+Sequel.extension :core_extensions
 Sequel.extension :pagination
 Sequel::Model.plugin :json_serializer
 Graph.plugin :json_serializer

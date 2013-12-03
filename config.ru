@@ -4,9 +4,9 @@ require 'descartes/web'
 require 'descartes/github_auth'
 require 'rack-canonical-host'
 
+# Set up SSL certificates
 require 'openid/fetchers'
 OpenID.fetcher.ca_file = '/etc/ssl/certs/ca-certificates.crt'
-
 
 use Rack::CanonicalHost do
   case ENV['RACK_ENV'].to_sym
