@@ -4,6 +4,10 @@ require 'descartes/web'
 require 'descartes/github_auth'
 require 'rack-canonical-host'
 
+require 'openid/fetchers'
+OpenID.fetcher.ca_file = '/etc/ssl/certs/ca-certificates.crt'
+
+
 use Rack::CanonicalHost do
   case ENV['RACK_ENV'].to_sym
     when :production then ENV['CANONICAL_HOST'] if defined?ENV['CANONICAL_HOST']
