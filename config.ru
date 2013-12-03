@@ -4,6 +4,10 @@ require 'descartes/web'
 require 'descartes/github_auth'
 require 'rack-canonical-host'
 
+# Set up SSL certificates
+require 'openid/fetchers'
+OpenID.fetcher.ca_file = '/etc/ssl/certs/ca-certificates.crt'
+
 use Rack::CanonicalHost do
   case ENV['RACK_ENV'].to_sym
     when :production then ENV['CANONICAL_HOST'] if defined?ENV['CANONICAL_HOST']
@@ -29,7 +33,7 @@ Metric.load unless ENV['METRICS_UPDATE_ON_BOOT'] == 'false'
 
 # update our Metrics list at regular intervals
 require 'rufus/scheduler'
-scheduler = Rufus::Scheduler.start_new
+scheduler = Rufus::Scheduler.new
 # kick off update after we start so as not to hit Heroku's web startup timeout
 scheduler.in '1m' do
   Metric.update
