@@ -2,8 +2,10 @@ require 'sequel'
 require 'securerandom'
 require 'json'
 
-db = ENV['DATABASE_URL'] || 'postgres://localhost/descartes'
-Sequel.connect(db)
+dsn = ENV['DATABASE_URL'] || 'postgres://localhost/descartes'
+
+DB = Sequel.connect(dsn)
+DB.extension :pagination
 
 $LOAD_PATH.unshift File.dirname(__FILE__)
 require 'graphs'
@@ -15,7 +17,8 @@ require 'comments'
 require 'metrics'
 require 'users'
 
-Sequel.extension :pagination
+Sequel.extension :core_extensions
+
 Sequel::Model.plugin :json_serializer
 Graph.plugin :json_serializer
 Dashboard.plugin :json_serializer

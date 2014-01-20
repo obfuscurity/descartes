@@ -29,7 +29,7 @@ Metric.load unless ENV['METRICS_UPDATE_ON_BOOT'] == 'false'
 
 # update our Metrics list at regular intervals
 require 'rufus/scheduler'
-scheduler = Rufus::Scheduler.start_new
+scheduler = Rufus::Scheduler.new
 # kick off update after we start so as not to hit Heroku's web startup timeout
 scheduler.in '1m' do
   Metric.update
