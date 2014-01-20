@@ -1,5 +1,7 @@
 # Descartes
 
+[![Build Status](https://secure.travis-ci.org/obfuscurity/descartes.png)](http://travis-ci.org/obfuscurity/descartes)
+
 ![dashboard](https://github.com/obfuscurity/descartes/raw/master/lib/descartes/public/img/descartes.png "Descartes")
 
 ## Purpose
