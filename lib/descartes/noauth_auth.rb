@@ -1,5 +1,5 @@
 module Descartes
-  class Descartes::NoAuth < Sinatra::Base
+  class NoAuth < Sinatra::Base
     before do
       session['user'] = { 'uid' => 'anonymous', 'email' => nil }
       redirect '/'
