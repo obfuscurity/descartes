@@ -2,6 +2,7 @@ $stdout.sync = true
 $:.unshift File.dirname(__FILE__) + '/lib'
 require 'descartes/web'
 require 'descartes/github_auth'
+require 'descartes/noauth_auth'
 require 'rack-canonical-host'
 
 use Rack::CanonicalHost do
