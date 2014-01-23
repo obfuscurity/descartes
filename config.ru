@@ -22,7 +22,11 @@ use OmniAuth::Builder do
     :domain => ENV['GOOGLE_OAUTH_DOMAIN']
 end
 
-run Rack::URLMap.new('/' => Descartes::Web, '/auth/github' => Descartes::GithubAuth)
+run Rack::URLMap.new(
+  '/'            => Descartes::Web,
+  '/auth/github' => Descartes::GithubAuth,
+  '/auth/noauth' => Descartes::NoAuth
+)
 
 # seed our Metrics list at startup
 Metric.load unless ENV['METRICS_UPDATE_ON_BOOT'] == 'false'

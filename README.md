@@ -48,9 +48,7 @@ The default session cookie should be randomized by setting `SESSION_SECRET` to a
 
 If your Graphite web server requires Basic Authentication, these credentials can be set using the `GRAPHITE_USER` and `GRAPHITE_PASS` environment variables.
 
-Descartes provides organizational authorization using either Google OpenID or GitHub OAuth.
-The `OAUTH_PROVIDER` environment variable can be set to either `google` or `github` to
-determine which type to use.
+Descartes provides organizational authorization using either Google OpenID or GitHub OAuth. The `OAUTH_PROVIDER` environment variable can be set to either `google` or `github` to determine which type to use. If you choose to run Descartes with no organizational identification, you can set this variable to `noauth` instead.
 
 Based on `OAUTH_PROVIDER`, some additional environment variables must be set:
 
