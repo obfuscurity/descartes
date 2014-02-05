@@ -2,7 +2,7 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/dashboards/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         @dashboards = []
         if params[:search]
           @dashboards = Dashboard.get_dashboards_with_graphs_by_search(params[:search])
@@ -19,7 +19,7 @@ module Descartes
     end
 
     post '/dashboards/?' do
-      if request.accept.include?('application/json') && params[:uuids] && params[:name]
+      if request.xhr? && params[:uuids] && params[:name]
         owner = api_token? ? 'api@localhost' : session['user']['uid']
         @dashboard = Dashboard.new({ :owner => owner, :name => params[:name] })
         @dashboard.save
@@ -93,7 +93,7 @@ module Descartes
           @graphs.sort_by! { |k| k[:created_at] }.reverse!
         end
       end
-      if request.accept.include?('application/json')
+      if request.xhr?
         content_type 'application/json'
         { :dashboard => @dashboard, :graphs => @graphs }.to_json
       else
@@ -118,7 +118,7 @@ module Descartes
     end
 
     post '/dashboards/:id/favorite/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
           User.filter(:uid => session['user']['uid']).first.add_favorite(@dashboard.uuid)
           session['user']['preferences'] = User.filter(:uid => session['user']['uid']).first.preferences
@@ -132,7 +132,7 @@ module Descartes
     end
 
     delete '/dashboards/:id/favorite/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         if @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
           User.filter(:uid => session['user']['uid']).first.remove_favorite(@dashboard.uuid)
           session['user']['preferences'] = User.filter(:uid => session['user']['uid']).first.preferences
@@ -146,7 +146,7 @@ module Descartes
     end
 
     post '/dashboards/:id/graphs/?' do
-      if request.accept.include?('application/json') && params[:uuids]
+      if request.xhr? && params[:uuids]
         @dashboard = Dashboard.filter(:enabled => true, :uuid => params[:id]).first
         params[:uuids].split(',').each do |g_uuid|
           @graph = Graph.filter(:enabled => true, :uuid => g_uuid).first

@@ -2,7 +2,7 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/favorites/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         content_type 'application/json'
         status 200
         JSON.parse(User.filter(:uid => session['user']['uid']).first.preferences)['favorites'].to_json

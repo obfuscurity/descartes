@@ -2,7 +2,7 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/chartroulette/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         favorites = User.filter(:email => session['user']['email']).first.favorites
         content_type 'application/json'
         status 200

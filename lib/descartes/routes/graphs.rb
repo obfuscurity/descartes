@@ -2,7 +2,7 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/graphs/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         @graphs = []
         if params[:search]
           matching_graphs = []
@@ -84,7 +84,7 @@ module Descartes
             end
           end
         end
-        if request.accept.include?('application/json')
+        if request.xhr?
           status 200
           # XXX - should return tags too
           @graph.to_json
@@ -102,7 +102,7 @@ module Descartes
 
     get '/graphs/:uuid/?' do
       @graph = Graph.filter(:uuid => params[:uuid]).first
-      if request.accept.include?('application/json')
+      if request.xhr?
         content_type 'application/json'
         status 200
         @graph.to_json
@@ -115,7 +115,7 @@ module Descartes
     end
 
     get '/graphs/:uuid/tags/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         content_type 'application/json'
         @graph = Graph.filter(:uuid => params[:uuid]).first
         @tags = Tag.select(:id, :name).filter(:graph_id => @graph.id).order(:id).all
@@ -127,7 +127,7 @@ module Descartes
     end
 
     post '/graphs/:uuid/tags/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         content_type 'application/json'
         if params[:name]
           tags = []
@@ -183,7 +183,7 @@ module Descartes
     end
 
     post '/graphs/:id/gists/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         content_type 'application/json'
         @graph = Graph.filter(:uuid => params[:id]).first
         @gist = Gist.new(:owner => session['user']['uid'], :url => params[:url], :name => @graph.name, :data => params[:data], :graph_id => @graph.id)
@@ -196,7 +196,7 @@ module Descartes
     end
 
     post '/graphs/:id/comments/?' do
-      if request.accept.include?('application/json')
+      if request.xhr?
         content_type 'application/json'
         @graph = Graph.filter(:uuid => params[:uuid]).first
         @comment = Comment.new(:owner => session['user']['uid'], :uuid => @graph.uuid)

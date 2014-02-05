@@ -2,7 +2,7 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/gists/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         content_type "application/json"
         status 200
         Gist.all.to_json
@@ -12,7 +12,7 @@ module Descartes
     end
 
     post '/gists/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         content_type "application/json"
         @gist = Gist.new(:owner => session['user']['uid'], :remote_image_url => params[:url])
         @gist.save
@@ -24,7 +24,7 @@ module Descartes
     end
 
     get '/gists/:uuid/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         content_type "application/json"
         status 200
         Gist.filter(:uuid => params[:uuid]).first.to_json
@@ -34,7 +34,7 @@ module Descartes
     end
 
     put '/gists/:uuid/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         content_type "application/json"
         @gist = Gist.filter(:uuid => params[:uuid]).first
         params.delete('uuid')
@@ -50,7 +50,7 @@ module Descartes
     end
 
     delete '/gists/:uuid/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         content_type "application/json"
         Gist.filter(:uuid => params[:uuid]).first.destroy
         status 204
@@ -60,7 +60,7 @@ module Descartes
     end
 
     post '/gists/:uuid/comments/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         content_type "application/json"
         @gist = Gist.filter(:uuid => params[:uuid]).first
         @comment = Comment.new(:owner => session['user']['uid'], :g_uuid => params[:uuid], :body => params[:body])

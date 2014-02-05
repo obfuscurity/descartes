@@ -2,7 +2,7 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/metrics/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         content_type "application/json"
         status 200
         Metric.all.to_json
@@ -12,7 +12,7 @@ module Descartes
     end
 
     get '/metrics/search/?' do
-      if request.accept.include?("application/json")
+      if request.xhr?
         content_type "application/json"
         status 200
         Metric.find(params[:pattern]).to_json
