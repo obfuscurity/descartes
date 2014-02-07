@@ -24,7 +24,7 @@ module Descartes
         redirect redirect_to || '/'
       end
       def json?
-        request.accept.include?('application/json')
+        request.accept.map(&:to_s).include?('application/json')
       end
     end
   end
