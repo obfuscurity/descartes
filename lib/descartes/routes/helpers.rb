@@ -23,6 +23,9 @@ module Descartes
         end
         redirect redirect_to || '/'
       end
+      def json?
+        request.accept.include?('application/json')
+      end
     end
   end
 end

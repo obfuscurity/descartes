@@ -2,7 +2,7 @@ module Descartes
   class Web < Sinatra::Base
 
     get '/cats/:count/?' do
-      if request.accept.include?('application/json')
+      if json?
         content_type 'application/json'
         @cats = []
         begin
