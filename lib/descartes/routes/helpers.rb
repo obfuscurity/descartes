@@ -5,9 +5,11 @@ module Descartes
       def api_token?
         request.env['HTTP_X_DESCARTES_API_TOKEN'].eql?(ENV['API_TOKEN'])
       end
+
       def current_user
         @current_user ||= session['user']
       end
+
       def google_callback
         if session['redirect_to']
           redirect_to = session['redirect_to']
@@ -23,6 +25,7 @@ module Descartes
         end
         redirect redirect_to || '/'
       end
+
       def json?
         request.accept.map(&:to_s).include?('application/json')
       end
