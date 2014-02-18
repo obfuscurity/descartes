@@ -3,9 +3,22 @@ module Descartes
 
     get '/metrics/?' do
       if request.xhr?
+        # No params -> just return everything.
+        metrics = if params.empty?
+          Metric.all
+        # Params -> paginate, depending.
+        else
+          page = (params['page'] || 1).to_i
+          size = (params['limit'] || 50).to_i
+          start = (page - 1) * size
+          end_ = start + size
+          Metric.all[start...end_]
+        end
+
+        # Response
         content_type "application/json"
         status 200
-        Metric.all.to_json
+        metrics.to_json
       else
         haml :'metrics/index', :locals => { :title => "Descartes - Metrics List", :cache_age => MetricCacheStatus.first.updated_at.to_s }
       end
