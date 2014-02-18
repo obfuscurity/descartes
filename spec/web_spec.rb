@@ -48,9 +48,29 @@ describe Descartes::Web do
         expect(last_response.json.size).to eq(100)
       end
 
-      it 'loads specific pages when requested via :page'
-      it 'changes page size optionally via :limit'
-      it 'defaults to page size of 50 metrics'
+      it 'loads specific pages when requested via :page' do
+        get '/metrics/', :page => 1
+        result = last_response.json
+        expect(result.size).to eq(50)
+        expect(result.first).to eq('metric.1')
+        expect(result.last).to eq('metric.50')
+      end
+
+      it 'changes page size optionally via :limit' do
+        get '/metrics/', :page => 2, :limit => 25
+        result = last_response.json
+        expect(result.size).to eq(25)
+        expect(result.first).to eq('metric.26')
+        expect(result.last).to eq('metric.50')
+      end
+
+      it 'assumes page 1 when :limit given & no :page' do
+        get '/metrics/', :limit => 25
+        result = last_response.json
+        expect(result.size).to eq(25)
+        expect(result.first).to eq('metric.1')
+        expect(result.last).to eq('metric.25')
+      end
     end
   end
 end
