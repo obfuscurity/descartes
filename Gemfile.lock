@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/brynary/rack-test.git
+  revision: 8cdb86e1d710194ce45f439915707db7fb2b27e5
+  ref: 8cdb86e1d7
+  specs:
+    rack-test (0.6.2)
+      rack (>= 1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -54,8 +62,6 @@ GEM
     rack-protection (1.5.2)
       rack
     rack-ssl-enforcer (0.2.6)
-    rack-test (0.6.2)
-      rack (>= 1.0)
     rake (10.1.1)
     redis (3.0.6)
     rest-client (1.6.7)
@@ -117,7 +123,7 @@ DEPENDENCIES
   pry
   rack-canonical-host
   rack-ssl-enforcer
-  rack-test
+  rack-test!
   rake
   rest-client
   rspec

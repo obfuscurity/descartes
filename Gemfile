@@ -24,5 +24,6 @@ gem "dotenv"
 group :development do
   gem "foreman"
   gem "pry"
-  gem "rack-test"
+  # 0.6.2 on rubygems is too old, lacks things like 'env'
+  gem "rack-test", :github => "brynary/rack-test", :ref => "8cdb86e1d7"
 end

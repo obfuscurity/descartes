@@ -16,6 +16,12 @@ describe Descartes::Web do
 
   describe '/metrics/' do
     context 'json' do
+      before :each do
+        # Be an API request.
+        env 'HTTP_X_DESCARTES_API_TOKEN', ENV['API_TOKEN']
+        header 'Accept', 'application/json'
+      end
+
       it 'loads entire cache without any params'
       it 'loads specific pages when requested via :page'
       it 'changes page size optionally via :limit'
