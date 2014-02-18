@@ -40,36 +40,35 @@ describe Descartes::Web do
         env 'HTTP_X_DESCARTES_API_TOKEN', ENV['API_TOKEN']
         header 'Accept', 'application/json'
         # Fake metric paths
-        Metric.paths = 1.upto(100).to_a.map {|x| "metric.#{x}"}
+        Metric.paths = 1.upto(100).to_a
+      end
+
+      def assert_array(size, start=nil, end_=nil)
+        expect(last_response.ok?).to be_true # Fail fast
+        result = last_response.json
+        expect(result.size).to eq(size)
+        expect(result.first).to(eq(start)) unless start.nil?
+        expect(result.last).to(eq(end_)) unless end_.nil?
       end
 
       it 'without any params, loads entire cache' do
         get '/metrics/'
-        expect(last_response.json.size).to eq(100)
+        assert_array 100
       end
 
       it 'loads specific pages when requested via :page' do
         get '/metrics/', :page => 1
-        result = last_response.json
-        expect(result.size).to eq(50)
-        expect(result.first).to eq('metric.1')
-        expect(result.last).to eq('metric.50')
+        assert_array 50, 1, 50
       end
 
       it 'changes page size optionally via :limit' do
         get '/metrics/', :page => 2, :limit => 25
-        result = last_response.json
-        expect(result.size).to eq(25)
-        expect(result.first).to eq('metric.26')
-        expect(result.last).to eq('metric.50')
+        assert_array 25, 26, 50
       end
 
       it 'assumes page 1 when :limit given & no :page' do
         get '/metrics/', :limit => 25
-        result = last_response.json
-        expect(result.size).to eq(25)
-        expect(result.first).to eq('metric.1')
-        expect(result.last).to eq('metric.25')
+        assert_array 25, 1, 25
       end
     end
   end
