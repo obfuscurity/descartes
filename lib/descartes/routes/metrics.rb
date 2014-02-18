@@ -4,7 +4,7 @@ module Descartes
     get '/metrics/?' do
       if request.xhr?
         # No params -> just return everything.
-        metrics = if params.empty?
+        metrics = if %w(page limit).map {|x| params.include?(x)}.none?
           Metric.all
         # Params -> paginate, depending.
         else

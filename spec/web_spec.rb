@@ -51,8 +51,8 @@ describe Descartes::Web do
         expect(result.last).to(eq(end_)) unless end_.nil?
       end
 
-      it 'without any params, loads entire cache' do
-        get '/metrics/'
+      it 'without page/limit params, loads entire cache' do
+        get '/metrics/', :_ => 12345 # ape real webapp behavior
         assert_array 100
       end
 
