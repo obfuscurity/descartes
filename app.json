@@ -14,7 +14,7 @@
         "devops"
     ],
     "scripts": {
-        "postdeploy": ""
+        "postdeploy": "bundle exec rake db:migrate:up"
     },
     "addons": [
         "redistogo",
