@@ -3,6 +3,7 @@
     "description": "Introspective dashboard for Graphite",
     "website": "https://github.com/obfuscurity/descartes",
     "repository": "https://github.com/obfuscurity/descartes",
+    "template": "https://github.com/obfuscurity/descartes/tree/heroku_button",
     "logo": "https://raw.githubusercontent.com/obfuscurity/descartes/master/lib/descartes/public/img/descartes-logo.png",
     "success_url": "/",
     "keywords": [
