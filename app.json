@@ -19,6 +19,13 @@
         "heroku-postgresql"
     ],
     "env": {
-        "BUILDPACK_URL": ""
+        "BUILDPACK_URL": "",
+        "OAUTH_PROVIDER": "google",
+        "GOOGLE_OAUTH_DOMAIN": "change-me.com",
+        "GRAPHITE_URL": "http://graphite.change-me.com",
+        "METRICS_UPDATE_INTERVAL": "15min",
+        "METRICS_UPDATE_ON_BOOT": "false",
+        "SESSION_SECRET": "foobar",
+        "RAKE_ENV": "production"
     }
 }
