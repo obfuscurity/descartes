@@ -6,7 +6,6 @@
     "logo": "https://raw.githubusercontent.com/obfuscurity/descartes/master/lib/descartes/public/img/descartes-logo.png",
     "success_url": "/",
     "scripts": {
-        "postdeploy": "bundle exec rake db:migrate:up"
     },
     "keywords": [
         "graphite",
