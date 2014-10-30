@@ -16,7 +16,7 @@
     },
     "addons": [
         "redistogo",
-        "heroku-postgresql:dev"
+        "heroku-postgresql"
     ],
     "env": {
         "BUILDPACK_URL": ""
