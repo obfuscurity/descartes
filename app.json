@@ -1,0 +1,24 @@
+{
+    "name": "Descartes",
+    "description": "Introspective dashboard for Graphite",
+    "website": "https://github.com/obfuscurity/descartes",
+    "repository": "https://github.com/obfuscurity/descartes",
+    "logo": "https://raw.githubusercontent.com/obfuscurity/descartes/master/lib/descartes/public/img/descartes-logo.png",
+    "success_url": "/",
+    "keywords": [
+        "graphite",
+        "dashboard",
+        "monitoring",
+        "devops"
+    ],
+    "scripts": {
+        "postdeploy": ""
+    },
+    "addons": [
+        "redistogo",
+        "heroku-postgresql:dev"
+    ],
+    "env": {
+        "BUILDPACK_URL": ""
+    }
+}

@@ -113,7 +113,7 @@ $ foreman start
 $ open http://127.0.0.1:5000
 ```
 
-### Heroku
+### Heroku - The Old Way
 
 ```bash
 $ export DEPLOY=production/staging/you
@@ -131,6 +131,10 @@ $ heroku run -r $DEPLOY bundle exec rake db:migrate:up
 $ heroku scale -r $DEPLOY web=1
 $ heroku open -r $DEPLOY
 ```
+
+### Heroku - The Easy Way
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/obfuscurity/descartes)
 
 ## Upgrades
 
