@@ -156,8 +156,11 @@ module Descartes
     end
 
     put '/graphs/:id/?' do
+      # Obtain graph based on URL path parameter
       @graph = Graph.filter(:uuid => params[:id]).first
-      params.delete('id')
+      # Filter out id + other non-form-field params (modern Sinatra adds e.g.
+      # 'splat') so they don't anger Sequel
+      params.delete_if {|k, v| %w(id splat captures).include?(k)}
       if params[:overrides]
         # check to see if our data came in as a String (e.g. curl) or real JSON (from Descartes UI)
         overrides = params[:overrides].class.eql?(String) ? JSON.parse(params[:overrides]) : params[:overrides]
