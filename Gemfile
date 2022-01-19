@@ -1,16 +1,14 @@
 source "http://rubygems.org"
 
-ruby "1.9.3"
-
 gem "bundler"
 gem "rake"
-gem "sinatra", "1.4.4"
-gem "thin", "1.5.1"
+gem "sinatra"
+gem "thin"
 gem "pg"
 gem "sequel"
 gem "omniauth"
 gem 'omniauth-google-apps'
-gem "sinatra_auth_github", "0.13.3"
+gem "sinatra_auth_github"
 gem "openid-redis-store"
 gem "rack-canonical-host"
 gem "rack-ssl-enforcer"
